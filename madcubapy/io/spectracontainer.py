@@ -25,11 +25,6 @@ class SpectraContainer(MadcubaFits):
         An astropy table ontaining the history information of the fits file,
         which is stored in a separate _hist.csv file.
 
-    Methods
-    -------
-    read(*args, **kwargs)
-        Classmethod to create a SpectraContainer instance based on a fits file.
-
     """
     def __init__(
         self,
