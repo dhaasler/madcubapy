@@ -14,11 +14,11 @@ class MadcubaFits:
     ----------
     hist : `astropy.table.Table`
         An astropy Table object containing the history information of the fits
-        file, which is stored in a separate *_hist.csv file.
+        file, which is stored in a separate _hist.csv file.
 
     Methods
     -------
-    add_hist(\\*args)
+    add_hist(*args)
         Loads a hist Table from a CSV file.
 
     """
@@ -46,7 +46,7 @@ class MadcubaFits:
         self._hist = value
 
     def add_hist(self, filename):
-        """Load the hist table from a CSV file.
+        """Load the hist table from a csv file.
 
         Parameters
         ----------

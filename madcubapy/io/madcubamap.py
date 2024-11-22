@@ -27,16 +27,14 @@ class MadcubaMap(MadcubaFits):
         The unit of the data of the FITS file.
     hist : astropy.table.Table
         An astropy Table object containing the history information of the fits
-        file, which is stored in a separate *_hist.csv file.
+        file, which is stored in a separate _hist.csv file.
     ccddata : astropy.nddata.CCDData
         An astropy CCDData object loaded with astropy as a failsafe.
 
     Methods
     -------
-    read(\\*args, \\**kwargs)
+    read(*args, **kwargs)
         Classmethod to create a MadcubaMap instance based on a fits file.
-    add_hist(\\*args)
-        Loads a hist Table from a CSV file.
 
     """
     def __init__(
