@@ -1,0 +1,14 @@
+# Python and jupyter files
+**/__pycache__/
+
+# Setup files
+madcubapy.egg-info/
+
+# Build files
+build/
+
+# Virtual environment
+.venv-madcubapy/
+
+# VSCode
+.vscode/
