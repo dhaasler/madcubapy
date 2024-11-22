@@ -12,9 +12,12 @@ setup(
     author_email="dhaasler@cab.inta-csic.es",
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
+    url='https://github.com/dhaasler/madcubapy',
     packages=find_packages(),
     install_requires=[
-        "numpy", "matplotlib", "astropy",
+        "astropy",
+        "matplotlib",
+        "numpy",
     ],
     keywords=[
         'madcuba',
