@@ -25,6 +25,6 @@ classifiers= [
 ]
 
 [project.urls]
-homepage = "https://github.com/dhaasler/madcubapy",
-Repository = "https://github.com/dhaasler/madcubapy.git",
+homepage = "https://github.com/dhaasler/madcubapy"
+Repository = "https://github.com/dhaasler/madcubapy.git"
 Changelog = "https://github.com/dhaasler/madcubapy/CHANGELOG.md"
