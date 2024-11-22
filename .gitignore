@@ -1,5 +1,6 @@
 # Python and jupyter files
 **/__pycache__/
+**/.pytest_cache/
 
 # Setup files
 madcubapy.egg-info/
