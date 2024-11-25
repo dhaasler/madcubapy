@@ -31,11 +31,6 @@ class MadcubaMap(MadcubaFits):
     ccddata : astropy.nddata.CCDData
         An astropy CCDData object loaded with astropy as a failsafe.
 
-    Methods
-    -------
-    read(*args, **kwargs)
-        Classmethod to create a MadcubaMap instance based on a fits file.
-
     """
     def __init__(
         self,

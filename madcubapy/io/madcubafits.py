@@ -16,11 +16,6 @@ class MadcubaFits:
         An astropy Table object containing the history information of the fits
         file, which is stored in a separate _hist.csv file.
 
-    Methods
-    -------
-    add_hist(*args)
-        Loads a hist Table from a CSV file.
-
     """
     def __init__(
         self,
