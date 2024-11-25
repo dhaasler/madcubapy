@@ -23,6 +23,10 @@ classifiers= [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent"
 ]
+keywords=[
+    'madcuba',
+    'radio astronomy',
+]
 
 [project.urls]
 homepage = "https://github.com/dhaasler/madcubapy"
