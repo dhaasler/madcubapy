@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "The MADCUBA python package"
+name = "madcubapy"
 version = "0.0.1"
 description = "Package to work with MADCUBA products"
 readme = "README.md"
