@@ -28,6 +28,14 @@ keywords=[
     'radio astronomy',
 ]
 
+[project.optional-dependencies]
+docs = [
+    "astropy[recommended]",  # installs the [recommended] dependencies
+    "sphinx",
+    "sphinx_rtd_theme",
+    "matplotlib",
+]
+
 [project.urls]
 homepage = "https://github.com/dhaasler/madcubapy"
 Repository = "https://github.com/dhaasler/madcubapy.git"
