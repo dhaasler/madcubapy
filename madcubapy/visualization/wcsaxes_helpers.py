@@ -171,7 +171,6 @@ def add_manual_wcs_axes(
     return ax, img
 
 
-
 def parse_clabel(fitsmap):
     """Parse colorbar text from a MadcubaMap or CCDData unit attribute.
 
@@ -202,6 +201,7 @@ def parse_clabel(fitsmap):
         label = 'units not parsed'
 
     return label
+
 
 def append_colorbar(
         ax=None,
@@ -341,7 +341,6 @@ def append_colorbar(
     # colorbar.ax.tick_params(labelsize=11)  # default 10
 
     return colorbar
-
 
 
 def add_colorbar(
