@@ -15,7 +15,7 @@ setup(
     url='https://github.com/dhaasler/madcubapy',
     packages=find_packages(),
     install_requires=[
-        "astropy>=7.0.0",
+        "astropy>=7.0",
         "matplotlib>=3.9.0",
         "numpy>=1.26.0"
     ],
