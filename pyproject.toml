@@ -13,8 +13,8 @@ authors = [
 ]
 dependencies = [
     "astropy",
-    "matplotlib>=3.9.1",
-    "numpy>=1.26.0"
+    "matplotlib",
+    "numpy"
 ]
 classifiers= [
     "Development Status :: 2 - Pre-Alpha",

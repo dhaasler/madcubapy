@@ -16,8 +16,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         "astropy",
-        "matplotlib>=3.9.1",
-        "numpy>=1.26.0"
+        "matplotlib",
+        "numpy"
     ],
     keywords=[
         'madcuba',
