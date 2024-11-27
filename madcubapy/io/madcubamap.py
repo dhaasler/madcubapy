@@ -8,6 +8,7 @@ from pathlib import Path
 
 from .madcubafits import MadcubaFits
 
+
 class MadcubaMap(MadcubaFits):
     """A container for MADCUBA fits maps, using the
     `radioastro.madcubaio.MadcubaFits` interface.

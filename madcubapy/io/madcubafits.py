@@ -3,6 +3,7 @@ from astropy.table import Table
 import os
 from pathlib import Path
 
+
 class MadcubaFits:
     """A basic class describing a MADCUBA Fits object with its hist file.
 
