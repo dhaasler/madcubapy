@@ -12,9 +12,9 @@ authors = [
     {name = "David Haasler García", email = "dhaasler@cab.inta-csic.es"}
 ]
 dependencies = [
-    "astropy",
-    "matplotlib",
-    "numpy"
+    "astropy>=7.0.0",
+    "matplotlib>=3.9.0",
+    "numpy>=1.26.0"
 ]
 classifiers= [
     "Development Status :: 2 - Pre-Alpha",
