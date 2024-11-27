@@ -6,9 +6,9 @@ from pathlib import Path
 class MadcubaFits:
     """A basic class describing a MADCUBA Fits object with its hist file.
 
-    The MadcubaFits class contains the only object shared by MADCUBA
-    maps, cubes, and spectra: an Astropy Table describing the history
-    file exported by MADCUBA.
+    The MadcubaFits class contains the only object shared by MADCUBA maps,
+    cubes, and spectra: an Astropy Table describing the history file exported
+    by MADCUBA.
 
     Parameters
     ----------
@@ -28,9 +28,6 @@ class MadcubaFits:
 
     @property
     def hist(self):
-        """
-        `astropy.table.Table` : Table of the hist file.
-        """
         return self._hist
 
     @hist.setter

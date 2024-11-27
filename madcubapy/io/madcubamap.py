@@ -31,6 +31,11 @@ class MadcubaMap(MadcubaFits):
     ccddata : astropy.nddata.CCDData
         An astropy CCDData object loaded with astropy as a failsafe.
 
+    Methods
+    -------
+    add_hist(*args)
+        Loads a hist Table from a CSV file.
+
     """
     def __init__(
         self,
@@ -66,9 +71,6 @@ class MadcubaMap(MadcubaFits):
 
     @property
     def ccddata(self):
-        """
-        `astropy.nddata.CCDData` : CCDData object of the fits map.
-        """
         return self._ccddata
 
     @ccddata.setter
@@ -79,9 +81,6 @@ class MadcubaMap(MadcubaFits):
 
     @property
     def data(self):
-        """
-        `numpy.ndarray` : The data of the fits map.
-        """
         return self._data
 
     @data.setter
@@ -92,9 +91,6 @@ class MadcubaMap(MadcubaFits):
 
     @property
     def header(self):
-        """
-        `astropy.io.fits.Header` : The header of the fits map.
-        """
         return self._header
 
     @header.setter
@@ -105,9 +101,6 @@ class MadcubaMap(MadcubaFits):
 
     @property
     def wcs(self):
-        """
-        `astropy.wcs.WCS` : The header of the fits map.
-        """
         return self._wcs
 
     @wcs.setter
@@ -118,9 +111,6 @@ class MadcubaMap(MadcubaFits):
 
     @property
     def unit(self):
-        """
-        `astropy.units.Unit` : The data of the fits map.
-        """
         return self._unit
 
     @unit.setter
@@ -139,7 +129,7 @@ class MadcubaMap(MadcubaFits):
         ----------
         filename : str
             Name of fits file.
-        kwargs
+        **kwargs
             Additional keyword parameters passed through to the Astropy
             CCDData.read() class method.
 
