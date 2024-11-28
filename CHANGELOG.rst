@@ -1,3 +1,9 @@
+Version 0.0.3 (2024-11-28)
+==========================
+
+Add hist table updater to MadcubaFits, to write new history into the file.
+
+
 Version 0.0.2 (2024-11-27)
 ==========================
 
