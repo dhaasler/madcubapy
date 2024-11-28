@@ -9,6 +9,7 @@ Subpackages
 
    madcubapy.io
    madcubapy.utils
+   madcubapy.visualization
 
 Module contents
 ---------------
