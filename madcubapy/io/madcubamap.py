@@ -2,6 +2,7 @@ import astropy
 from astropy.io import fits
 from astropy.nddata import CCDData
 from astropy.table import Table
+import astropy.units as u
 import numpy as np
 import os
 from pathlib import Path
@@ -164,6 +165,34 @@ class MadcubaMap(MadcubaFits):
             ccddata=ccddata,
         )
         return madcuba_map
+
+    def fix_units(self):
+        """
+        This function tries to fix problems when the units are incorrectly
+        parsed if the BUNIT card contains more than one slash (CARTA maps).
+
+        """
+        unit_str = self.header["BUNIT"]
+        result = []
+        # Split by slashes
+        terms = unit_str.split('/')  # Split by slashes
+        # The entire first term is in the numerator, no correction for a slash
+        # must be applied. Split the units and append to a list.
+        first_sub_terms = terms[0].split('.')
+        result.extend(first_sub_terms)
+        # Process terms after slashes
+        for term in terms[1:]:
+            # Split units and append a -1 to the first one because now it is a
+            # unit after a slash and append the rest without changes because
+            # they are preceeded by dots.
+            sub_terms = term.split('.')
+            result.append(f"{sub_terms[0]}-1")
+            result.extend(sub_terms[1:])
+        # Join all terms with a space
+        new_unit_str = ' '.join(result)
+        # Overwrite units
+        self._unit = u.Unit(new_unit_str)
+        self._ccddata.unit = u.Unit(new_unit_str)
 
     def __repr__(self):
         # If hist is None, display that it's missing

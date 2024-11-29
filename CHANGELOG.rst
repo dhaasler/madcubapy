@@ -1,3 +1,9 @@
+Version 0.0.4 (2024-11-29)
+==========================
+
+Add method to fix incorrectly parsed units in a MadcubaMap. 
+
+
 Version 0.0.3 (2024-11-28)
 ==========================
 
