@@ -168,8 +168,8 @@ class MadcubaMap(MadcubaFits):
 
     def fix_units(self):
         """
-        This function tries to fix problems when the units are incorrectly
-        parsed if the BUNIT card contains more than one slash (CARTA maps).
+        Tries to fix problems when the units are incorrectly parsed when the
+        BUNIT card contains more than one slash (CARTA maps).
 
         """
         unit_str = self.header["BUNIT"]
