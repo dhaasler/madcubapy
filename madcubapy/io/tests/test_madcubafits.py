@@ -78,3 +78,8 @@ def test_update_hist_protected(example_madcuba_fits_hist):
 def test_update_hist_invalid(example_madcuba_fits_hist):
     with pytest.raises(ValueError):
         example_madcuba_fits_hist._update_hist(action="Fix temp", Any_name='S')
+
+def test_update_hist_none():
+    madcuba_fits = MadcubaFits()
+    with pytest.raises(ValueError):
+        madcuba_fits._update_hist(action="Fix temp")
