@@ -26,6 +26,19 @@ def example_init_spec():
     return SpectraContainer(bintable, hist)
 
 @pytest.fixture
+def example_init_nohist_spec():
+    bintable = Table({
+        'DATA': [np.array([[1, 2],[3, 4]]), np.array([[5, 6],[7, 8]])],
+        'RESTFRQ': [1, 2],
+        'CHANNELS': [5, 5],
+        'CDELT3': [3, 3],
+        'CRPIX3': [3, 3],
+        'CRVAL3': [3, 3],
+        'BUNIT': ['Jy    ', 'Jy    '],
+    })
+    return SpectraContainer(bintable)
+
+@pytest.fixture
 def example_read_spec():
     # Create and return a Map instance to be used in tests
     return SpectraContainer.read(
@@ -65,14 +78,28 @@ def test_spectral_container_parse_data_units(example_init_spec):
     example_init_spec._parse_data_units()
     assert example_init_spec.bintable['DATA'].unit == None
 
-def test_init_copy(example_init_spec):
-    spectra_container_copy = example_init_spec.copy()
-    assert report_diff_values(
-        spectra_container_copy.hist, example_init_spec.hist
-    )
-
-def test_read_copy(example_read_spec):
+def test_copy_read(example_read_spec):
     spectra_container_copy = example_read_spec.copy()
     assert report_diff_values(
         spectra_container_copy.hist, example_read_spec.hist
     )
+    assert report_diff_values(
+        spectra_container_copy.bintable, example_read_spec.bintable
+    )
+
+def test_copy_init(example_init_spec):
+    spectra_container_copy = example_init_spec.copy()
+    assert report_diff_values(
+        spectra_container_copy.hist, example_init_spec.hist
+    )
+    assert report_diff_values(
+        spectra_container_copy.bintable, example_init_spec.bintable
+    )
+
+def test_copy_init_nohist(example_init_nohist_spec):
+    spectra_container_copy = example_init_nohist_spec.copy()
+    assert report_diff_values(
+        spectra_container_copy.bintable, example_init_nohist_spec.bintable
+    )
+    assert spectra_container_copy.hist == example_init_nohist_spec.hist
+    assert spectra_container_copy.hist == None

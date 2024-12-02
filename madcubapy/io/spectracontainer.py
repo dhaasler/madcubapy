@@ -93,9 +93,17 @@ class SpectraContainer(MadcubaFits):
         """
         Create a copy of the SpectraContainer object.
         """
+        if self._bintable:
+            new_bintable = self._bintable.copy()
+        else:
+            new_bintable = None
+        if self._hist:
+            new_hist = self._hist.copy()
+        else:
+            new_hist = None
         return SpectraContainer(
-            bintable=self._bintable.copy(),
-            hist=self._hist.copy(),
+            bintable=new_bintable,
+            hist=new_hist,
         )
 
     def _generate_spectral_axes(self):

@@ -171,12 +171,16 @@ class MadcubaMap(MadcubaFits):
         """
         Create a copy of the MadcubaMap object.
         """
+        if self._hist:
+            new_hist = self._hist.copy()
+        else:
+            new_hist = None
         return MadcubaMap(
             data=deepcopy(self._data),
             header=deepcopy(self._header),
             wcs=deepcopy(self._wcs),
             unit=deepcopy(self._unit),
-            hist=self._hist.copy(),
+            hist=new_hist,
             ccddata=deepcopy(self._ccddata),
         )
 
@@ -195,6 +199,20 @@ class MadcubaMap(MadcubaFits):
         if self._hist:
             self._update_hist((f"Fixed BUNIT card from '{unit_str}' "
                              + f"to '{new_unit_str}"))
+
+    def convert_unit_to(self, unit):
+        """
+        Convert the units of the map.
+
+        """
+        # Change unit in CCDDdata and copy it into MadcubaMap
+        converted_ccddata = self._ccddata.convert_unit_to(unit)
+        self._ccddata = converted_ccddata
+        self._data = converted_ccddata.data
+        self._unit = converted_ccddata.unit
+        if self._hist:
+            self._update_hist((f"Convert units to "
+                             + f"'{unit.to_string(format='fits')}'"))
 
     def __repr__(self):
         # If hist is None, display that it's missing

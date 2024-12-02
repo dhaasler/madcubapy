@@ -50,3 +50,20 @@ def test_copy_madcuba(example_madcuba_map):
     assert madcuba_map_copy.unit == example_madcuba_map.unit
     assert report_diff_values(example_madcuba_map.hist, madcuba_map_copy.hist)
     assert madcuba_map_copy.ccddata.meta == example_madcuba_map.ccddata.meta
+
+def test_convert_units_madcuba(example_madcuba_map):
+    example_madcuba_map_mJy = example_madcuba_map.copy()
+    example_madcuba_map_mJy.convert_unit_to(u.mJy * u.m / u.beam / u.s)
+    assert example_madcuba_map_mJy.unit == u.mJy * u.m / u.beam / u.s
+    assert example_madcuba_map_mJy.ccddata.unit == u.mJy * u.m / u.beam / u.s
+    assert example_madcuba_map_mJy.hist[-1]["Macro"] == (
+        "//PYTHON: Convert units to 'm mJy beam-1 s-1'"
+    )
+
+def test_convert_units_carta(example_carta_map):
+    example_carta_map_mJy = example_carta_map.copy()
+    example_carta_map_mJy.fix_units()
+    example_carta_map_mJy.convert_unit_to(u.mJy * u.m / u.beam / u.s)
+    assert example_carta_map_mJy.unit == u.mJy * u.m / u.beam / u.s
+    assert example_carta_map_mJy.ccddata.unit == u.mJy * u.m / u.beam / u.s
+    assert example_carta_map_mJy.hist == None
