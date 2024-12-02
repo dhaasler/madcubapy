@@ -41,7 +41,7 @@ class MadcubaFits:
         self._hist = value
 
     def add_hist(self, filename):
-        """Load the hist table from a csv file.
+        """Load the hist table from a CSV file.
 
         Parameters
         ----------
@@ -107,17 +107,6 @@ class MadcubaFits:
         new_row.update(hist_keys)
         # Add new row to history
         self._hist.add_row(new_row)
-
-    def __repr__(self):
-        # If hist is None, display that it's missing
-        if self._hist is None:
-            hist_repr = "None"
-        # If hist is present, display a summary of the table
-        else: hist_repr = (
-            f"<Table length={len(self._hist)} rows, " +
-            f"{len(self._hist.columns)} columns>"
-        )
-        return f"<MadcubaFits(hist={hist_repr})>"
 
     def __repr__(self):
         # If hist is None, display that it's missing
