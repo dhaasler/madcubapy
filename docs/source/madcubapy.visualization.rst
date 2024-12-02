@@ -12,6 +12,14 @@ madcubapy.visualization.wcsaxes\_helpers module
    :undoc-members:
    :show-inheritance:
 
+madcubapy.visualization.quick\_plotters module
+-----------------------------------------------
+
+.. automodule:: madcubapy.visualization.quick_plotters
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

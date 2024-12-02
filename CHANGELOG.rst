@@ -1,3 +1,11 @@
+Version 0.0.5 (2024-12-02)
+==========================
+
+- Add copy methods to MadcubaMap and SpectraContainer.
+- Add quick_show and are_equal functions.
+- Add unit conversor for MadcubaMap.
+- Add method to fix incorrectly coded BUNIT
+
 Version 0.0.4 (2024-11-29)
 ==========================
 

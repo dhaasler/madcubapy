@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.4' 
+VERSION = '0.0.5' 
 DESCRIPTION = 'The MADCUBA python package.'
 LONG_DESCRIPTION = 'Package with tools and utilities to work with MADCUBA products in python.'
 
