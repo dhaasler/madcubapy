@@ -168,28 +168,13 @@ class MadcubaMap(MadcubaFits):
 
     def fix_units(self):
         """
-        Tries to fix problems when the units are incorrectly parsed when the
-        BUNIT card contains more than one slash (CARTA maps).
+        This function tries to fix problems when the units are incorrectly
+        parse. The user must confirm that the new units are correct.
 
         """
         unit_str = self.header["BUNIT"]
-        result = []
-        # Split by slashes
-        terms = unit_str.split('/')  # Split by slashes
-        # The entire first term is in the numerator, no correction for a slash
-        # must be applied. Split the units and append to a list.
-        first_sub_terms = terms[0].split('.')
-        result.extend(first_sub_terms)
-        # Process terms after slashes
-        for term in terms[1:]:
-            # Split units and append a -1 to the first one because now it is a
-            # unit after a slash and append the rest without changes because
-            # they are preceeded by dots.
-            sub_terms = term.split('.')
-            result.append(f"{sub_terms[0]}-1")
-            result.extend(sub_terms[1:])
-        # Join all terms with a space
-        new_unit_str = ' '.join(result)
+        # Fix CARTA strings
+        new_unit_str = _fix_unit_string_multiple_slashes(unit_str)
         # Overwrite units
         self._unit = u.Unit(new_unit_str)
         self._ccddata.unit = u.Unit(new_unit_str)
@@ -213,3 +198,29 @@ class MadcubaMap(MadcubaFits):
             unit_r = f"unit={self._unit}"
 
         return f"<MadcubaMap({data_r}, {unit_r}, {hist_r})>"
+
+
+
+def _fix_unit_string_multiple_slashes(unit_str):
+    """
+    This function converts dots to spaces and slashes to '-1' exponents if the
+    BUNIT card contains more than one slash.
+
+    """
+    result = []
+    # Split by slashes
+    terms = unit_str.split('/')
+    # The entire first term is in the numerator, no correction for a slash must
+    # be applied. Split the units and append to a list.
+    first_sub_terms = terms[0].split('.')
+    result.extend(first_sub_terms)
+    # Process terms after slashes
+    for term in terms[1:]:
+        # Split units and append a -1 to the first one because now it is a unit
+        # after a slash and append the rest without changes because they are
+        # preceeded by dots.
+        sub_terms = term.split('.')
+        result.append(f"{sub_terms[0]}-1")
+        result.extend(sub_terms[1:])
+    # Join all terms with a space
+    return ' '.join(result)
