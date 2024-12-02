@@ -1,5 +1,7 @@
 from astropy.table import Table
 import astropy.units as u
+from astropy.utils.diff import report_diff_values
+import numpy as np
 import pytest
 from madcubapy.io.madcubamap import MadcubaMap
 
@@ -38,3 +40,13 @@ def test_fix_units_incorrect(example_carta_map):
     assert example_carta_map.unit == u.Jy / u.beam / u.km / u.s
     example_carta_map.fix_units()
     assert example_carta_map.unit == u.Jy * u.km / u.beam / u.s
+
+def test_copy_madcuba(example_madcuba_map):
+    madcuba_map_copy = example_madcuba_map.copy()
+    assert np.array_equal(
+        madcuba_map_copy.data, example_madcuba_map.data, equal_nan=True
+    )
+    assert madcuba_map_copy.header == example_madcuba_map.header
+    assert madcuba_map_copy.unit == example_madcuba_map.unit
+    assert report_diff_values(example_madcuba_map.hist, madcuba_map_copy.hist)
+    assert madcuba_map_copy.ccddata.meta == example_madcuba_map.ccddata.meta

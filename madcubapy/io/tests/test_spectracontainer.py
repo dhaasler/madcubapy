@@ -1,5 +1,6 @@
 from astropy.table import Table
 import astropy.units as u
+from astropy.utils.diff import report_diff_values
 import numpy as np
 import pytest
 from madcubapy.io.spectracontainer import SpectraContainer
@@ -63,3 +64,15 @@ def test_spectral_container_parse_data_units(example_init_spec):
     example_init_spec.bintable["BUNIT"] = ["Jy  ", "Jy"]
     example_init_spec._parse_data_units()
     assert example_init_spec.bintable['DATA'].unit == None
+
+def test_init_copy(example_init_spec):
+    spectra_container_copy = example_init_spec.copy()
+    assert report_diff_values(
+        spectra_container_copy.hist, example_init_spec.hist
+    )
+
+def test_read_copy(example_read_spec):
+    spectra_container_copy = example_read_spec.copy()
+    assert report_diff_values(
+        spectra_container_copy.hist, example_read_spec.hist
+    )

@@ -89,6 +89,15 @@ class SpectraContainer(MadcubaFits):
         spectra_container._parse_data_units()
         return spectra_container
 
+    def copy(self):
+        """
+        Create a copy of the SpectraContainer object.
+        """
+        return SpectraContainer(
+            bintable=self._bintable.copy(),
+            hist=self._hist.copy(),
+        )
+
     def _generate_spectral_axes(self):
         """
         Generate arrays for the spectral axes of every spectra inside the

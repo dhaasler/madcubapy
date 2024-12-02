@@ -3,6 +3,7 @@ from astropy.io import fits
 from astropy.nddata import CCDData
 from astropy.table import Table
 import astropy.units as u
+from copy import deepcopy
 import numpy as np
 import os
 from pathlib import Path
@@ -165,6 +166,19 @@ class MadcubaMap(MadcubaFits):
             ccddata=ccddata,
         )
         return madcuba_map
+
+    def copy(self):
+        """
+        Create a copy of the MadcubaMap object.
+        """
+        return MadcubaMap(
+            data=deepcopy(self._data),
+            header=deepcopy(self._header),
+            wcs=deepcopy(self._wcs),
+            unit=deepcopy(self._unit),
+            hist=self._hist.copy(),
+            ccddata=deepcopy(self._ccddata),
+        )
 
     def fix_units(self):
         """
