@@ -168,8 +168,8 @@ class MadcubaMap(MadcubaFits):
 
     def fix_units(self):
         """
-        This function tries to fix problems when the units are incorrectly
-        parse. The user must confirm that the new units are correct.
+        Try to fix problems when the units are incorrectly parsed. The user
+        must confirm that the new units are correct.
 
         """
         unit_str = self.header["BUNIT"]
@@ -178,6 +178,9 @@ class MadcubaMap(MadcubaFits):
         # Overwrite units
         self._unit = u.Unit(new_unit_str)
         self._ccddata.unit = u.Unit(new_unit_str)
+        if self._hist:
+            self._update_hist((f"Fixed BUNIT card from '{unit_str}' "
+                             + f"to '{new_unit_str}"))
 
     def __repr__(self):
         # If hist is None, display that it's missing
