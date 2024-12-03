@@ -1,13 +1,14 @@
+#########
 MADCUBApy
-=========
+#########
 
 |PyPI Status| |Documentation Status|
 
 *NOTE: This package is in its first test versions and should not be used in its
 current state.*
 
-``madcubapy`` is a package developed to work with MADCUBA products to
-quickly access their data in python. 
+``madcubapy`` is a package developed to work with MADCUBA products to quickly
+access their data in python. 
 
 `MADCUBA <https://cab.inta-csic.es/madcuba/>`_ is a software developed in the
 spanish Center of Astrobiology (CSIC-INTA) to analyze astronomical datacubes,
