@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 madcubapy documentation
-=======================
+#######################
 
 Test documentation
 ------------------
