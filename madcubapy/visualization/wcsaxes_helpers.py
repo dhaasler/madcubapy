@@ -1,5 +1,7 @@
 from astropy.nddata import CCDData
 from astropy.stats import sigma_clipped_stats
+from madcubapy.io import MadcubaMap
+import matplotlib as mpl
 import matplotlib.axes as maxes
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
@@ -49,10 +51,22 @@ def add_wcs_axes(
         Parameters to pass to the matplotlib.pyplot.imshow() function.
 
     """
-
+    
+    if not fig:
+        raise TypeError(
+            "add_wcs_axes() missing 1 required positional argument: 'fig'"
+        )
+    elif not isinstance(fig, mpl.figure.Figure):
+        raise TypeError(
+            f"'fig' argument must be a {mpl.figure.Figure}"
+        )
     if fitsmap == None:
         raise TypeError(
             f"Need to specify a fitsmap parameter.")
+    elif (not isinstance(fitsmap, MadcubaMap) and
+          not isinstance(fitsmap, CCDData)):
+        raise TypeError(
+            f"'fitsmap' argument must be a {MadcubaMap} or {CCDData}")
     if fitsmap.wcs is None:
         raise TypeError(
             f"This fits file has problems in its WCS parameters.")
@@ -134,10 +148,22 @@ def add_manual_wcs_axes(
         Parameters to pass to the matplotlib.pyplot.imshow() function.
 
     """
-
+    
+    if not fig:
+        raise TypeError(
+            "add_manual_wcs_axes() missing 1 required positional argument: 'fig'"
+        )
+    elif not isinstance(fig, mpl.figure.Figure):
+        raise TypeError(
+            f"'fig' argument must be a {mpl.figure.Figure}"
+        )
     if fitsmap == None:
         raise TypeError(
             f"Need to specify a fitsmap parameter.")
+    elif (not isinstance(fitsmap, MadcubaMap) and
+          not isinstance(fitsmap, CCDData)):
+        raise TypeError(
+            f"'fitsmap' argument must be a {MadcubaMap} or {CCDData}")
     if fitsmap.wcs is None:
         raise TypeError(
             f"This fits file has problems in its WCS parameters.")
