@@ -3,20 +3,20 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-#######################
-MADCUBApy documentation
+madcubapy documentation
 #######################
 
-Test documentation
-******************
+``madcubapy`` is a package developed to work with ``MADCUBA`` products to
+quickly access their data in python. 
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+Instead of writing history into new fits
+cards in the header of the file, MADCUBA creates a history file named
+`_hist.csv`. With ``madcubapy`` we can read fits files with this external
+history information into a single object in python.
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    modules
