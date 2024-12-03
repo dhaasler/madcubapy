@@ -1,12 +1,12 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "madcubapy"
 version = "0.0.5"
 description = "The MADCUBA python package."
-readme = "README.md"
+readme = "README.rst"
 license = {file = "LICENSE"}
 authors = [
     {name = "David Haasler García", email = "dhaasler@cab.inta-csic.es"}
@@ -38,6 +38,6 @@ docs = [
 
 [project.urls]
 homepage = "https://github.com/dhaasler/madcubapy"
-changelog = "https://github.com/dhaasler/madcubapy/CHANGELOG.md"
+changelog = "https://github.com/dhaasler/madcubapy/blob/main/CHANGELOG.rst"
 documentation = "https://madcubapy.readthedocs.io/"
 repository = "https://github.com/dhaasler/madcubapy.git"

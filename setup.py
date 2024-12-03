@@ -2,7 +2,6 @@ from setuptools import setup, find_packages
 
 VERSION = '0.0.5' 
 DESCRIPTION = 'The MADCUBA python package.'
-LONG_DESCRIPTION = 'Package with tools and utilities to work with MADCUBA products in python.'
 
 # Setting up
 setup(
@@ -11,7 +10,8 @@ setup(
     author="David Haasler García",
     author_email="dhaasler@cab.inta-csic.es",
     description=DESCRIPTION,
-    long_description=LONG_DESCRIPTION,
+    long_description=open('README.rst', 'r').read(),
+    long_description_content_type='text/x-rst',
     url='https://github.com/dhaasler/madcubapy',
     packages=find_packages(),
     install_requires=[
