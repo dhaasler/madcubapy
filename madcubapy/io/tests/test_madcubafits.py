@@ -54,8 +54,8 @@ def test_hist_setter():
     assert madcuba_fits.hist is None
 
 def test_add_invalid_hist_file():
+    madcuba_fits = MadcubaFits()
     with pytest.raises(FileNotFoundError):
-        madcuba_fits = MadcubaFits()
         madcuba_fits.add_hist("nonexistent_file.csv")
 
 def test_update_hist(example_madcuba_fits_hist):
@@ -71,8 +71,11 @@ def test_update_hist(example_madcuba_fits_hist):
 def test_update_hist_protected(example_madcuba_fits_hist):
     with pytest.raises(ValueError):
         example_madcuba_fits_hist._update_hist(action="Fix temp", Index='S')
+    with pytest.raises(ValueError):
         example_madcuba_fits_hist._update_hist(action="Fix temp", Macro='S')
+    with pytest.raises(ValueError):
         example_madcuba_fits_hist._update_hist(action="Fix temp", User='S')
+    with pytest.raises(ValueError):
         example_madcuba_fits_hist._update_hist(action="Fix temp", Date='S')
 
 def test_update_hist_invalid(example_madcuba_fits_hist):
