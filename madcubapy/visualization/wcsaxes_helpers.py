@@ -236,7 +236,7 @@ def append_colorbar(
 
     if ax == None:
         raise TypeError(
-            f"Need to specify an axes object with ax keyword.")
+            f"Need to specify an axes object with 'ax' keyword.")
 
     # Get figure and image objects from the axes
     fig = ax.get_figure()
@@ -376,7 +376,7 @@ def add_colorbar(
 
     if ax == None:
         raise TypeError(
-            f"Need to specify an axes object with ax keyword.")
+            f"Need to specify an axes object with 'ax' keyword.")
 
     # Get figure and image objects from the axes
     fig = ax.get_figure()
