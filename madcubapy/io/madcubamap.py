@@ -187,6 +187,41 @@ class MadcubaMap(MadcubaFits):
         )
         return madcuba_map
 
+    def write(self, filepath: str, **kwargs):
+        """
+        Write a MadcubaMap object into a FITS file alongside its history file.
+
+        Parameters
+        ----------
+        filepath : str
+            Name of output fits file.
+        **kwargs
+            Additional keyword parameters passed through to the Astropy
+            CCDData.write() method.
+
+        """
+        if not self._ccddata:
+            raise TypeError("Cannot export manually created MadcubaMaps (yet)")
+        else:
+            # Get save directory and file name
+            filepath_terms = str(filepath).split('/')
+            save_dir = Path("/".join(filepath_terms[:-1]))
+            filename = filepath_terms[-1]
+            filename_terms = filename.split('.')
+            csv_filename = ".".join(filename_terms[:-1]) + "_hist.csv"
+            # Write fits
+            self._ccddata.write(filepath, **kwargs)
+            # write hist
+            if 'overwrite' in kwargs:
+                overwrite_csv = kwargs['overwrite']
+            else:
+                overwrite_csv = False
+            self.hist.write(
+                save_dir/csv_filename,
+                format='csv',
+                overwrite=overwrite_csv
+            ) 
+
     def copy(self):
         """
         Create a copy of the MadcubaMap object.

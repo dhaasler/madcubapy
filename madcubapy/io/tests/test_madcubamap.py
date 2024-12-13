@@ -27,10 +27,39 @@ def test_read_madcuba_map(example_madcuba_map):
     assert example_madcuba_map.filename is not None
     assert (example_madcuba_map.hist is None or
             isinstance(example_madcuba_map.hist, Table))
+    assert np.array_equal(
+        example_madcuba_map.data,
+        example_madcuba_map.ccddata.data,
+        equal_nan=True,
+    )
 
 def test_invalid_file():
     with pytest.raises(FileNotFoundError):
         MadcubaMap.read("nonexistent_file.fits")
+
+def test_write_madcuba_map(example_madcuba_map):
+    example_madcuba_map.write(
+        "madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits",
+        overwrite=True,
+    )
+    example_madcuba_map_write = MadcubaMap.read(
+        "madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits"
+    )
+    # Assert written map is correctly read
+    assert 0 == 0
+    assert example_madcuba_map_write.ccddata is not None
+    assert example_madcuba_map_write.data is not None
+    assert example_madcuba_map_write.header is not None
+    assert example_madcuba_map_write.filename is not None
+    assert (example_madcuba_map_write.hist is None or
+            isinstance(example_madcuba_map_write.hist, Table))
+    # Assert written map is equal to original map
+    assert np.array_equal(
+        example_madcuba_map.data,
+        example_madcuba_map_write.data,
+        equal_nan=True,
+    )
+    assert example_madcuba_map.unit == example_madcuba_map_write.unit
 
 def test_fix_units_correct(example_madcuba_map):
     assert example_madcuba_map.unit == u.Jy * u.m / u.beam / u.s
