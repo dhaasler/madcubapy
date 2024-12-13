@@ -169,10 +169,10 @@ def are_equal(
             rotation_mode='default',
             va='center'
         )
-        ax3.set_title('Residuals (1-2)', pad=60)
         ax3.set_xlabel('RA (ICRS)')
         ax3.set_ylabel('DEC (ICRS)')
         cbar3 = append_colorbar(ax3, 'top')
+        ax3.set_title('Residuals (1-2)', pad=60)
     # Check
     if np.array_equal(data_1, data_2, equal_nan=True):
         return True

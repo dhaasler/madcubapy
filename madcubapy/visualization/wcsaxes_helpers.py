@@ -96,6 +96,9 @@ def add_wcs_axes(
     ax.coords[1].set_axislabel("DEC (ICRS)")
     # Vertical ticklabel for DEC
     ax.coords[1].set_ticklabel(rotation='vertical', rotation_mode='default')
+    # Set title for MadcubaMaps
+    if isinstance(fitsmap, MadcubaMap):
+        ax.set_title(fitsmap.filename)
 
     return ax, img
 
@@ -193,6 +196,9 @@ def add_manual_wcs_axes(
     ax.coords[1].set_axislabel("DEC (ICRS)")
     # Vertical ticklabel for DEC
     ax.coords[1].set_ticklabel(rotation='vertical', rotation_mode='default')
+    # Set title for MadcubaMaps
+    if isinstance(fitsmap, MadcubaMap):
+        ax.set_title(fitsmap.filename)
 
     return ax, img
 
@@ -344,6 +350,7 @@ def append_colorbar(
             labelbottom=True,
         )
         ax.coords[0].set_axislabel_position('b')
+        ax.set_title(None)
     elif location == 'bottom':
         colorbar = fig.colorbar(img, cax=cax,
                                 orientation='horizontal', **kwargs)
@@ -363,8 +370,7 @@ def append_colorbar(
             labelbottom=False
         )
         ax.coords[0].set_axislabel_position('t')
-    # colorbar.ax.set_ylabel(ylabel=cbar_label, fontsize=12)  # default 10
-    # colorbar.ax.tick_params(labelsize=11)  # default 10
+        ax.set_title(None)
 
     return colorbar
 
@@ -496,6 +502,7 @@ def add_colorbar(
             labelbottom=True,
         )
         ax.coords[0].set_axislabel_position('b')
+        ax.set_title(None)
     elif location == 'bottom':
         cax = fig.add_axes([ax_xini,
                             ax_yini-pad*(ax_height)-width*(ax_height),
@@ -519,7 +526,6 @@ def add_colorbar(
             labelbottom=False
         )
         ax.coords[0].set_axislabel_position('t')
-    # colorbar.ax.set_ylabel(ylabel=cbar_label, fontsize=12)  # default 10
-    # colorbar.ax.tick_params(labelsize=11)  # default 10
+        ax.set_title(None)
 
     return colorbar
