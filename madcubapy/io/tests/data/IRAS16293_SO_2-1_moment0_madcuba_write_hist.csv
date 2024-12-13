@@ -7,5 +7,5 @@ Index,FITS,Macro,Type,FROM_ROW,TO_ROW,Roi_Range,User,Date
 6,C,"//selectWindow(""CUBE MAD_CUB_member.uid___A001_X133d_X320d.IRAS_16293-2422_sci.spw29.cube.I.pbcor.fits"");",I,,,,,
 7,C,"run(""INTEGRATED INTENSITY PLUGIN"",""ranges=500.0$5500.0$# axisunit=m s-1 interpolate=0"");",P,,,,david,2023-05-02T13:12:34.442
 8,C,"run(""Save Cube"",""select='/home/david/Documents/MasterAstro/TFM/Data/Cubes/Band_3_12m-TM2/integrated_SO_TM2_range05_center3.fits'"");",P,,,,david,2023-05-02T13:12:47.239
-9,C,//PYTHON: Open cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits',Py,,,,david,2024-12-13T11:35:26.845
-10,C,//PYTHON: Save cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits',Py,,,,david,2024-12-13T11:35:26.869
+9,C,//PYTHON: Open cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits',Py,,,,david,2024-12-13T11:47:53.492
+10,C,//PYTHON: Save cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits',Py,,,,david,2024-12-13T11:47:53.516
