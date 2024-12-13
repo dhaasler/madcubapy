@@ -15,10 +15,10 @@ spanish Center of Astrobiology (CSIC-INTA) to analyze astronomical datacubes,
 and is built using the ImageJ infrastructure. This tool will not work with any
 other ImageJ program.
 
-Instead of writing history into new fits cards in the header of the file,
-MADCUBA creates a history file named *_hist.csv*. With ``madcubapy`` we can
-read fits files with this external history information into a single object in
-python.
+Instead of writing history into new header cards, MADCUBA creates a history file
+with the same name as the fits name followed by *_hist.csv*. 
+With ``madcubapy`` we can read fits files with this external history information
+into a single object in python.
 
 
 Installation
