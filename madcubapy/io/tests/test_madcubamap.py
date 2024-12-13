@@ -55,6 +55,8 @@ def test_write_madcuba_map(example_madcuba_map):
     example_madcuba_map_write = MadcubaMap.read(
         "madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits"
     )
+    # Assert BUNIT was written correctly
+    assert example_madcuba_map_write.header["BUNIT"] == 'Jy beam-1 m s-1'
     # Assert written map is correctly read
     assert 0 == 0
     assert example_madcuba_map_write.ccddata is not None

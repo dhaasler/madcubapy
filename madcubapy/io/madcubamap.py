@@ -214,6 +214,11 @@ class MadcubaMap(MadcubaFits):
             csv_filename = ".".join(filename_terms[:-1]) + "_hist.csv"
             # Write fits
             self._ccddata.write(filepath, **kwargs)
+            # Correct units not recognized by madcuba
+            with fits.open(filepath, mode="update") as hdul:
+                parsed_bunit = _parse_madcuba_friendly_bunit(self.unit)
+                hdul[0].header['BUNIT'] = parsed_bunit
+                hdul.flush()  # Save changes
             # write hist
             if self.hist:
                 update_action = f"Save cube: '{str(filepath)}'"
@@ -324,3 +329,28 @@ def _fix_unit_string_multiple_slashes(unit_str):
         result.extend(sub_terms[1:])
     # Join all terms with a space
     return ' '.join(result)
+
+
+
+def _parse_madcuba_friendly_bunit(unit):
+    """
+    This function returns a BUNIT card string that MADCUBA can recognize.
+
+    """
+    if not isinstance(unit, u.UnitBase):
+        raise TypeError("Input value is not an Astropy unit")
+    else:
+        if unit == u.Jy * u.m / u.beam / u.s:
+            return 'Jy beam-1 m s-1'
+        elif unit == u.Jy * u.km / u.beam / u.s:
+            return 'Jy beam-1 km s-1'
+        elif unit == u.mJy * u.m / u.beam / u.s:
+            return 'mJy beam-1 m s-1'
+        elif unit == u.mJy * u.km / u.beam / u.s:
+            return 'mJy beam-1 km s-1'
+        elif unit == u.Jy / u.beam:
+            return 'Jy beam-1'
+        elif unit == u.mJy / u.beam:
+            return 'mJy beam-1'
+        else:
+            return unit.to_string(fraction=False)
