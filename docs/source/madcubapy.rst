@@ -8,6 +8,7 @@ Subpackages
    :maxdepth: 4
 
    madcubapy.io
+   madcubapy.operations
    madcubapy.utils
    madcubapy.visualization
 
