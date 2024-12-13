@@ -24,6 +24,7 @@ def test_read_madcuba_map(example_madcuba_map):
     assert example_madcuba_map.ccddata is not None
     assert example_madcuba_map.data is not None
     assert example_madcuba_map.header is not None
+    assert example_madcuba_map.filename is not None
     assert (example_madcuba_map.hist is None or
             isinstance(example_madcuba_map.hist, Table))
 

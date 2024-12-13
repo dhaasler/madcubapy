@@ -25,6 +25,8 @@ class SpectraContainer(MadcubaFits):
     hist : astropy.table.Table
         An astropy table ontaining the history information of the fits file,
         which is stored in a separate _hist.csv file.
+    filename : str
+        Filename of the read .spec file.
 
     Methods
     -------
@@ -36,6 +38,7 @@ class SpectraContainer(MadcubaFits):
         self,
         bintable: astropy.table.Table = None,
         hist: astropy.table.Table = None,
+        filename: str = None,
     ):
         # inherit hist
         super().__init__(hist)
@@ -44,6 +47,10 @@ class SpectraContainer(MadcubaFits):
             raise TypeError(
                 "The bintable must be an astropy Table")
         self._bintable = bintable
+
+        if filename is not None and not isinstance(filename, str):
+            raise TypeError("The filename must be a string.")
+        self._filename = filename
 
     @property
     def bintable(self):
@@ -56,23 +63,33 @@ class SpectraContainer(MadcubaFits):
                 "The bintable must be an astropy Table")
         self._bintable = value
 
+    @property
+    def filename(self):
+        return self._filename
+
+    @filename.setter
+    def filename(self, value):
+        if value is not None and not isinstance(value, str):
+            raise TypeError("The filename must be a string.")
+        self._filename = value
+
     @classmethod
-    def read(cls, filename: str):
+    def read(cls, filepath: str):
         """
         Generate a SpectraContainer object from a FITS file.
 
         Parameters
         ----------
-        filename : str
+        filepath : str
             Name of spec file.
 
         """
-        spec_filename = filename
+        spec_filepath = filepath
         # Check if the spec file exists
-        if not os.path.isfile(spec_filename):
-            raise FileNotFoundError(f"File {spec_filename} not found.")
+        if not os.path.isfile(spec_filepath):
+            raise FileNotFoundError(f"File {spec_filepath} not found.")
         # Open the ZIP file
-        with zipfile.ZipFile(spec_filename, "r") as zip_file:
+        with zipfile.ZipFile(spec_filepath, "r") as zip_file:
             fits_files = [
                 name for name in zip_file.namelist() if name.endswith(".fits")
             ]
@@ -83,8 +100,14 @@ class SpectraContainer(MadcubaFits):
             ]
             with zip_file.open(hist_files[0]) as internal_hist_file:
                 hist = Table.read(internal_hist_file, format='csv')
+        filename_terms = str(filepath).split('/')
+        filename = filename_terms[-1]
         # Return an instance of MadcubaFits
-        spectra_container = cls(bintable=bintable, hist=hist)
+        spectra_container = cls(
+            bintable=bintable,
+            hist=hist,
+            filename=filename,
+        )
         spectra_container._generate_spectral_axes()
         spectra_container._parse_data_units()
         return spectra_container

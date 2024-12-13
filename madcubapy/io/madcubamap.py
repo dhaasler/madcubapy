@@ -33,6 +33,8 @@ class MadcubaMap(MadcubaFits):
         file, which is stored in a separate _hist.csv file.
     ccddata : astropy.nddata.CCDData
         An astropy CCDData object loaded with astropy as a failsafe.
+    filename : str
+        Name of the .fits file.
 
     Methods
     -------
@@ -48,29 +50,34 @@ class MadcubaMap(MadcubaFits):
         unit: astropy.units.UnitBase = None,
         hist: astropy.table.Table = None,
         ccddata: astropy.nddata.CCDData = None,
+        filename: str = None,
     ):
         # inherit hist
         super().__init__(hist)  # Initialize the parent class with hist
 
         if data is not None and not isinstance(data, np.ndarray):
-            raise TypeError("the data must be a numpy array.")
+            raise TypeError("The data must be a numpy array.")
         self._data = data
 
         if header is not None and not isinstance(header, astropy.io.fits.Header):
-            raise TypeError("the header must be an astropy.io.fits.Header.")
+            raise TypeError("The header must be an astropy.io.fits.Header.")
         self._header = header
 
         if wcs is not None and not isinstance(wcs, astropy.wcs.WCS):
-            raise TypeError("the header must be an astropy.wcs.WCS.")
+            raise TypeError("The header must be an astropy.wcs.WCS.")
         self._wcs = wcs
 
         if unit is not None and not isinstance(unit, astropy.units.UnitBase):
-            raise TypeError("the data must be an astropy unit.")
+            raise TypeError("The data must be an astropy unit.")
         self._unit = unit
 
         if ccddata is not None and not isinstance(ccddata, astropy.nddata.CCDData):
-            raise TypeError("the ccddata must be a CCDData instance.")
+            raise TypeError("The ccddata must be a CCDData instance.")
         self._ccddata = ccddata
+
+        if filename is not None and not isinstance(filename, str):
+            raise TypeError("The filename must be a string.")
+        self._filename = filename
 
     @property
     def ccddata(self):
@@ -79,8 +86,18 @@ class MadcubaMap(MadcubaFits):
     @ccddata.setter
     def ccddata(self, value):
         if value is not None and not isinstance(value, CCDData):
-            raise TypeError("the ccddata must be a CCDData instance.")
+            raise TypeError("The ccddata must be a CCDData instance.")
         self._ccddata = value
+
+    @property
+    def filename(self):
+        return self._filename
+
+    @filename.setter
+    def filename(self, value):
+        if value is not None and not isinstance(value, str):
+            raise TypeError("The filename must be a string.")
+        self._filename = value
 
     @property
     def data(self):
@@ -89,7 +106,7 @@ class MadcubaMap(MadcubaFits):
     @data.setter
     def data(self, value):
         if value is not None and not isinstance(value, np.ndarray):
-            raise TypeError("the data must be a numpy array.")
+            raise TypeError("The data must be a numpy array.")
         self._data = value
 
     @property
@@ -99,7 +116,7 @@ class MadcubaMap(MadcubaFits):
     @header.setter
     def header(self, value):
         if value is not None and not isinstance(value, astropy.io.fits.Header):
-            raise TypeError("the header must be an astropy.io.fits.Header.")
+            raise TypeError("The header must be an astropy.io.fits.Header.")
         self._header = value
 
     @property
@@ -109,7 +126,7 @@ class MadcubaMap(MadcubaFits):
     @wcs.setter
     def wcs(self, value):
         if value is not None and not isinstance(value, astropy.wcs.WCS):
-            raise TypeError("the header must be an astropy.wcs.WCS.")
+            raise TypeError("The header must be an astropy.wcs.WCS.")
         self._wcs = value
 
     @property
@@ -119,43 +136,45 @@ class MadcubaMap(MadcubaFits):
     @unit.setter
     def unit(self, value):
         if value is not None and not isinstance(value, astropy.units.UnitBase):
-            raise TypeError("the data must be an astropy unit.")
+            raise TypeError("The data must be an astropy unit.")
         self._unit = value
 
     @classmethod
-    def read(cls, filename: str, **kwargs):
+    def read(cls, filepath: str, **kwargs):
         """
         Generate a MadcubaMap object from a FITS file. This method creates an
         Astropy CCDData from the fits file.
 
         Parameters
         ----------
-        filename : str
+        filepath : str
             Name of fits file.
         **kwargs
             Additional keyword parameters passed through to the Astropy
             CCDData.read() class method.
 
         """
-        fits_filename = filename
+        fits_filepath = filepath
         # Check if the fits file exists
-        if not os.path.isfile(fits_filename):
-            raise FileNotFoundError(f"File {fits_filename} not found.")
+        if not os.path.isfile(fits_filepath):
+            raise FileNotFoundError(f"File {fits_filepath} not found.")
         # Load the CCDData from the .fits file
-        ccddata = CCDData.read(fits_filename, **kwargs)
+        ccddata = CCDData.read(fits_filepath, **kwargs)
         # Load the Table from the .csv file if present
-        hist_filename = os.path.splitext(fits_filename)[0] + "_hist.csv"
-        if not os.path.isfile(hist_filename):
+        hist_filepath = os.path.splitext(fits_filepath)[0] + "_hist.csv"
+        if not os.path.isfile(hist_filepath):
             print("WARNING: Default hist file not found.")
             hist = None
         else:
-            hist = Table.read(hist_filename, format='csv')
+            hist = Table.read(hist_filepath, format='csv')
         # Store the attributes
         data = ccddata.data
         header = ccddata.header
-        # header = fits.getheader(fits_filename)
+        # header = fits.getheader(fits_filepath)
         wcs = ccddata.wcs
         unit = ccddata.unit
+        filename_terms = str(filepath).split('/')
+        filename = filename_terms[-1]
         # Return an instance of MadcubaFits
         madcuba_map = cls(
             data=data,
@@ -164,6 +183,7 @@ class MadcubaMap(MadcubaFits):
             unit=unit,
             hist=hist,
             ccddata=ccddata,
+            filename=filename,
         )
         return madcuba_map
 

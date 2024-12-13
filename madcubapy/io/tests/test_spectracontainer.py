@@ -48,6 +48,7 @@ def example_read_spec():
 def test_read_spec(example_read_spec):
     assert isinstance(example_read_spec.bintable, Table)
     assert isinstance(example_read_spec.hist, Table)
+    assert example_read_spec.filename is not None
 
 def test_invalid_file():
     with pytest.raises(FileNotFoundError):
