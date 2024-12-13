@@ -155,6 +155,8 @@ class MadcubaMap(MadcubaFits):
 
         """
         fits_filepath = filepath
+        filename_terms = str(filepath).split('/')
+        filename = filename_terms[-1]
         # Check if the fits file exists
         if not os.path.isfile(fits_filepath):
             raise FileNotFoundError(f"File {fits_filepath} not found.")
@@ -173,8 +175,6 @@ class MadcubaMap(MadcubaFits):
         # header = fits.getheader(fits_filepath)
         wcs = ccddata.wcs
         unit = ccddata.unit
-        filename_terms = str(filepath).split('/')
-        filename = filename_terms[-1]
         # Return an instance of MadcubaFits
         madcuba_map = cls(
             data=data,
@@ -185,6 +185,9 @@ class MadcubaMap(MadcubaFits):
             ccddata=ccddata,
             filename=filename,
         )
+        if madcuba_map.hist:
+            update_action = f"Open cube: '{str(filepath)}'"
+            madcuba_map._update_hist(update_action)
         return madcuba_map
 
     def write(self, filepath: str, **kwargs):
@@ -212,15 +215,22 @@ class MadcubaMap(MadcubaFits):
             # Write fits
             self._ccddata.write(filepath, **kwargs)
             # write hist
-            if 'overwrite' in kwargs:
-                overwrite_csv = kwargs['overwrite']
+            if self.hist:
+                update_action = f"Save cube: '{str(filepath)}'"
+                self._update_hist(update_action)
+                if 'overwrite' in kwargs:
+                    overwrite_csv = kwargs['overwrite']
+                else:
+                    overwrite_csv = False
+                self.hist.write(
+                    save_dir/csv_filename,
+                    format='csv',
+                    overwrite=overwrite_csv,
+                ) 
             else:
-                overwrite_csv = False
-            self.hist.write(
-                save_dir/csv_filename,
-                format='csv',
-                overwrite=overwrite_csv
-            ) 
+                print("Empty history file has not been saved")
+            # Update filename
+            self.filename = filename
 
     def copy(self):
         """

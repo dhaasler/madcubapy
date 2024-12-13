@@ -32,16 +32,26 @@ def test_read_madcuba_map(example_madcuba_map):
         example_madcuba_map.ccddata.data,
         equal_nan=True,
     )
+    assert (example_madcuba_map.hist[-1]["Macro"] ==
+        "//PYTHON: Open cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits'"
+    )
 
 def test_invalid_file():
     with pytest.raises(FileNotFoundError):
         MadcubaMap.read("nonexistent_file.fits")
 
 def test_write_madcuba_map(example_madcuba_map):
+    # Assert filename and hist change after writing
+    assert example_madcuba_map.filename == "IRAS16293_SO_2-1_moment0_madcuba.fits"
     example_madcuba_map.write(
         "madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits",
         overwrite=True,
     )
+    assert example_madcuba_map.filename == "IRAS16293_SO_2-1_moment0_madcuba_write.fits"
+    assert (example_madcuba_map.hist[-1]["Macro"] ==
+        "//PYTHON: Save cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
+    )
+    # Read back the written file
     example_madcuba_map_write = MadcubaMap.read(
         "madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits"
     )
@@ -60,6 +70,17 @@ def test_write_madcuba_map(example_madcuba_map):
         equal_nan=True,
     )
     assert example_madcuba_map.unit == example_madcuba_map_write.unit
+    assert (example_madcuba_map.hist[0]["Macro"] ==
+        example_madcuba_map_write.hist[0]["Macro"]
+    )
+    # Check filename and hist file
+    assert example_madcuba_map_write.filename == "IRAS16293_SO_2-1_moment0_madcuba_write.fits"
+    assert (example_madcuba_map_write.hist[-2]["Macro"] ==
+        "//PYTHON: Save cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
+    )
+    assert (example_madcuba_map_write.hist[-1]["Macro"] ==
+        "//PYTHON: Open cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
+    )
 
 def test_fix_units_correct(example_madcuba_map):
     assert example_madcuba_map.unit == u.Jy * u.m / u.beam / u.s
