@@ -11,8 +11,7 @@ access their data in python.
 
 `MADCUBA <https://cab.inta-csic.es/madcuba/>`_ is a software developed in the
 spanish Center of Astrobiology (CSIC-INTA) to analyze astronomical datacubes,
-and is built using the ImageJ infrastructure. This tool will not work with any
-other ImageJ program.
+and is built using the ImageJ infrastructure.
 
 Instead of writing history into new header cards, MADCUBA creates a history file
 with the same name as the fits name followed by *_hist.csv*. 
