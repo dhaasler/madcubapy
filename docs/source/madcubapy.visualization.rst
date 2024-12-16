@@ -1,5 +1,5 @@
-madcubapy.visualization package
-===============================
+madcubapy.visualization
+=======================
 
 Submodules
 ----------

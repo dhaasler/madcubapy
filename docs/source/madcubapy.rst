@@ -1,5 +1,5 @@
-madcubapy package
-=================
+madcubapy
+=========
 
 Subpackages
 -----------

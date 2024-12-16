@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-madcubapy documentation
+MADCUBApy documentation
 #######################
 
 ``madcubapy`` is a package developed to work with MADCUBA products to quickly
@@ -19,8 +19,10 @@ With ``madcubapy`` we can read fits files with this external history information
 into a single object in python.
 
 
+This is the main page of the documentation for the `madcubapy` package.
+
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
 
-   modules
+   madcubapy
