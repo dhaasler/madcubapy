@@ -35,3 +35,8 @@ exclude_patterns = []
 
 html_theme = 'sphinx_book_theme'
 html_static_path = ['_static']
+html_css_files = [
+    'custom_dark_theme.css',
+]
+html_logo = "_static/logo.png"
+

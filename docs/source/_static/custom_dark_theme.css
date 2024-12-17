@@ -1,0 +1,5 @@
+/* Grey dark theme background */
+html[data-theme="dark"] {
+    --pst-color-background: #222222;     /* Dark grey */
+    --pst-color-surface: #383838;        /* Slightly lighter grey for surfaces */
+}
