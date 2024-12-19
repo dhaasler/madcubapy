@@ -36,5 +36,13 @@ jobs:
           sudo apt-get install -y python3-tk
         fi
       
+    - name: Debug environment
+      run: |
+        uname -a
+        python --version
+        env
+        ls -laR  # List all files and directories
+        cat test_file.log || echo "No log file"
+  
     - name : Run tests 
       run : pytest
