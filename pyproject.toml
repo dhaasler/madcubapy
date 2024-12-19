@@ -11,10 +11,11 @@ license = {file = "LICENSE"}
 authors = [
     {name = "David Haasler García", email = "dhaasler@cab.inta-csic.es"}
 ]
+requires-python = ">=3.9"
 dependencies = [
-    "astropy>=7.0.0",
-    "matplotlib>=3.9.0",
-    "numpy>=1.26.0"
+    "astropy>=6.0.0",
+    "matplotlib>=3.6.0",
+    "numpy>=1.23.2"
 ]
 classifiers= [
     "Development Status :: 2 - Pre-Alpha",

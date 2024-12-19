@@ -10,6 +10,7 @@ build/
 
 # Virtual environment
 .venv-madcubapy/
+.venv-minimum/
 
 # VSCode
 .vscode/

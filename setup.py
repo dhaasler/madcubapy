@@ -14,10 +14,11 @@ setup(
     long_description_content_type='text/x-rst',
     url='https://github.com/dhaasler/madcubapy',
     packages=find_packages(),
+    python_requires=">=3.9",
     install_requires=[
-        "astropy>=7.0.0",
-        "matplotlib>=3.9.0",
-        "numpy>=1.26.0"
+        "astropy>=6.0.0",
+        "matplotlib>=3.6.0",
+        "numpy>=1.23.0"
     ],
     keywords=[
         'madcuba',
