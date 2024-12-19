@@ -28,6 +28,12 @@ keywords=[
     'radio astronomy',
 ]
 
+[project.urls]
+homepage = "https://github.com/dhaasler/madcubapy"
+changelog = "https://github.com/dhaasler/madcubapy/blob/main/CHANGELOG.rst"
+documentation = "https://madcubapy.readthedocs.io/"
+repository = "https://github.com/dhaasler/madcubapy.git"
+
 [project.optional-dependencies]
 docs = [
     "astropy[recommended]",  # installs the [recommended] dependencies
@@ -35,9 +41,3 @@ docs = [
     "sphinx_book_theme",
     "matplotlib",
 ]
-
-[project.urls]
-homepage = "https://github.com/dhaasler/madcubapy"
-changelog = "https://github.com/dhaasler/madcubapy/blob/main/CHANGELOG.rst"
-documentation = "https://madcubapy.readthedocs.io/"
-repository = "https://github.com/dhaasler/madcubapy.git"
