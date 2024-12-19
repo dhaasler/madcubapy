@@ -1,6 +1,7 @@
 import astropy
 from astropy.table import Table
 from datetime import datetime
+import getpass
 import numpy as np
 import os
 from pathlib import Path
@@ -73,7 +74,7 @@ class MadcubaFits:
         # Fixed keys
         index = self._hist[-1]['Index'] + 1
         current_datetime = datetime.now()
-        user = os.getlogin()
+        user = getpass.getuser()
         formatted_datetime = (current_datetime.strftime(f"%Y-%m-%dT%H:%M:%S")
                             + f".{current_datetime.microsecond // 1000:03d}")
         # Define the default values for the new_row dictionary

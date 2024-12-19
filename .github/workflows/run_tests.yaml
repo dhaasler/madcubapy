@@ -1,4 +1,4 @@
-name: Tests
+name: CI
 
 on: 
   push:
@@ -16,7 +16,7 @@ jobs:
           - "3.11"
           - "3.12"
           - "3.13"
-    name: Test
+    name: tests
     runs-on: ${{ matrix.os }}
     
     steps:
