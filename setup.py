@@ -18,7 +18,8 @@ setup(
     install_requires=[
         "astropy>=6.0.0",
         "matplotlib>=3.6.0",
-        "numpy>=1.23.0"
+        "numpy>=1.23.0",
+        "scipy>=1.9.2"
     ],
     keywords=[
         'madcuba',
