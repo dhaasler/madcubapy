@@ -2,9 +2,7 @@
 MADCUBApy
 #########
 
-|Test Status|
-|Documentation Status|
-|PyPI Status|
+|Test Status| |Documentation Status| |PyPI Status|
 
 *NOTE: This package is in its first test versions and should not be used in its
 current state.*
@@ -28,13 +26,7 @@ Installation
 Install from PyPI with:
 
 .. code-block:: bash
-
     pip install madcubapy
-
-
-.. |PyPI Status| image:: https://img.shields.io/pypi/v/madcubapy
-    :target: https://pypi.org/project/madcubapy
-    :alt: PyPI Status
 
 .. |Test Status| image:: https://github.com/dhaasler/madcubapy/actions/workflows/run_tests.yaml/badge.svg
     :target: https://github.com/dhaasler/madcubapy/actions
@@ -43,3 +35,7 @@ Install from PyPI with:
 .. |Documentation Status| image:: https://img.shields.io/readthedocs/madcubapy/latest.svg?logo=read%20the%20docs&logoColor=white&label=Docs
     :target: https://madcubapy.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+
+.. |PyPI Status| image:: https://img.shields.io/pypi/v/madcubapy
+    :target: https://pypi.org/project/madcubapy
+    :alt: PyPI Status
