@@ -2,7 +2,9 @@
 MADCUBApy
 #########
 
-|Test Status| |Documentation Status| |PyPI Status|
+|Test Status|
+|Documentation Status|
+|PyPI Status|
 
 *NOTE: This package is in its first test versions and should not be used in its
 current state.*
