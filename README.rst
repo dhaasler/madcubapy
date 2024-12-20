@@ -26,6 +26,7 @@ Installation
 Install from PyPI with:
 
 .. code-block:: bash
+    
     pip install madcubapy
 
 .. |Test Status| image:: https://github.com/dhaasler/madcubapy/actions/workflows/run_tests.yaml/badge.svg
