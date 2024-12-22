@@ -1,12 +1,6 @@
 madcubapy.io
 ============
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
 Submodules
 ----------
 
@@ -30,14 +24,6 @@ madcubapy.io.spectracontainer module
 ------------------------------------
 
 .. automodule:: madcubapy.io.spectracontainer
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: madcubapy.io
    :members:
    :undoc-members:
    :show-inheritance:

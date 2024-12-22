@@ -38,8 +38,9 @@ repository = "https://github.com/dhaasler/madcubapy.git"
 
 [project.optional-dependencies]
 docs = [
-    "astropy[recommended]",  # installs the [recommended] dependencies
+    "astropy[recommended]",
     "sphinx",
-    "sphinx_book_theme",
+    "sphinx-design",
+    "pydata_sphinx_theme",
     "matplotlib",
 ]

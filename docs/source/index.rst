@@ -3,6 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+#######################
 MADCUBApy documentation
 #######################
 
@@ -24,5 +25,6 @@ This is the main page of the documentation for the `madcubapy` package.
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
+   :hidden:
 
-   madcubapy
+   index_user_guide

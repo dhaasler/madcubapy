@@ -19,24 +19,22 @@ release = '0.1.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    'sphinx_design',
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',  # For Google/NumPy style docstrings
     'sphinx.ext.viewcode',  # To link source code
-    'sphinx.ext.githubpages'  # Optional: For GitHub Pages
+    'sphinx.ext.githubpages',  # Optional: For GitHub Pages
 ]
 
 templates_path = ['_templates']
 exclude_patterns = []
 
-
-
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_book_theme'
+html_theme = 'pydata_sphinx_theme'
 html_static_path = ['_static']
-html_css_files = [
-    'custom_dark_theme.css',
-]
+# html_css_files = [
+#     'custom_dark_theme.css',
+# ]
 html_logo = "_static/logo.png"
-

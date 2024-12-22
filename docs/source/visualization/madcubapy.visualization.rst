@@ -19,11 +19,3 @@ madcubapy.visualization.quick\_plotters module
    :members:
    :undoc-members:
    :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: madcubapy.visualization
-   :members:
-   :undoc-members:
-   :show-inheritance:
