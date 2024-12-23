@@ -41,6 +41,7 @@ docs = [
     "astropy[recommended]",
     "sphinx",
     "sphinx-design",
+    "sphinx_gallery",
     "pydata_sphinx_theme",
     "matplotlib",
 ]
