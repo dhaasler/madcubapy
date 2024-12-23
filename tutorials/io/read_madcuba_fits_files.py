@@ -33,7 +33,6 @@ data_folder = Path("../data")
 
 madcuba_map = MadcubaMap.read(
     data_folder/"IRAS16293_SO_2-1_moment0_madcuba.fits")
-print("hola")  # doctest: +SKIP
 
 ###############################################################################
 # The MadcubaMap class resembles the ``CCDData`` class from astropy with

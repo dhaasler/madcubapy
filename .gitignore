@@ -19,5 +19,6 @@ build/
 dist/
 
 # Sphinx-gallery
-docs/source/gallery_dirs
+docs/source/gallery_examples
+docs/source/gallery_tutorials
 docs/source/sg_execution_times.rst

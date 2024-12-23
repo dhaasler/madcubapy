@@ -29,8 +29,14 @@ extensions = [
 
 # Sphinx-gallery
 sphinx_gallery_conf = {
-    'examples_dirs': '../../examples',  # path to your example scripts
-    'gallery_dirs': 'gallery_dirs',     # path to save generated gallery
+    'examples_dirs': [
+        '../../examples',
+        '../../tutorials',
+    ],  # path to your example scripts
+    'gallery_dirs': [
+        'gallery_examples',
+        'gallery_tutorials',
+    ],  # path to save generated gallery
     'filename_pattern': '.*',           # Match all files
     'plot_gallery': 'True',             # Enable plot rendering
 }
