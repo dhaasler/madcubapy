@@ -26,7 +26,7 @@ from madcubapy.io import SpectraContainer
 ###############################################################################
 # Set Path of example files
 
-data_folder = Path("../data")
+data_folder = Path("data")
 
 ###############################################################################
 # Read the fits file with the ``MadcubaMap.read()`` method

@@ -21,7 +21,7 @@ from madcubapy.visualization import quick_show
 ###############################################################################
 # We read the map file
 
-data_folder = Path("../data")
+data_folder = Path("data")
 madcuba_map = MadcubaMap.read(data_folder/"IRAS16293_SO_2-1_moment0_madcuba.fits")
 ccddata_map = MadcubaMap.read(data_folder/"IRAS16293_SO_2-1_moment0_madcuba.fits")
 
