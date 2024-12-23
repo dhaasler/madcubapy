@@ -28,3 +28,4 @@ This is the main page of the documentation for the `madcubapy` package.
    :hidden:
 
    index_user_guide
+   gallery_dirs/index

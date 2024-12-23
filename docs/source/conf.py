@@ -24,7 +24,16 @@ extensions = [
     'sphinx.ext.napoleon',  # For Google/NumPy style docstrings
     'sphinx.ext.viewcode',  # To link source code
     'sphinx.ext.githubpages',  # Optional: For GitHub Pages
+    'sphinx_gallery.gen_gallery',
 ]
+
+# Sphinx-gallery
+sphinx_gallery_conf = {
+    'examples_dirs': '../../examples',  # path to your example scripts
+    'gallery_dirs': 'gallery_dirs',     # path to save generated gallery
+    'filename_pattern': '.*',           # Match all files
+    'plot_gallery': 'True',             # Enable plot rendering
+}
 
 templates_path = ['_templates']
 exclude_patterns = []

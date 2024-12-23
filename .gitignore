@@ -17,3 +17,7 @@ build/
 
 # Distribution files
 dist/
+
+# Sphinx-gallery
+docs/source/gallery_dirs
+docs/source/sg_execution_times.rst
