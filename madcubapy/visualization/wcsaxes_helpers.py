@@ -48,7 +48,7 @@ def add_wcs_axes(
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to the `~matplotlib.pyplot.imshow` function.
+        Parameters to pass to :func:`~matplotlib.pyplot.imshow`.
 
     """
     
@@ -115,10 +115,10 @@ def add_manual_wcs_axes(
     """Add an axes object with WCS coordinates in a manually set position into
     an existing figure.
 
-    A `~matplotlib.figure.Figure` with no axes has to be set before calling this function.
-    This is due to the inability to change axis coordinates after it has been
-    called. The coordinates have to be called when creating the axes object.
-    The function returns objects for the axes and the image.
+    A `~matplotlib.figure.Figure` with no axes has to be set before calling
+    this function. This is due to the inability to change axis coordinates
+    after it has been called. The coordinates have to be called when creating
+    the axes object. The function returns objects for the axes and the image.
 
     Parameters
     ----------
@@ -148,7 +148,7 @@ def add_manual_wcs_axes(
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to the `~matplotlib.pyplot.imshow` function.
+        Parameters to pass to :func:`~matplotlib.pyplot.imshow`.
 
     """
     
@@ -264,7 +264,7 @@ def append_colorbar(
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to the `~matplotlib.pyplot.colorbar` function.
+        Parameters to pass to :func:`matplotlib.pyplot.colorbar`.
 
     """
 
@@ -404,7 +404,7 @@ def add_colorbar(
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to the `~matplotlib.pyplot.colorbar` function.
+        Parameters to pass to :func:`matplotlib.pyplot.colorbar`.
 
     """
 

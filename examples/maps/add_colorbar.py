@@ -2,32 +2,34 @@
 Add a colorbar to a map
 #######################
 
-Example showing how to quickly add a colorbar to a MadcubaMap plot. 
+Example showing how to quickly add a colorbar to a map plot. 
 
-Even though adding a colorbar using matplotlib syntax directly is very
-straightforward, MadcubaMap's functions offer additional functionality and let
+Even though adding a colorbar using `~matplotlib` syntax directly is very
+straightforward, `~madcubapy` functions offer additional functionality and let
 the user quickly add the colorbar using only one line of code.
 
-We can add a colorbar by using the ``append_colorbar`` or ``add_colorbar``
-functions. Both accept the same number of arguments but create the colorbar
+We can add a colorbar by using
+:func:`~madcubapy.visualization.wcsaxes_helpers.append_colorbar` or
+:func:`~madcubapy.visualization.wcsaxes_helpers.add_colorbar`. Both accept the
+same number of arguments but create the colorbar
 using different approaches.
 
-- ``append_colorbar`` adds a colorbar to one side of the main axes object,
-  which is resized to accomodate the colorbar inside the space it was taking
-  before. The colorbar axes will always maintain the width that was set in the
-  beggining, regardless of a change in the map size later (like resizing the
-  window).
-- ``add_colorbar`` adds a colorbar at a location relative to the main axes.
-  This version does not resize the main axes and adds the cbar axes right
-  where it is told, overlapping with anything that could be there before. The
-  colorbar maintains the relative width relative to the map if it changes
-  size later.
+- :func:`~madcubapy.visualization.wcsaxes_helpers.append_colorbar` adds a
+  colorbar to one side of the main axes object, which is resized to accomodate
+  the colorbar inside the space it was taking before. The colorbar axes will
+  always maintain the width that was set in the beggining, regardless of a
+  change in the map size later (like resizing the window).
+- :func:`~madcubapy.visualization.wcsaxes_helpers.add_colorbar` adds a colorbar
+  at a location relative to the main axes. This version does not resize the
+  main axes and adds the cbar axes right where it is told, overlapping with
+  anything that could be there before. The colorbar maintains the relative
+  width relative to the map if it changes size later.
 
 By default this function parses the units from the map object if found, and
 sets the label acoordingly.
 
 Both functions accept a number of additional parameters that are passed to
-``matplotlib.Figure.colorbar()``. With this we can set custom ticks, a custom
+:func:`matplotlib.pyplot.colorbar`. With this we can set custom ticks, a custom
 label, etc.
 
 .. note::
