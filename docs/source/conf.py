@@ -21,11 +21,19 @@ release = '0.1.0'
 extensions = [
     'sphinx_design',
     'sphinx.ext.autodoc',
+    'sphinx.ext.intersphinx',
     'sphinx.ext.napoleon',  # For Google/NumPy style docstrings
     'sphinx.ext.viewcode',  # To link source code
     'sphinx.ext.githubpages',  # Optional: For GitHub Pages
     'sphinx_gallery.gen_gallery',
 ]
+
+# Intersphinx external links
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+    'numpy': ('https://numpy.org/doc/stable/', None),
+    'astropy': ('https://docs.astropy.org/en/stable/', None),
+}
 
 # Sphinx-gallery
 sphinx_gallery_conf = {

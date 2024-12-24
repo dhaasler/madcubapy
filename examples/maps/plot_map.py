@@ -3,7 +3,7 @@ Plot a map
 ##########
 
 Example showing how to plot a fits map file with MadcubaMap using the
-``add_wcs_axes`` function.
+:func:`~madcubapy.visualization.wcsaxes_helpers.add_wcs_axes` function.
 
 .. note::
     Due to how MADCUBA saves some fits header cards, several astropy warnings
