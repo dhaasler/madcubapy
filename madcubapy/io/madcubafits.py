@@ -25,7 +25,7 @@ class MadcubaFits:
 
     def __init__(
         self,
-        hist: astropy.table.Table = None,
+        hist=None,
     ):
         if hist is not None and not isinstance(hist, astropy.table.Table):
             raise TypeError(

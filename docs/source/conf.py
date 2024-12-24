@@ -25,13 +25,12 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.napoleon',  # For Google/NumPy style docstrings
     'sphinx.ext.viewcode',  # To link source code
-    'sphinx.ext.githubpages',  # Optional: For GitHub Pages
     'sphinx_gallery.gen_gallery',
 ]
 
 # numpydoc settings
 numpydoc_show_class_members = False  # Controls whether class members are shown
-# numpydoc_class_members_toctree = False  # Prevents adding members to TOC
+numpydoc_class_members_toctree = False  # Prevents adding members to TOC
 
 # Intersphinx external links
 intersphinx_mapping = {

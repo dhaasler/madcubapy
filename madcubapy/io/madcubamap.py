@@ -44,13 +44,13 @@ class MadcubaMap(MadcubaFits):
     """
     def __init__(
         self,
-        data: np.ndarray = None,
-        header: astropy.io.fits.Header = None,
-        wcs: astropy.wcs.WCS = None,
-        unit: astropy.units.UnitBase = None,
-        hist: astropy.table.Table = None,
-        ccddata: astropy.nddata.CCDData = None,
-        filename: str = None,
+        data=None,
+        header=None,
+        wcs=None,
+        unit=None,
+        hist=None,
+        ccddata=None,
+        filename=None,
     ):
         # inherit hist
         super().__init__(hist)  # Initialize the parent class with hist
@@ -140,10 +140,11 @@ class MadcubaMap(MadcubaFits):
         self._unit = value
 
     @classmethod
-    def read(cls, filepath: str, **kwargs):
+    def read(cls, filepath, **kwargs):
         """
-        Generate a MadcubaMap object from a FITS file. This method creates an
-        Astropy CCDData from the fits file.
+        ``Classmethod`` to generate a `~madcubapy.io.madcubamap.MadcubaMap`
+        object from a FITS file. This method creates an
+        `~astropy.nddata.CCDData` from the fits file.
 
         Parameters
         ----------
@@ -190,9 +191,10 @@ class MadcubaMap(MadcubaFits):
             madcuba_map._update_hist(update_action)
         return madcuba_map
 
-    def write(self, filepath: str, **kwargs):
+    def write(self, filepath, **kwargs):
         """
-        Write a MadcubaMap object into a FITS file alongside its history file.
+        Write a `~madcubapy.io.madcubamap.MadcubaMap` into a FITS file
+        alongside its history file.
 
         Parameters
         ----------
@@ -239,7 +241,7 @@ class MadcubaMap(MadcubaFits):
 
     def copy(self):
         """
-        Create a copy of the MadcubaMap object.
+        Create a copy of the `~madcubapy.io.madcubamap.MadcubaMap`.
         """
         if self._hist:
             new_hist = self._hist.copy()

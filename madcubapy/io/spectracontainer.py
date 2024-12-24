@@ -36,9 +36,9 @@ class SpectraContainer(MadcubaFits):
     """
     def __init__(
         self,
-        bintable: astropy.table.Table = None,
-        hist: astropy.table.Table = None,
-        filename: str = None,
+        bintable=None,
+        hist=None,
+        filename=None,
     ):
         # inherit hist
         super().__init__(hist)
@@ -74,9 +74,10 @@ class SpectraContainer(MadcubaFits):
         self._filename = value
 
     @classmethod
-    def read(cls, filepath: str):
+    def read(cls, filepath):
         """
-        Generate a SpectraContainer object from a FITS file.
+        Generate a `~madcubapy.io.spectracontainer.SpectraContainer` from a
+        FITS file.
 
         Parameters
         ----------
@@ -114,7 +115,7 @@ class SpectraContainer(MadcubaFits):
 
     def copy(self):
         """
-        Create a copy of the SpectraContainer object.
+        Create a copy of the `~madcubapy.io.spectracontainer.SpectraContainer`.
         """
         if self._bintable:
             new_bintable = self._bintable.copy()
@@ -132,7 +133,8 @@ class SpectraContainer(MadcubaFits):
     def _generate_spectral_axes(self):
         """
         Generate arrays for the spectral axes of every spectra inside the
-        SpectraContainer and add them as a new table column.
+        `~madcubapy.io.spectracontainer.SpectraContainer` and add them as a new
+        table column.
 
         """
         data = []
@@ -186,13 +188,13 @@ class SpectraContainer(MadcubaFits):
 def parse_row_spectral_axis(table_row):
     """
     Generate an array for the spectral axis of a spectrum inside a
-    SpectraContainer.
+    `~madcubapy.io.spectracontainer.SpectraContainer`.
 
     Parameters
     ----------
     table_row : `astropy.table.Row`
-        Row of a SpectralContainer's bintable. This is the data for a spectrum
-        inside a MADCUBA .fits file
+        Row of a `~madcubapy.io.spectracontainer.SpectraContainer`'s bintable. This
+        is the data for a spectrum inside a MADCUBA fits file.
     
     Returns
     -------
