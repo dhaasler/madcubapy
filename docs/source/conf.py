@@ -49,7 +49,8 @@ exclude_patterns = []
 
 html_theme = 'pydata_sphinx_theme'
 html_static_path = ['_static']
-# html_css_files = [
-#     'custom_dark_theme.css',
-# ]
+html_css_files = [
+    # 'custom_dark_theme.css',
+    'remove_download_note.css',
+]
 html_logo = "_static/logo.png"
