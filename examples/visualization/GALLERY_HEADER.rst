@@ -1,4 +1,4 @@
-MadcubaMap
-==========
+Visualization
+=============
 
-Below is a gallery of examples for the IO classes and functions.
+Gallery of examples for visualization functions.
