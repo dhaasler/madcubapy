@@ -9,7 +9,6 @@ madcubapy.io.madcubafits module
 
 .. automodule:: madcubapy.io.madcubafits
    :members:
-   :undoc-members:
    :show-inheritance:
 
 madcubapy.io.madcubamap module
@@ -17,7 +16,6 @@ madcubapy.io.madcubamap module
 
 .. automodule:: madcubapy.io.madcubamap
    :members:
-   :undoc-members:
    :show-inheritance:
 
 madcubapy.io.spectracontainer module
@@ -25,5 +23,4 @@ madcubapy.io.spectracontainer module
 
 .. automodule:: madcubapy.io.spectracontainer
    :members:
-   :undoc-members:
    :show-inheritance:

@@ -38,8 +38,8 @@ def add_wcs_axes(
         If true, set color limits to +- three times the standard
         deviation of the image data.
 
-    Return
-    ------
+    Returns
+    -------
     ax : `~astropy.visualization.wcsaxes.WCSAxesSubplot`
         Axes object with the selected map coordinates.
     img : `~matplotlib.image.AxesImage`
@@ -138,8 +138,8 @@ def add_manual_wcs_axes(
         If true, set color limits to +- three times the standard
         deviation of the image data.
 
-    Return
-    ------
+    Returns
+    -------
     ax : `~astropy.visualization.wcsaxes.WCSAxesSubplot`
         Axes object with the selected map coordinates.
     img : `~matplotlib.image.AxesImage`
@@ -213,8 +213,8 @@ def parse_clabel(fitsmap):
         `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
         object to extract units information.
 
-    Return
-    ------
+    Returns
+    -------
     label : `~str`
         Label to be used in the colorbar.
 
@@ -256,8 +256,8 @@ def append_colorbar(
     pad : `~float`
         Set the separation between the colorbar bar and the axes.
 
-    Return
-    ------
+    Returns
+    -------
     cbar : `~matplotlib.colorbar.Colorbar`
         Colorbar object.
 
@@ -396,8 +396,8 @@ def add_colorbar(
     pad : `~float`
         Set the separation between the colorbar bar and the axes.
 
-    Return
-    ------
+    Returns
+    -------
     cbar : `~matplotlib.colorbar.Colorbar`
         Colorbar object.
 

@@ -17,8 +17,8 @@ def stack_emission(*fitsmaps):
     *fitsmaps : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
         Any number of map objects to be added together.
     
-    Return
-    ----------
+    Returns
+    -------
     combined_fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
         A new map object containing the sum of the input objects.
     

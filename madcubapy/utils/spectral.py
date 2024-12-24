@@ -18,8 +18,8 @@ def create_spectral_array(nchan, cdelt, crpix, crval):
     crval : `~float`
         Value of the reference channel in the spectrum.
     
-    Return
-    ------
+    Returns
+    -------
     spectral_array : `~numpy.ndarray` or `~astropy.units.Quantity`
         Returned spectral axis array with units if cdelt is a quantity
 

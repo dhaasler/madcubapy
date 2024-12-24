@@ -194,8 +194,8 @@ def parse_row_spectral_axis(table_row):
         Row of a SpectralContainer's bintable. This is the data for a spectrum
         inside a MADCUBA .fits file
     
-    Return
-    ------
+    Returns
+    -------
     spectral_array : `~numpy.ndarray` or `~astropy.units.Quantity`
         Returned spectral axis array with units if correctly parsed from the
         fits file.

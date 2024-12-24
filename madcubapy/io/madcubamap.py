@@ -26,7 +26,7 @@ class MadcubaMap(MadcubaFits):
         The header object associated with the FITS file.
     wcs : `~astropy.wcs.WCS`
         The WCS object associated with the FITS file.
-    unit : `~astropy.units.Base.unit`
+    unit : `~astropy.units.Unit`
         The unit of the data of the FITS file.
     hist : `~astropy.table.Table`
         An astropy Table object containing the history information of the fits

@@ -78,7 +78,7 @@ def are_equal(
         If True both maps are plotted alongside the residuals of their
         substraction.
 
-    Return
+    Returns
     -------
     `~bool`
         Returns True if the two maps are the same map.

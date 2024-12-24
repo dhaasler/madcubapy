@@ -8,7 +8,8 @@ from pathlib import Path
 
 
 class MadcubaFits:
-    """A basic class describing a MADCUBA Fits object with its hist file.
+    """
+    A basic class describing a MADCUBA Fits object with its hist file.
 
     The MadcubaFits class contains the only object shared by MADCUBA maps,
     cubes, and spectra: an Astropy Table describing the history file exported
@@ -17,10 +18,11 @@ class MadcubaFits:
     Parameters
     ----------
     hist : `~astropy.table.Table`
-        An astropy Table object containing the history information of the fits
-        file, which is stored in a separate *_hist.csv* file.
+        An Astropy Table object containing the history information of the FITS
+        file, which is stored in a separate _hist.csv file.
 
     """
+
     def __init__(
         self,
         hist: astropy.table.Table = None,

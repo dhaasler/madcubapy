@@ -19,6 +19,7 @@ release = '0.1.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    'numpydoc',
     'sphinx_design',
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
@@ -27,6 +28,10 @@ extensions = [
     'sphinx.ext.githubpages',  # Optional: For GitHub Pages
     'sphinx_gallery.gen_gallery',
 ]
+
+# numpydoc settings
+numpydoc_show_class_members = False  # Controls whether class members are shown
+# numpydoc_class_members_toctree = False  # Prevents adding members to TOC
 
 # Intersphinx external links
 intersphinx_mapping = {
