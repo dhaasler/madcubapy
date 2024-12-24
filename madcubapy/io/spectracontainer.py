@@ -12,21 +12,21 @@ from madcubapy.utils.spectral import create_spectral_array
 
 class SpectraContainer(MadcubaFits):
     """A container for MADCUBA spectra, using the
-    `radioastro.madcubaio.MadcubaFits` interface.
+    `~madcubapy.io.madcubafits.MadcubaFits` interface.
 
     This class is basically a wrapper to read MADCUBA exported fits and their
     hist files with astropy.
 
     Parameters
     ----------
-    bintable : astropy.table.Table
+    bintable : `~astropy.table.Table`
         An astropy table containing the data of every spectra contained in the
         fits file alongside the info of their headers.
-    hist : astropy.table.Table
+    hist : `~astropy.table.Table`
         An astropy table ontaining the history information of the fits file,
-        which is stored in a separate _hist.csv file.
-    filename : str
-        Filename of the read .spec file.
+        which is stored in a separate *_hist.csv* file.
+    filename : `~str`
+        Filename of the read *.spec* file.
 
     Methods
     -------
@@ -80,7 +80,7 @@ class SpectraContainer(MadcubaFits):
 
         Parameters
         ----------
-        filepath : str
+        filepath : `~str`
             Name of spec file.
 
         """
@@ -196,7 +196,7 @@ def parse_row_spectral_axis(table_row):
     
     Return
     ------
-    spectral_array : np.array or astropy.units.Quantity
+    spectral_array : `~numpy.ndarray` or `~astropy.units.Quantity`
         Returned spectral axis array with units if correctly parsed from the
         fits file.
 

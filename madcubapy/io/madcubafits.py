@@ -16,9 +16,9 @@ class MadcubaFits:
 
     Parameters
     ----------
-    hist : `astropy.table.Table`
+    hist : `~astropy.table.Table`
         An astropy Table object containing the history information of the fits
-        file, which is stored in a separate _hist.csv file.
+        file, which is stored in a separate *_hist.csv* file.
 
     """
     def __init__(
@@ -46,7 +46,7 @@ class MadcubaFits:
 
         Parameters
         ----------
-        filename : str or pathlib.Path
+        filename : `~str` or `~pathlib.Path`
             Path of the history csv file.
 
         """
@@ -59,7 +59,7 @@ class MadcubaFits:
 
         Parameters
         ----------
-        faction : str
+        faction : `~str`
             String describing the performed action.
         **hist_keys
             Additional parameters passed to the new row of the hist table.

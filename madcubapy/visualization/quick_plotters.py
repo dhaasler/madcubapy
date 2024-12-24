@@ -23,13 +23,13 @@ def quick_show(
 
     Parameters
     ----------
-    fitsmap : madcubapy.io.MadcubaMap or astropy.nddata.CCDData
+    fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
         Map to be displayed.
 
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to the matplotlib.pyplot.imshow() function.
+        Parameters to pass to the :func:`~matplotlib.pyplot.imshow` function.
 
     """
 
@@ -70,17 +70,17 @@ def are_equal(
 
     Parameters
     ----------
-    fitsmap_1 : madcubapy.io.MadcubaMap or astropy.nddata.CCDData
+    fitsmap_1 : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
         Map object to compare.
-    fitsmap_2 : madcubapy.io.MadcubaMap or astropy.nddata.CCDData
+    fitsmap_2 : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
         Map object to compare.
-    show_maps : boolean, default=False
+    show_maps : `~bool`, default=False
         If True both maps are plotted alongside the residuals of their
         substraction.
 
     Return
     -------
-    bool
+    `~bool`
         Returns True if the two maps are the same map.
 
     """

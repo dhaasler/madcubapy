@@ -9,18 +9,18 @@ def create_spectral_array(nchan, cdelt, crpix, crval):
 
     Parameters
     ----------
-    nchan : int
+    nchan : `~int`
         Number of channels in the spectrum.
-    cdelt : float or astropy.units.Quantity
+    cdelt : `~float` or `~astropy.units.Quantity`
         Width of a channel.
-    crpix : float
+    crpix : `~float`
         Reference channel in the spectrum.
-    crval : float
+    crval : `~float`
         Value of the reference channel in the spectrum.
     
     Return
     ------
-    spectral_array : np.array or astropy.units.Quantity
+    spectral_array : `~numpy.ndarray` or `~astropy.units.Quantity`
         Returned spectral axis array with units if cdelt is a quantity
 
     """

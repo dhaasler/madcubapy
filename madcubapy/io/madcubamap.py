@@ -13,27 +13,27 @@ from .madcubafits import MadcubaFits
 
 class MadcubaMap(MadcubaFits):
     """A container for MADCUBA fits maps, using the
-    `radioastro.madcubaio.MadcubaFits` interface.
+    `~madcubapy.io.madcubafits.MadcubaFits` interface.
 
     This class is basically a wrapper to read MADCUBA exported fits and their
     hist files with astropy.
 
     Parameters
     ----------
-    data : numpy.ndarray
+    data : `~numpy.ndarray`
         The data array associated with the FITS file.
-    header : astropy.io.fits.Header
+    header : `~astropy.io.fits.Header`
         The header object associated with the FITS file.
-    wcs : astropy.wcs.WCS
+    wcs : `~astropy.wcs.WCS`
         The WCS object associated with the FITS file.
-    unit : astropy.units.Base.unit
+    unit : `~astropy.units.Base.unit`
         The unit of the data of the FITS file.
-    hist : astropy.table.Table
+    hist : `~astropy.table.Table`
         An astropy Table object containing the history information of the fits
         file, which is stored in a separate _hist.csv file.
-    ccddata : astropy.nddata.CCDData
+    ccddata : `~astropy.nddata.CCDData`
         An astropy CCDData object loaded with astropy as a failsafe.
-    filename : str
+    filename : `~str`
         Name of the .fits file.
 
     Methods
@@ -147,11 +147,11 @@ class MadcubaMap(MadcubaFits):
 
         Parameters
         ----------
-        filepath : str
+        filepath : `~str`
             Name of fits file.
         **kwargs
             Additional keyword parameters passed through to the Astropy
-            CCDData.read() class method.
+            :func:`~astropy.nddata.fits_ccddata_reader` function.
 
         """
         fits_filepath = filepath
@@ -196,11 +196,11 @@ class MadcubaMap(MadcubaFits):
 
         Parameters
         ----------
-        filepath : str
+        filepath : `~str`
             Name of output fits file.
         **kwargs
             Additional keyword parameters passed through to the Astropy
-            CCDData.write() method.
+            `~astropy.nddata.fits_ccddata_writer` function.
 
         """
         if not self._ccddata:

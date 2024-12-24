@@ -17,38 +17,38 @@ def add_wcs_axes(
         **kwargs):
     """Add an axes object with WCS coordinates into an existing figure.
 
-    A figure with no axes has to be set before calling this function.
-    This is due to the inability to change axis coordinates after it has been
-    called. The coordinates have to be called when creating the axes object.
-    The function returns objects for the axes and the image.
+    A `~matplotlib.figure.Figure` with no axes has to be set before calling
+    this function. This is due to the inability to change axis coordinates
+    after it has been called. The coordinates have to be called when creating
+    the axes object. The function returns objects for the axes and the image.
 
     Parameters
     ----------
-    fig : matplotlib.figure.Figure
+    fig : `~matplotlib.figure.Figure`
         Figure object.
-    nrows : int
+    nrows : `~int`
         Number of rows on the subplot grid.
-    ncols : int
+    ncols : `~int`
         Number of columns on the subplot grid.
-    number : int
+    number : `~int`
         Number of subplot in the grid in which to paint the axes.
-    fitsmap : madcubapy.io.MadcubaMap or astropy.nddata.CCDData
+    fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
         Map to be displayed.
-    use_std : boolean
+    use_std : `~bool`
         If true, set color limits to +- three times the standard
         deviation of the image data.
 
     Return
     ------
-    ax : astropy.visualization.wcsaxes.WCSAxesSubplot
+    ax : `~astropy.visualization.wcsaxes.WCSAxesSubplot`
         Axes object with the selected map coordinates.
-    img : matplotlib.image.AxesImage
+    img : `~matplotlib.image.AxesImage`
         Image object of the selected map.
 
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to the matplotlib.pyplot.imshow() function.
+        Parameters to pass to the `~matplotlib.pyplot.imshow` function.
 
     """
     
@@ -115,40 +115,40 @@ def add_manual_wcs_axes(
     """Add an axes object with WCS coordinates in a manually set position into
     an existing figure.
 
-    A figure with no axes has to be set before calling this function.
+    A `~matplotlib.figure.Figure` with no axes has to be set before calling this function.
     This is due to the inability to change axis coordinates after it has been
     called. The coordinates have to be called when creating the axes object.
     The function returns objects for the axes and the image.
 
     Parameters
     ----------
-    fig : matplotlib.figure.Figure
+    fig : `~matplotlib.figure.Figure`
         Figure object.
-    left : float
+    left : `~float`
         X coordinate to begin the axes subplot.
-    bottom : float
+    bottom : `~float`
         Y coordinate to begin the axes subplot.
-    width : float
+    width : `~float`
         Width of the axes subplot.
-    height : float
+    height : `~float`
         Height of the axes subplot.
-    fitsmap : madcubapy.io.MadcubaMap or astropy.nddata.CCDData
+    fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
         Map to be displayed.
-    use_std : boolean
+    use_std : `~bool`
         If true, set color limits to +- three times the standard
         deviation of the image data.
 
     Return
     ------
-    ax : astropy.visualization.wcsaxes.WCSAxesSubplot
+    ax : `~astropy.visualization.wcsaxes.WCSAxesSubplot`
         Axes object with the selected map coordinates.
-    img : matplotlib.image.AxesImage
+    img : `~matplotlib.image.AxesImage`
         Image object of the selected map.
 
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to the matplotlib.pyplot.imshow() function.
+        Parameters to pass to the `~matplotlib.pyplot.imshow` function.
 
     """
     
@@ -204,16 +204,18 @@ def add_manual_wcs_axes(
 
 
 def parse_clabel(fitsmap):
-    """Parse colorbar text from a MadcubaMap or CCDData unit attribute.
+    """Parse colorbar text from a `~madcubapy.io.madcubamap.MadcubaMap` or
+    `~astropy.nddata.CCDData` unit attribute.
 
     Parameters
     ----------
-    fitsmap : madcubapy.io.MadcubaMap or astropy.nddata.CCDData
-        MadcubaMap or CCDData object to extract units information.
+    fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
+        `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
+        object to extract units information.
 
     Return
     ------
-    label : str
+    label : `~str`
         Label to be used in the colorbar.
 
     """
@@ -245,24 +247,24 @@ def append_colorbar(
 
     Parameters
     ----------
-    ax : astropy.visualization.wcsaxes.WCSAxes
+    ax : `~astropy.visualization.wcsaxes.WCSAxes`
         Axes object in which to add the colorbar.
-    location : str
+    location : `~str`
         Set the location of cbar: 'top', 'right', 'bottom', or 'left'.
-    width : str
+    width : `~str`
         Set percentage of axes box to use as width for cbar.
-    pad : float
+    pad : `~float`
         Set the separation between the colorbar bar and the axes.
 
     Return
     ------
-    cbar : matplotlib.colorbar.Colorbar
+    cbar : `~matplotlib.colorbar.Colorbar`
         Colorbar object.
 
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to the matplotlib.Figure.colorbar() function.
+        Parameters to pass to the `~matplotlib.pyplot.colorbar` function.
 
     """
 
@@ -385,24 +387,24 @@ def add_colorbar(
 
     Parameters
     ----------
-    ax : astropy.visualization.wcsaxes.WCSAxes
+    ax : `~astropy.visualization.wcsaxes.WCSAxes`
         Axes object in which to add the colorbar.
-    location : str
+    location : `~str`
         Set the location of cbar: 'top', 'right', 'bottom', or 'left'.
-    width : float
+    width : `~float`
         Set percentage of axes box to use as width for cbar.
-    pad : float
+    pad : `~float`
         Set the separation between the colorbar bar and the axes.
 
     Return
     ------
-    cbar : matplotlib.colorbar.Colorbar
+    cbar : `~matplotlib.colorbar.Colorbar`
         Colorbar object.
 
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to the matplotlib.Figure.colorbar() function.
+        Parameters to pass to the `~matplotlib.pyplot.colorbar` function.
 
     """
 

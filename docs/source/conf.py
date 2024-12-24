@@ -32,8 +32,11 @@ extensions = [
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3', None),
     'numpy': ('https://numpy.org/doc/stable/', None),
+    'matplotlib': ('https://matplotlib.org/stable/', None),
     'astropy': ('https://docs.astropy.org/en/stable/', None),
 }
+
+default_role = 'py:obj'
 
 # Sphinx-gallery
 sphinx_gallery_conf = {
