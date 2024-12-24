@@ -1,8 +1,11 @@
 """
-Add colorbar to a MadcubaMap plot
-#################################
+Add colorbar to a map
+#####################
 
-Example showing how to quickly add a colorbar to a MadcubaMap plot.
+Example showing how to quickly add a colorbar to a MadcubaMap plot. Even though
+adding a colorbar using matplotlib syntax directly is very straghtforward,
+MadcubaMap's functions parse the BUNIT card from the header and lets the user
+quickly add the colorbar using only one line of code-
 
 .. note::
     Due to how MADCUBA saves some fits header cards, several astropy warnings

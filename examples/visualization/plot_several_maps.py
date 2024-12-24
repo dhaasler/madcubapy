@@ -1,0 +1,30 @@
+"""
+Plot several maps
+#################
+
+Example showing how to plot several fits map files with MadcubaMap using the
+``add_wcs_axes`` function. We can add as many subplots as needed following the
+same convention used for matplotlib subplots: *nrows*, *ncols*, *number* right
+after the map object that we want to plot.
+
+.. note::
+    Due to how MADCUBA saves some fits header cards, several astropy warnings
+    can pop up when reading fits files. Usually these warnings are unexpected
+    card names using non-standard conventions.
+
+"""
+
+from madcubapy.io import MadcubaMap
+from madcubapy.visualization import add_wcs_axes
+import matplotlib.pyplot as plt
+
+# Read fits file
+madcuba_map = MadcubaMap.read("../data/IRAS16293_SO_2-1_moment0_madcuba.fits")
+
+# Create empty figure
+fig = plt.figure(figsize=(10,5))
+# Add as many WCS axes objects as desired. We can pass kwargs to imshow()
+ax, img = add_wcs_axes(fig, 1, 2, 1, fitsmap=madcuba_map, vmin=0, vmax=100)
+ax, img = add_wcs_axes(fig, 1, 2, 2, fitsmap=madcuba_map, vmin=0, vmax=100,
+                       cmap='jet')
+plt.show()
