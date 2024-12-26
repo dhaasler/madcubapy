@@ -10,7 +10,8 @@ from pathlib import Path
 def stack_emission(*fitsmaps):
     """Adds the data of multiple map objects
     (`~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`)
-    together and returns the result in a new map object.
+    together and returns the result as a new map object with the metadata of
+    the first input map.
     
     Parameters
     ----------
@@ -20,7 +21,7 @@ def stack_emission(*fitsmaps):
     Returns
     -------
     combined_fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
-        A new map object containing the sum of the input objects.
+        A new map object containing the sum of the data of the input maps.
     
     """
 
