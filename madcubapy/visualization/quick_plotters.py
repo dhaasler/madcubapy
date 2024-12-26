@@ -29,7 +29,7 @@ def quick_show(
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to :func:`~matplotlib.pyplot.imshow`.
+        Parameters to pass to :func:`matplotlib.pyplot.imshow`.
 
     """
 
@@ -74,8 +74,8 @@ def are_equal(
         Map object to compare.
     fitsmap_2 : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
         Map object to compare.
-    show_maps : `~bool`, default=False
-        If True both maps are plotted alongside the residuals of their
+    show_maps : `~bool`, default: False
+        If true both maps are plotted alongside the residuals of their
         substraction.
 
     Returns

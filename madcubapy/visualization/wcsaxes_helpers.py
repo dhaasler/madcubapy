@@ -15,28 +15,28 @@ def add_wcs_axes(
         fitsmap=None,
         use_std=False,
         **kwargs):
-    """Add an axes object with WCS coordinates into an existing figure.
+    """Add an Axes object with WCS coordinates into an existing figure.
 
-    A `~matplotlib.figure.Figure` with no axes has to be set before calling
-    this function. This is due to the inability to change axis coordinates
-    after it has been called. The coordinates have to be called when creating
-    the axes object. The function returns objects for the axes and the image.
+    A figure with no axes has to be set before calling this function. This is
+    due to the inability to change axis coordinates after it has been called.
+    The coordinates have to be called when creating the axes object. The
+    function returns objects for the axes and the image.
 
     Parameters
     ----------
     fig : `~matplotlib.figure.Figure`
-        Figure object.
+        Figure to which the WCSAxes are added.
     nrows : `~int`
         Number of rows on the subplot grid.
     ncols : `~int`
         Number of columns on the subplot grid.
     number : `~int`
-        Number of subplot in the grid in which to paint the axes.
+        Number of subplot in the grid in which to paint the Axes.
     fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
         Map to be displayed.
     use_std : `~bool`
-        If true, set color limits to +- three times the standard
-        deviation of the image data.
+        If true, set color limits to ±3 times the standard deviation of the
+        image data.
 
     Returns
     -------
@@ -48,7 +48,7 @@ def add_wcs_axes(
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to :func:`~matplotlib.pyplot.imshow`.
+        Parameters to pass to :func:`matplotlib.pyplot.imshow`.
 
     """
     
@@ -112,31 +112,31 @@ def add_manual_wcs_axes(
         fitsmap=None,
         use_std=False,
         **kwargs):
-    """Add an axes object with WCS coordinates in a manually set position into
+    """Add an Axes object with WCS coordinates in a manually set position into
     an existing figure.
 
-    A `~matplotlib.figure.Figure` with no axes has to be set before calling
-    this function. This is due to the inability to change axis coordinates
-    after it has been called. The coordinates have to be called when creating
-    the axes object. The function returns objects for the axes and the image.
+    A figure with no axes has to be set before calling this function. This is
+    due to the inability to change axis coordinates after it has been called.
+    The coordinates have to be called when creating the axes object. The
+    function returns objects for the axes and the image.
 
     Parameters
     ----------
     fig : `~matplotlib.figure.Figure`
-        Figure object.
+        Figure to which the WCSAxes is added.
     left : `~float`
-        X coordinate to begin the axes subplot.
+        X coordinate to begin the Axes subplot.
     bottom : `~float`
-        Y coordinate to begin the axes subplot.
+        Y coordinate to begin the Axes subplot.
     width : `~float`
-        Width of the axes subplot.
+        Width of the Axes subplot.
     height : `~float`
-        Height of the axes subplot.
+        Height of the Axes subplot.
     fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
         Map to be displayed.
     use_std : `~bool`
-        If true, set color limits to +- three times the standard
-        deviation of the image data.
+        If true, set color limits to ±3 times the standard deviation of the
+        image data.
 
     Returns
     -------
@@ -148,7 +148,7 @@ def add_manual_wcs_axes(
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to :func:`~matplotlib.pyplot.imshow`.
+        Parameters to pass to :func:`matplotlib.pyplot.imshow`.
 
     """
     
@@ -210,8 +210,7 @@ def parse_clabel(fitsmap):
     Parameters
     ----------
     fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
-        `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
-        object to extract units information.
+        Map object from which to extract units information.
 
     Returns
     -------
@@ -243,18 +242,18 @@ def append_colorbar(
         width='5%',
         pad=0.05,
         **kwargs):
-    """Append a colorbar to an axes, fitting it into the same space.
+    """Append a colorbar to one side of an Axes, fitting it into the same space.
 
     Parameters
     ----------
     ax : `~astropy.visualization.wcsaxes.WCSAxes`
-        Axes object in which to add the colorbar.
-    location : `~str`
-        Set the location of cbar: 'top', 'right', 'bottom', or 'left'.
+        Axes to which the colorbar is added.
+    location : {"left", "right", "bottom", "top"}
+        Where the colorbar is positioned relative to the main Axes.
     width : `~str`
-        Set percentage of axes box to use as width for cbar.
+        Size percentage of 'ax' to use as width for the colorbar.
     pad : `~float`
-        Set the separation between the colorbar bar and the axes.
+        Separation between the colorbar bar and 'ax'.
 
     Returns
     -------
@@ -383,18 +382,18 @@ def add_colorbar(
         width=0.05,
         pad=0.03,
         **kwargs):
-    """Add a colorbar to the side of an axes.
+    """Add a colorbar to one side of an Axes.
 
     Parameters
     ----------
     ax : `~astropy.visualization.wcsaxes.WCSAxes`
-        Axes object in which to add the colorbar.
-    location : `~str`
-        Set the location of cbar: 'top', 'right', 'bottom', or 'left'.
+        Axes to which the colorbar is added.
+    location : {"left", "right", "bottom", "top"}
+        Where the colorbar is positioned relative to the main Axes.
     width : `~float`
-        Set percentage of axes box to use as width for cbar.
+        Fraction of 'ax' to use as width for the colorbar.
     pad : `~float`
-        Set the separation between the colorbar bar and the axes.
+        Separation between the colorbar bar and 'ax'.
 
     Returns
     -------
