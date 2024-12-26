@@ -14,24 +14,24 @@ class SpectraContainer(MadcubaFits):
     """A container for MADCUBA spectra, using the
     `~madcubapy.io.madcubafits.MadcubaFits` interface.
 
-    This class is basically a wrapper to read MADCUBA exported fits and their
-    hist files with astropy.
+    This class is basically a wrapper to read MADCUBA exported spectra and
+    their history files with astropy.
 
     Parameters
     ----------
     bintable : `~astropy.table.Table`
-        An astropy table containing the data of every spectra contained in the
-        fits file alongside the info of their headers.
+        Table containing the data of every spectra contained in the
+        *.spec* file alongside the info of their headers.
     hist : `~astropy.table.Table`
-        An astropy table ontaining the history information of the fits file,
-        which is stored in a separate *_hist.csv* file.
+        Table containing the history information of the FITS file, which is
+        stored in a separate *_hist.csv* file.
     filename : `~str`
-        Filename of the read *.spec* file.
+        Name of the *.spec* file.
 
     Methods
     -------
     add_hist(*args)
-        Loads a hist Table from a CSV file.
+        Load the history table from a csv file.
 
     """
     def __init__(
@@ -76,8 +76,9 @@ class SpectraContainer(MadcubaFits):
     @classmethod
     def read(cls, filepath):
         """
-        Generate a `~madcubapy.io.spectracontainer.SpectraContainer` from a
-        FITS file.
+        ``Classmethod`` to generate a
+        `~madcubapy.io.spectracontainer.SpectraContainer` from a
+        *.spec* file.
 
         Parameters
         ----------
@@ -193,14 +194,14 @@ def parse_row_spectral_axis(table_row):
     Parameters
     ----------
     table_row : `astropy.table.Row`
-        Row of a `~madcubapy.io.spectracontainer.SpectraContainer`'s bintable. This
-        is the data for a spectrum inside a MADCUBA fits file.
+        Row of a `~madcubapy.io.spectracontainer.SpectraContainer`'s bintable.
+        This is the data for a spectrum inside a MADCUBA FITS file.
     
     Returns
     -------
     spectral_array : `~numpy.ndarray` or `~astropy.units.Quantity`
         Returned spectral axis array with units if correctly parsed from the
-        fits file.
+        FITS file.
 
     """
     # Get spectrum data

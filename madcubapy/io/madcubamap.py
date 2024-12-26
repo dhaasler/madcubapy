@@ -12,34 +12,34 @@ from .madcubafits import MadcubaFits
 
 
 class MadcubaMap(MadcubaFits):
-    """A container for MADCUBA fits maps, using the
+    """A container for MADCUBA FITS maps, using the
     `~madcubapy.io.madcubafits.MadcubaFits` interface.
 
-    This class is basically a wrapper to read MADCUBA exported fits and their
-    hist files with astropy.
+    This class is basically a wrapper to read MADCUBA exported FITS maps and
+    their history files with astropy.
 
     Parameters
     ----------
     data : `~numpy.ndarray`
-        The data array associated with the FITS file.
+        The data array contained in the FITS file.
     header : `~astropy.io.fits.Header`
         The header object associated with the FITS file.
     wcs : `~astropy.wcs.WCS`
-        The WCS object associated with the FITS file.
+        Object with the world coordinate system for the data in the FITS file.
     unit : `~astropy.units.Unit`
-        The unit of the data of the FITS file.
+        The unit of the data in the FITS file.
     hist : `~astropy.table.Table`
-        An astropy Table object containing the history information of the fits
-        file, which is stored in a separate *_hist.csv* file.
+        Table containing the history information of the FITS file, which is
+        stored in a separate *_hist.csv* file.
     ccddata : `~astropy.nddata.CCDData`
         An astropy CCDData object loaded with astropy as a failsafe.
     filename : `~str`
-        Name of the .fits file.
+        Name of the FITS file.
 
     Methods
     -------
     add_hist(*args)
-        Loads a hist Table from a CSV file.
+        Load the history table from a csv file.
 
     """
     def __init__(
@@ -149,7 +149,7 @@ class MadcubaMap(MadcubaFits):
         Parameters
         ----------
         filepath : `~str`
-            Name of fits file.
+            Name of FITS file.
         **kwargs
             Additional keyword parameters passed through to the Astropy
             :func:`~astropy.nddata.fits_ccddata_reader` function.
@@ -199,10 +199,10 @@ class MadcubaMap(MadcubaFits):
         Parameters
         ----------
         filepath : `~str`
-            Name of output fits file.
+            Name of output FITS file.
         **kwargs
             Additional keyword parameters passed through to the Astropy
-            `~astropy.nddata.fits_ccddata_writer` function.
+            :func:`~astropy.nddata.fits_ccddata_writer` function.
 
         """
         if not self._ccddata:
@@ -258,8 +258,8 @@ class MadcubaMap(MadcubaFits):
 
     def fix_units(self):
         """
-        Try to fix problems when the units are incorrectly parsed. The user
-        must confirm that the new units are correct.
+        Tries to fix problems when the units are incorrectly parsed. The user
+        should confirm that the new units are correct.
 
         """
         unit_str = self.header["BUNIT"]
@@ -274,7 +274,7 @@ class MadcubaMap(MadcubaFits):
 
     def convert_unit_to(self, unit):
         """
-        Convert the units of the map.
+        Convert the units of the map to other units.
 
         """
         # Change unit in CCDDdata and copy it into MadcubaMap
