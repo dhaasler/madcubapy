@@ -44,4 +44,5 @@ docs = [
     "sphinx_gallery",
     "pydata_sphinx_theme",
     "matplotlib",
+    "numpydoc",
 ]
