@@ -11,7 +11,7 @@ User Guide
             :maxdepth: 2
             :includehidden:
 
-            In/Out <io/madcubapy.io>
+            In/Out <io/index_io>
 
     .. grid-item-card::
         :padding: 2

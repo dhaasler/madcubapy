@@ -7,20 +7,27 @@ Submodules
 madcubapy.io.madcubafits module
 -------------------------------
 
-.. automodule:: madcubapy.io.madcubafits
-   :members:
-   :show-inheritance:
+.. toctree::
+   :maxdepth: 1
+   :includehidden:
+
+   madcubafits
 
 madcubapy.io.madcubamap module
 ------------------------------
 
-.. automodule:: madcubapy.io.madcubamap
-   :members:
-   :show-inheritance:
+.. toctree::
+   :maxdepth: 1
+   :includehidden:
+
+   madcubamap
 
 madcubapy.io.spectracontainer module
 ------------------------------------
 
-.. automodule:: madcubapy.io.spectracontainer
-   :members:
-   :show-inheritance:
+.. toctree::
+   :maxdepth: 1
+   :includehidden:
+
+   spectracontainer
+
