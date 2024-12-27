@@ -23,6 +23,7 @@ extensions = [
     'sphinx_design',
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',  # For Google/NumPy style docstrings
     'sphinx.ext.viewcode',  # To link source code
     'sphinx_gallery.gen_gallery',
