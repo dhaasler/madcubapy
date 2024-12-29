@@ -1,4 +1,6 @@
 """
+.. _colorbar_example:
+
 Add a colorbar to a map
 #######################
 
