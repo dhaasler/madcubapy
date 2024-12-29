@@ -9,6 +9,10 @@ import zipfile
 from .madcubafits import MadcubaFits
 from madcubapy.utils.spectral import create_spectral_array
 
+__all__ = [
+    'SpectraContainer',
+    'parse_row_spectral_axis',
+]
 
 class SpectraContainer(MadcubaFits):
     """A container for MADCUBA spectra, using the

@@ -2,6 +2,9 @@ import astropy
 import astropy.units as u
 import numpy as np
 
+__all__ = [
+    'create_spectral_array',
+]
 
 def create_spectral_array(nchan, cdelt, crpix, crval):
     """

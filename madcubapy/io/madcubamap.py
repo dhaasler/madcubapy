@@ -10,6 +10,9 @@ from pathlib import Path
 
 from .madcubafits import MadcubaFits
 
+__all__ = [
+    'MadcubaMap',
+]
 
 class MadcubaMap(MadcubaFits):
     """A container for MADCUBA FITS maps, using the

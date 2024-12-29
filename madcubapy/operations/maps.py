@@ -6,6 +6,9 @@ import numpy as np
 import os
 from pathlib import Path
 
+__all__ = [
+    'stack_emission',
+]
 
 def stack_emission(*fitsmaps):
     """Adds the data of multiple map objects
