@@ -31,13 +31,14 @@ warnings.filterwarnings('ignore', category=AstropyWarning)
 # 
 # Spectra are exported from MADCUBA in a single FITS file containing a bintable
 # with each one of the spectra inside. This FITS file is then packaged
-# alongside the history file inside a *.spec* archive. With the
-# `~madcubapy.io.spectracontainer.SpectraContainer` class we can open MADCUBA's
-# *.spec* files alongside their history tables.
+# alongside the :ref:`history file <hist_file>` inside a *.spec* archive. With
+# the `~madcubapy.io.spectracontainer.SpectraContainer` class we can open
+# MADCUBA's *.spec* files alongside their history tables.
 # 
-# We can read the FITS file with the
+# We can read the *.spec* file with the
 # `SpectraContainer.read() <madcubapy.io.spectracontainer.SpectraContainer.read>`
-# method, and the corresponding history file will be loaded as well if present.
+# method, and the corresponding :ref:`history file <hist_file>` will be loaded
+# as well if present.
 
 spectra_container = SpectraContainer.read(
     "data/IRAS16293_position_8_TM2_spectra.spec")

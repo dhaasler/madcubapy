@@ -36,14 +36,15 @@ warnings.filterwarnings('ignore', category=AstropyWarning)
 # Reading the FITS map
 # ====================
 # 
-# When MADCUBA exports a FITS map it also creates a history file with the same
-# name of the FITS file ended with *_hist.csv*. With the
-# `~madcubapy.io.madcubamap.MadcubaMap` class we can open these FITS files
-# alongside their history tables.
+# When MADCUBA exports a FITS map it also creates a
+# :ref:`history file <hist_file>` with the same name of the FITS file ended
+# with *_hist.csv*. With the `~madcubapy.io.madcubamap.MadcubaMap` class we can
+# open these FITS files alongside their history tables.
 # 
 # We can read the FITS file with the
 # `MadcubaMap.read() <madcubapy.io.madcubamap.MadcubaMap.read>` method, and the
-# corresponding history file will be loaded as well if present.
+# corresponding :ref:`history file <hist_file>` will be loaded as well if
+# present.
 
 madcuba_map = MadcubaMap.read("data/IRAS16293_SO_2-1_moment0_madcuba.fits")
 
@@ -56,7 +57,8 @@ madcuba_map = MadcubaMap.read("data/IRAS16293_SO_2-1_moment0_madcuba.fits")
 # The `~madcubapy.io.madcubamap.MadcubaMap` class resembles the
 # `~astropy.nddata.CCDData` class from Astropy with ``data``, ``header``,
 # ``wcs``, and ``unit`` attributes, with the addition of a ``hist`` attribute,
-# the history table:
+# the history table containing all the information from the
+# :ref:`history file <hist_file>`:
 
 madcuba_map.hist
 
@@ -273,8 +275,8 @@ madcuba_map.hist
 # method tries to fix this problem and correctly parse the units.
 # 
 # For example, CARTA exports units like this. When we read a CARTA map, 
-# `madcubapy` warns us that no history file has been found, which we can ignore
-# right now.
+# `madcubapy` warns us that no :ref:`history file <hist_file>` has been found,
+# which we can ignore when working with FITS files not created by MADCUBA.
 
 carta_map = MadcubaMap.read("data/IRAS16293_SO2c_moment0_carta.fits")
 
