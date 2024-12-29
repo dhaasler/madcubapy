@@ -2,30 +2,29 @@
 Read and plot maps with MadcubaMap
 ##################################
 
-MADCUBA exports a history file with the same name of the fits file ended with
-*_hist.csv*. With the ``MadcubaMap`` class we can open these fits files alongside their
-history tables.
+Introduction to using `madcubapy` to read and plot a FITS map.
+
+Usually, we would open and FITS files in python using `astropy` and plot them
+using `matplotlib`. This tutorial shows how this can be done with `madcubapy`,
+which uses the previous packages to do all the work, but in a more concise
+manner, simplifying this process for the user.
 
 We start by importing the necessary libraries for this tutorial.
 """
-
-from astropy.nddata import CCDData
-from astropy.table import Table
-import astropy.units as u
-import matplotlib.axes as maxes
-import matplotlib.pyplot as plt
-from mpl_toolkits.axes_grid1 import make_axes_locatable
-import numpy as np
-import os
-from pathlib import Path
 
 from madcubapy.io import MadcubaMap
 from madcubapy.visualization import add_wcs_axes
 from madcubapy.visualization import add_manual_wcs_axes
 from madcubapy.visualization import append_colorbar
+import matplotlib.pyplot as plt
 
 # sphinx_gallery_start_ignore
-# Do not show warnings in tutorial page. A note tells the user what to expect. 
+# Needed imports for creating the matplotlib + astropy figures. I do not want
+# them to show in the main example for the simple usecase of madcubapy.
+import matplotlib.axes as maxes
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+# Do not show warnings in tutorial page. A note tells the user what to expect
+# regarding warnings. 
 import warnings
 from astropy.utils.exceptions import AstropyWarning
 warnings.filterwarnings('ignore', category=AstropyWarning)
@@ -35,12 +34,16 @@ warnings.filterwarnings('ignore', category=AstropyWarning)
 # Reading the FITS map
 # ====================
 # 
-# We can read the fits file with the
-# `MadcubaMap.read() <madcubapy.io.madcubamap.MadcubaMap.read>` method.
+# When MADCUBA exports a FITS map it also creates a history file with the same
+# name of the FITS file ended with *_hist.csv*. With the
+# `~madcubapy.io.madcubamap.MadcubaMap` class we can open these FITS files
+# alongside their history tables.
+# 
+# We can read the FITS file with the
+# `MadcubaMap.read() <madcubapy.io.madcubamap.MadcubaMap.read>` method, and the
+# corresponding history file will be loaded as well if present.
 
-data_folder = Path("data")
-madcuba_map = MadcubaMap.read(
-    data_folder/"IRAS16293_SO_2-1_moment0_madcuba.fits")
+madcuba_map = MadcubaMap.read("data/IRAS16293_SO_2-1_moment0_madcuba.fits")
 
 ###############################################################################
 # .. note:: 
@@ -50,8 +53,8 @@ madcuba_map = MadcubaMap.read(
 # 
 # The `~madcubapy.io.madcubamap.MadcubaMap` class resembles the
 # `~astropy.nddata.CCDData` class from Astropy with ``data``, ``header``,
-# ``wcs``, and ``unit`` attributes, with the addition of # a ``hist``
-# attribute, the history table:
+# ``wcs``, and ``unit`` attributes, with the addition of a ``hist`` attribute,
+# the history table:
 
 madcuba_map.hist
 
@@ -101,7 +104,9 @@ madcuba_map.hist
 #   
 #         We can very quickly add a colorbar using
 #         :func:`~madcubapy.visualization.wcsaxes_helpers.add_colorbar` or
-#         :func:`~madcubapy.visualization.wcsaxes_helpers.append_colorbar`
+#         :func:`~madcubapy.visualization.wcsaxes_helpers.append_colorbar`.
+#         Check the :ref:`Colorbar example <colorbar_example>` to know more about how
+#         this two functions work.
 #   
 #         .. code-block:: python
 #   
@@ -182,6 +187,10 @@ madcuba_map.hist
 #   
 #         .. code-block:: python
 #   
+#             # New imports needed to create the colorbar
+#             import matplotlib.axes as maxes
+#             from mpl_toolkits.axes_grid1 import make_axes_locatable
+# 
 #             # Create a figure and plot the image
 #             fig, ax = plt.subplots(1, 1, figsize=(6, 5))
 #             map_data = madcuba_map.data[0, 0, :, :]  # apply slicing
@@ -265,7 +274,7 @@ madcuba_map.hist
 # `madcubapy` warns us that no history file has been found, which we can ignore
 # right now.
 
-carta_map = MadcubaMap.read(data_folder/"IRAS16293_SO2c_moment0_carta.fits")
+carta_map = MadcubaMap.read("data/IRAS16293_SO2c_moment0_carta.fits")
 
 ###############################################################################
 # If we check the units of the map we can see that they are incorrect,
