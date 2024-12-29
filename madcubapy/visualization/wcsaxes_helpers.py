@@ -1,11 +1,18 @@
 from astropy.nddata import CCDData
-from astropy.stats import sigma_clipped_stats
+import astropy.stats as stats
 from madcubapy.io import MadcubaMap
 import matplotlib as mpl
 import matplotlib.axes as maxes
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
+__all__ = [
+    'add_wcs_axes',
+    'add_manual_wcs_axes',
+    'append_colorbar',
+    'add_colorbar',
+    'parse_clabel',
+]
 
 def add_wcs_axes(
         fig=None,
@@ -85,7 +92,7 @@ def add_wcs_axes(
     # Dimensions are: stokes, freq, Y, X for ALMA datacubes
 
     if use_std:
-        mean, median, std= sigma_clipped_stats(data, sigma=3.0)
+        mean, median, std = stats.sigma_clipped_stats(data, sigma=3.0)
         kwargs['vmin'] = median - 3 * std
         kwargs['vmax'] = median + 3 * std
 
@@ -185,7 +192,7 @@ def add_manual_wcs_axes(
     # Dimensions are: stokes, freq, Y, X for ALMA datacubes
 
     if use_std:
-        mean, median, std= sigma_clipped_stats(data, sigma=3.0)
+        mean, median, std = stats.sigma_clipped_stats(data, sigma=3.0)
         kwargs['vmin'] = median - 3 * std
         kwargs['vmax'] = median + 3 * std
 

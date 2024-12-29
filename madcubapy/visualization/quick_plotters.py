@@ -1,5 +1,5 @@
 from astropy.nddata import CCDData
-from astropy.stats import sigma_clipped_stats
+import astropy.stats as stats
 import astropy.units as u
 import matplotlib as mpl
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -15,6 +15,10 @@ from madcubapy.io import MadcubaMap
 from .wcsaxes_helpers import add_wcs_axes
 from .wcsaxes_helpers import append_colorbar
 
+__all__ = [
+    'quick_show',
+    'are_equal',
+]
 
 def quick_show(
         fitsmap,
@@ -154,7 +158,7 @@ def are_equal(
         # Diff map
         data = data_1 - data_2
         wcs = map_1.wcs.celestial
-        mean, median, std= sigma_clipped_stats(data, sigma=3.0)
+        mean, median, std = stats.sigma_clipped_stats(data, sigma=3.0)
         vmin = median - 3 * std
         vmax = median + 3 * std
         norm = 'linear'
