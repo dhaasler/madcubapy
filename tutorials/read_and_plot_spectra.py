@@ -1,35 +1,54 @@
 """
-SpectraContainer
-================ 
+.. _tutorial_read_plot_spec:
 
-Spectra are exported from MADCUBA in a single fits file containing a bintable
-with each one of the spectra inside. This fits file is then packaged
-alongside the history file inside a *.spec* archive. 
+Read and plot spectra with SpectraContainer
+===========================================
 
-With the SpectraContainer class we can open MADCUBA's *.spec* files.
+.. note::
+    This tutorial is not final. It will be finished once all the core
+    functionalities of `~madcubapy.io.spectracontainer.SpectraContainer` are
+    implemented. 
+
+Introduction to using `madcubapy` to read and plot MADCUBA spectra.
+
+We start by importing the necessary libraries for this tutorial.
 """
 
-from astropy.nddata import CCDData
-from astropy.table import Table
-import astropy.units as u
-import matplotlib.axes as maxes
-import matplotlib.pyplot as plt
-from mpl_toolkits.axes_grid1 import make_axes_locatable
-import numpy as np
-import os
-from pathlib import Path
-
-from madcubapy.io import MadcubaMap
 from madcubapy.io import SpectraContainer
-from madcubapy.visualization import add_wcs_axes
-from madcubapy.visualization import add_manual_wcs_axes
-from madcubapy.visualization import append_colorbar
+import matplotlib.pyplot as plt
 
-data_folder = Path("data")
-spectra_container = SpectraContainer.read(data_folder/"IRAS16293_position_8_TM2_spectra.spec")
+# sphinx_gallery_start_ignore
+# Do not show warnings in tutorial page. A note tells the user what to expect
+# regarding warnings. 
+import warnings
+from astropy.utils.exceptions import AstropyWarning
+warnings.filterwarnings('ignore', category=AstropyWarning)
+# sphinx_gallery_end_ignore
 
 ###############################################################################
-# The spectra are stores in teh ``bintable`` attribute, which is an Astropy
+# Reading the spectra file
+# ========================
+# 
+# Spectra are exported from MADCUBA in a single FITS file containing a bintable
+# with each one of the spectra inside. This FITS file is then packaged
+# alongside the history file inside a *.spec* archive. With the
+# `~madcubapy.io.spectracontainer.SpectraContainer` class we can open MADCUBA's
+# *.spec* files alongside their history tables.
+# 
+# We can read the FITS file with the
+# `SpectraContainer.read() <madcubapy.io.spectracontainer.SpectraContainer.read>`
+# method, and the corresponding history file will be loaded as well if present.
+
+spectra_container = SpectraContainer.read(
+    "data/IRAS16293_position_8_TM2_spectra.spec")
+
+###############################################################################
+# .. note:: 
+#     Due to how MADCUBA saves some FITS header cards, several `astropy`
+#     warnings can pop up when reading spectra. Usually these warnings are
+#     incorrectly written units, or units using non-standard conventions.
+# 
+# The spectra are stored in the ``bintable`` attribute, which is an Astropy
 # table contaning the data and header information for every spectra.
 
 # Show the first two spectra inside as an example
