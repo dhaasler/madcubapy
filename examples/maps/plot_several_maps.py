@@ -1,4 +1,6 @@
 """
+.. _plot_several_maps_example:
+
 Plot several maps
 #################
 
@@ -26,7 +28,7 @@ madcuba_map = MadcubaMap.read("../data/IRAS16293_SO_2-1_moment0_madcuba.fits")
 fig = plt.figure(figsize=(10,5))
 # Add as many WCS axes objects as desired.
 # We can pass kwargs for matplotlib.pyploy.imshow()
-ax, img = add_wcs_axes(fig, 1, 2, 1, fitsmap=madcuba_map, vmin=0, vmax=100)
-ax, img = add_wcs_axes(fig, 1, 2, 2, fitsmap=madcuba_map, vmin=0, vmax=100,
+ax1, img1 = add_wcs_axes(fig, 1, 2, 1, fitsmap=madcuba_map, vmin=0, vmax=100)
+ax2, img2 = add_wcs_axes(fig, 1, 2, 2, fitsmap=madcuba_map, vmin=0, vmax=100,
                        cmap='jet')
 plt.show()
