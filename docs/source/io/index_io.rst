@@ -14,3 +14,4 @@ Getting Started
     :includehidden:
 
     madcubapy.io
+    ref_api

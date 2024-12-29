@@ -204,6 +204,7 @@ def parse_row_spectral_axis(table_row):
         FITS file.
 
     """
+    
     # Get spectrum data
     nchan = table_row['CHANNELS']
     cdelt3 = table_row['CDELT3']

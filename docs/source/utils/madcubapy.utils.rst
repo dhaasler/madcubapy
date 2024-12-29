@@ -7,6 +7,6 @@ Submodules
 madcubapy.utils.spectral module
 -------------------------------
 
-.. automodule:: madcubapy.utils.spectral
-   :members:
-   :show-inheritance:
+.. .. automodule:: madcubapy.utils.spectral
+..    :members:
+..    :show-inheritance:
