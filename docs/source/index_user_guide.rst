@@ -11,7 +11,7 @@ User Guide
             :maxdepth: 2
             :includehidden:
 
-            In/Out <io/index_io>
+            In/Out <io/index>
 
     .. grid-item-card::
         :padding: 2
@@ -19,7 +19,7 @@ User Guide
         .. toctree::
             :maxdepth: 2
 
-            Operations <operations/madcubapy.operations>
+            Operations <operations/index>
 
     .. grid-item-card::
         :padding: 2
@@ -27,7 +27,7 @@ User Guide
         .. toctree::
             :maxdepth: 2
 
-            Visualization <visualization/madcubapy.visualization>
+            Visualization <visualization/index>
 
     .. grid-item-card::
         :padding: 2
@@ -35,4 +35,4 @@ User Guide
         .. toctree::
             :maxdepth: 2
 
-            Utils <utils/madcubapy.utils>
+            Utils <utils/index>
