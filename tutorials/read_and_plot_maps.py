@@ -1,4 +1,6 @@
 """
+.. _tutorial_read_plot_maps:
+
 Read and plot maps with MadcubaMap
 ##################################
 
@@ -105,7 +107,7 @@ madcuba_map.hist
 #         We can very quickly add a colorbar using
 #         :func:`~madcubapy.visualization.wcsaxes_helpers.add_colorbar` or
 #         :func:`~madcubapy.visualization.wcsaxes_helpers.append_colorbar`.
-#         Check the :ref:`Colorbar example <colorbar_example>` to know more about how
+#         Check the :ref:`Colorbar example <example_colorbar>` to know more about how
 #         this two functions work.
 #   
 #         .. code-block:: python
@@ -331,7 +333,7 @@ ax.set_ylabel('Y axis')
 
 plt.savefig('../docs/source/gallery_tutorials/read_and_plot_fig_mpl1.png',
             bbox_inches='tight')
-plt.close()  # close plot so that it does not show in the example page
+plt.close()  # close plot so that it does not show in the tutorial page
 
 # 2
 # Create a figure and plot the image
@@ -351,7 +353,7 @@ ax.set_ylabel('Y axis')
 
 plt.savefig('../docs/source/gallery_tutorials/read_and_plot_fig_mpl2.png',
             bbox_inches='tight')
-plt.close()  # close plot so that it does not show in the example page
+plt.close()  # close plot so that it does not show in the tutorial page
 
 # 3
 # Create a figure and add a subplot with WCS projection
@@ -370,7 +372,7 @@ ax.set_title('Madcuba Map')
 
 plt.savefig('../docs/source/gallery_tutorials/read_and_plot_fig_mpl3.png',
             bbox_inches='tight')
-plt.close()  # close plot so that it does not show in the example page
+plt.close()  # close plot so that it does not show in the tutorial page
 
 # 4
 # Create a figure and add a subplot with WCS projection and correct labels
@@ -390,7 +392,7 @@ cbar.set_label(r'$I \ {\rm (Jy \ beam^{-1} \ m \ s^{-1})}$')
 
 plt.savefig('../docs/source/gallery_tutorials/read_and_plot_fig_mpl4.png',
             bbox_inches='tight')
-plt.close()  # close plot so that it does not show in the example page
+plt.close()  # close plot so that it does not show in the tutorial page
 
 
 # add_wcs_axes figure
@@ -402,7 +404,7 @@ fig = plt.figure(figsize=(6, 5))
 ax, img = add_wcs_axes(fig=fig, fitsmap=madcuba_map, vmin=0, vmax=300)
 
 plt.savefig('../docs/source/gallery_tutorials/read_and_plot_fig_wcsaxes1.png')
-plt.close()  # close plot so that it does not show in the example page
+plt.close()  # close plot so that it does not show in the tutorial page
 
 #2
 # Create empty figure
@@ -414,6 +416,6 @@ cbar = append_colorbar(ax)
 
 
 plt.savefig('../docs/source/gallery_tutorials/read_and_plot_fig_wcsaxes2.png')
-plt.close()  # close plot so that it does not show in the example page
+plt.close()  # close plot so that it does not show in the tutorial page
 
 # sphinx_gallery_end_ignore

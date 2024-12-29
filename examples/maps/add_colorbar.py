@@ -1,5 +1,5 @@
 """
-.. _colorbar_example:
+.. _example_colorbar:
 
 Add a colorbar to a map
 #######################
@@ -34,12 +34,15 @@ Both functions accept a number of additional parameters that are passed to
 :func:`matplotlib.pyplot.colorbar`. With this we can set custom ticks, a custom
 label, etc.
 
-.. note::
-    Due to how MADCUBA saves some fits header cards, several astropy warnings
-    can pop up when reading fits files. Usually these warnings are unexpected
-    card names using non-standard conventions.
-
 """
+
+# sphinx_gallery_start_ignore
+# Do not show warnings in example page. A note tells the user what to expect
+# regarding warnings. 
+import warnings
+from astropy.utils.exceptions import AstropyWarning
+warnings.filterwarnings('ignore', category=AstropyWarning)
+# sphinx_gallery_end_ignore
 
 from madcubapy.io import MadcubaMap
 from madcubapy.visualization import append_colorbar

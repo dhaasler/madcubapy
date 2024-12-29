@@ -1,4 +1,6 @@
 """
+.. _example_read_map:
+
 Read MadcubaMap
 ###################
 
@@ -11,6 +13,14 @@ Example showing how to read a fits map file as a
     card names using non-standard conventions.
 
 """
+
+# sphinx_gallery_start_ignore
+# Do not show warnings in example page. A note tells the user what to expect
+# regarding warnings. 
+import warnings
+from astropy.utils.exceptions import AstropyWarning
+warnings.filterwarnings('ignore', category=AstropyWarning)
+# sphinx_gallery_end_ignore
 
 from madcubapy.io import MadcubaMap
 
