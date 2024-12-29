@@ -1,33 +1,43 @@
 """
-Example to plot maps using custom helper functions
-##################################################
+.. _tutorial_visualization_helpers
+
+
+
+
+*** CONVERT THIS TO SEVERAL DOC PAGES FOR EVERY FUNCTION, similar to
+https://docs.astropy.org/en/stable/nddata/index.html ***
+
+
+
+
+
+Visualization helpers
+#####################
+
+Tutorial showing in-depth usage for every visualzation helper function
+available in `madcubapy`.
 
 We start by importing the necessary libraries
 """
 
 from astropy.nddata import CCDData
-import matplotlib.pyplot as plt
-from pathlib import Path
-
 from madcubapy.io import MadcubaMap
 from madcubapy.visualization import add_colorbar
 from madcubapy.visualization import add_manual_wcs_axes
 from madcubapy.visualization import add_wcs_axes
 from madcubapy.visualization import append_colorbar
 from madcubapy.visualization import are_equal
-from madcubapy.visualization import parse_clabel
-from madcubapy.visualization import quick_show
+import matplotlib.pyplot as plt
 
 ###############################################################################
-# We read the map file
+# We read the map file with `madcubapy` and `astropy`
 
-data_folder = Path("data")
-madcuba_map = MadcubaMap.read(data_folder/"IRAS16293_SO_2-1_moment0_madcuba.fits")
-ccddata_map = MadcubaMap.read(data_folder/"IRAS16293_SO_2-1_moment0_madcuba.fits")
+madcuba_map = MadcubaMap.read("data/IRAS16293_SO_2-1_moment0_madcuba.fits")
+ccddata_map = CCDData.read("data/IRAS16293_SO_2-1_moment0_madcuba.fits")
 
 ###############################################################################
-# Plot a map easily with ``add_wcs_axes``
-# =======================================
+# `~madcubapy.visualization.wcsaxes_helpers.add_wcs_axes`
+# =======================================================
 # 
 # To use this function, we first need to create an empty figure, and pass it as
 #  an argument alongside the ``MadcubaMap`` or ``CCDData`` object to plot.
@@ -140,14 +150,6 @@ cbar2 = append_colorbar(ax=ax2, location='top', label='custom units')
 cbar3 = add_colorbar(ax=ax3, location='top', label='custom units')
 
 plt.show()
-
-###############################################################################
-# Quick show a map in a pop-up window
-# ===================================
-# 
-# We can show a map in a pop window to look at something quickly.
-
-# quick_show(fitsmap=ccddata_map, vmin=20, vmax=100)
 
 ###############################################################################
 # Compare two maps
