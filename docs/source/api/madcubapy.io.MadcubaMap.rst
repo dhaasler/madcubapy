@@ -14,6 +14,7 @@ MadcubaMap
       ~MadcubaMap.data
       ~MadcubaMap.filename
       ~MadcubaMap.header
+      ~MadcubaMap.hist
       ~MadcubaMap.unit
       ~MadcubaMap.wcs
 
@@ -21,6 +22,7 @@ MadcubaMap
 
    .. autosummary::
 
+      ~MadcubaMap.add_hist
       ~MadcubaMap.convert_unit_to
       ~MadcubaMap.copy
       ~MadcubaMap.fix_units
@@ -33,11 +35,13 @@ MadcubaMap
    .. autoattribute:: data
    .. autoattribute:: filename
    .. autoattribute:: header
+   .. autoattribute:: hist
    .. autoattribute:: unit
    .. autoattribute:: wcs
 
    .. rubric:: Methods Documentation
 
+   .. automethod:: add_hist
    .. automethod:: convert_unit_to
    .. automethod:: copy
    .. automethod:: fix_units

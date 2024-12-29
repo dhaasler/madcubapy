@@ -37,6 +37,9 @@ class MadcubaFits:
 
     @property
     def hist(self):
+        """
+        `~astropy.table.Table` : Table containing the history information
+        """
         return self._hist
 
     @hist.setter

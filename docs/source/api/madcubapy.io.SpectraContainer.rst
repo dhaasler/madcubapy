@@ -12,11 +12,13 @@ SpectraContainer
 
       ~SpectraContainer.bintable
       ~SpectraContainer.filename
+      ~SpectraContainer.hist
 
    .. rubric:: Methods Summary
 
    .. autosummary::
 
+      ~SpectraContainer.add_hist
       ~SpectraContainer.copy
       ~SpectraContainer.read
 
@@ -24,8 +26,10 @@ SpectraContainer
 
    .. autoattribute:: bintable
    .. autoattribute:: filename
+   .. autoattribute:: hist
 
    .. rubric:: Methods Documentation
 
+   .. automethod:: add_hist
    .. automethod:: copy
    .. automethod:: read

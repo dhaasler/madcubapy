@@ -114,6 +114,9 @@ class MadcubaMap(MadcubaFits):
 
     @property
     def header(self):
+        """
+        `~astropy.io.fits.Header` : Text
+        """
         return self._header
 
     @header.setter
