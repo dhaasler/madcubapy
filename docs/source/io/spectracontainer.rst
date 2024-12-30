@@ -1,2 +1,7 @@
-madcubapy.io.spectracontainer module
-------------------------------------
+.. _info_spectracontainer:
+
+################
+SpectraContainer
+################
+
+The `~madcubapy.io.spectracontainer.SpectraContainer` class...

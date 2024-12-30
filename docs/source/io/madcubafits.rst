@@ -1,2 +1,7 @@
-madcubapy.io.madcubafits module
--------------------------------
+.. _info_madcubafits:
+
+###########
+MadcubaFits
+###########
+
+The `~madcubapy.io.madcubafits.MadcubaFits` class...

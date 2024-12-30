@@ -1,2 +1,7 @@
-madcubapy.io.madcubamap module
-------------------------------
+.. _info_madcubamap:
+
+##########
+MadcubaMap
+##########
+
+The `~madcubapy.io.madcubamap.MadcubaMap` class...
