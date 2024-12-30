@@ -84,6 +84,10 @@ class MadcubaMap(MadcubaFits):
 
     @property
     def ccddata(self):
+        """
+        `~astropy.nddata.CCDData` : An astropy CCDData object loaded with
+        astropy as a failsafe.
+        """
         return self._ccddata
 
     @ccddata.setter
@@ -94,6 +98,9 @@ class MadcubaMap(MadcubaFits):
 
     @property
     def filename(self):
+        """
+        `~str` : Name of the FITS file.
+        """
         return self._filename
 
     @filename.setter
@@ -104,6 +111,9 @@ class MadcubaMap(MadcubaFits):
 
     @property
     def data(self):
+        """
+        `~numpy.ndarray` : The data array contained in the FITS file.
+        """
         return self._data
 
     @data.setter
@@ -115,7 +125,8 @@ class MadcubaMap(MadcubaFits):
     @property
     def header(self):
         """
-        `~astropy.io.fits.Header` : Text
+        `~astropy.io.fits.Header` : The header object associated with the FITS
+        file.
         """
         return self._header
 
@@ -127,6 +138,9 @@ class MadcubaMap(MadcubaFits):
 
     @property
     def wcs(self):
+        """
+        `~astropy.wcs.WCS` : Object with the world coordinate system for the data in the FITS file.
+        """
         return self._wcs
 
     @wcs.setter
@@ -137,6 +151,9 @@ class MadcubaMap(MadcubaFits):
 
     @property
     def unit(self):
+        """
+        `~astropy.units.Unit` : The unit of the data in the FITS file.
+        """
         return self._unit
 
     @unit.setter

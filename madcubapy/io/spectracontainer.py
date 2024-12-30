@@ -24,8 +24,8 @@ class SpectraContainer(MadcubaFits):
     Parameters
     ----------
     bintable : `~astropy.table.Table`
-        Table containing the data of every spectra contained in the
-        *.spec* file alongside the info of their headers.
+        Table containing the data of every spectra inside the *.spec* file
+        alongside the info of their headers.
     hist : `~astropy.table.Table`
         Table containing the history information of the FITS file, which is
         stored in a separate *_hist.csv* file.
@@ -58,6 +58,10 @@ class SpectraContainer(MadcubaFits):
 
     @property
     def bintable(self):
+        """
+        `~astropy.table.Table` : Table containing the data of every spectra
+        inside the *.spec* file.
+        """
         return self._bintable
 
     @bintable.setter
@@ -69,6 +73,9 @@ class SpectraContainer(MadcubaFits):
 
     @property
     def filename(self):
+        """
+        `~str` : Name of the *.spec* file.
+        """
         return self._filename
 
     @filename.setter
