@@ -20,6 +20,7 @@ release = '0.1.0'
 
 extensions = [
     'numpydoc',
+    'sphinx_changelog',
     'sphinx_design',
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',

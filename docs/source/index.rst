@@ -21,7 +21,7 @@ This is the main page of the documentation for the `madcubapy` package.
     :caption: Contents:
     :hidden:
 
-    introduction
+    index_introduction
     index_user_guide
     gallery_tutorials/index
     gallery_examples/index
