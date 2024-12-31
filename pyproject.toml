@@ -40,7 +40,8 @@ repository = "https://github.com/dhaasler/madcubapy.git"
 docs = [
     "astropy[recommended]",
     "sphinx",
-    "sphinx-changelog",
+    "sphinx-automodapi",
+    "sphinx_changelog",
     "sphinx-design",
     "sphinx_gallery",
     "pydata_sphinx_theme",
