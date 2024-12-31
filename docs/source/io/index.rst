@@ -5,13 +5,23 @@ MADCUBA IO
 Introduction
 ============
 
+Th key difference between MADCUBA exported cubes and spectra, and those exported
+by other programas is how history is written into the files. MADCUBA opts for an
+external :ref:`history file <hist_file>` that contains every operation performed
+on the data since first imported into MADCUBA.
+
 The IO package of `madcubapy` allows the user to read MADCUBA products like FITS
-maps or spectra *.spec* files.
+and *.spec* files alongside their :ref:`history files <hist_file>`.
 
-Getting Started
-===============
+MadcubaMap
+==========
 
-The :ref:`MadcubaFits <info_madcubafits>`
+About `~madcubapy.io.madcubamap.MadcubaMap`.
+
+SpectraContainer
+================
+
+About `~madcubapy.io.spectracontainer.SpectraContainer`.
 
 ``io`` contents
 ===============
@@ -23,7 +33,7 @@ The :ref:`MadcubaFits <info_madcubafits>`
     madcubamap
     spectracontainer
 
-Reference/API
+API Reference
 =============
 
 .. toctree::

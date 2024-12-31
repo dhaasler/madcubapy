@@ -7,6 +7,5 @@ information on the project and links to examples and tutorials.
 
 .. toctree::
     :maxdepth: 1
-    :caption: Contents:
 
     history_file
