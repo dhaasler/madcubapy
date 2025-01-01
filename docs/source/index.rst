@@ -18,7 +18,6 @@ This is the main page of the documentation for the `madcubapy` package.
 
 .. toctree::
     :maxdepth: 1
-    :caption: Contents:
     :hidden:
 
     index_introduction

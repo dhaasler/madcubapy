@@ -1,8 +1,8 @@
 .. _contribute:
 
-############
-Contributing
-############
+###########################
+Contributing to `madcubapy`
+###########################
 
 Disclaimer: there is only one maintainer for this project, a first-year PhD
 student.
