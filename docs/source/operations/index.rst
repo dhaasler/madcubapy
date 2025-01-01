@@ -1,13 +1,10 @@
 Operations
-==========
-
-Introduction
-------------
+##########
 
 Introduction text.
 
-Getting Started
----------------
+API Reference
+=============
 
 .. toctree::
     :maxdepth: 1
