@@ -7,7 +7,7 @@ The History file
 The key difference between MADCUBA exported cubes and spectra, and those exported
 by other programs is how history is written into the files. Instead of writing
 the new history into new header cards, MADCUBA opts for an external
-:ref:`history file <hist_file>` that contains every operation performed on the
+history file that contains every operation performed on the
 data since first imported into MADCUBA.
 
 This file has the same name as the FITS name followed by *_hist.csv*. 

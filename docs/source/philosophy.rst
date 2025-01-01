@@ -4,8 +4,8 @@
 Why `madcubapy`
 ###############
 
-MADCUBA products (Why madcubapy exists)
-=======================================
+MADCUBA products
+================
 
 The vision for this package is to facilitate working with MADCUBA exported
 files. 
@@ -13,6 +13,7 @@ files.
 Instead of writing history into header cards when saving a FITS file, MADCUBA
 works with an external :ref:`history file <hist_file>` where details for every
 operation are stored.
+
 With `madcubapy` we can read FITS files with this external history information
 into a single object in python.
 
