@@ -11,7 +11,7 @@ User Guide
             :maxdepth: 2
             :includehidden:
 
-            IO <io/index>
+            MADCUBA IO <io/index>
 
     .. grid-item-card::
         :padding: 2
@@ -27,7 +27,7 @@ User Guide
         .. toctree::
             :maxdepth: 2
 
-            Visualization <visualization/index>
+            Visualization helpers <visualization/index>
 
     .. grid-item-card::
         :padding: 2
