@@ -20,6 +20,8 @@ The `~madcubapy.io.madcubamap.MadcubaMap` class is designed to:
 - Provide seamless compatibility with Astropy-based workflows by mimicking the
   behavior of `~astropy.nddata.CCDData`.
 
+.. _madcubamap_attributes:
+
 Core Attributes
 ---------------
 
@@ -45,12 +47,18 @@ alongisde additional attributes:
 Examples
 ^^^^^^^^
     
-Create an instance:
+Create an instance by reading a FITS file (recommended method):
 
-    >>> from madcubapy.io.madcubamap import MadcubaMap
+    >>> from madcubapy.io import MadcubaMap
     >>> madcubamap = MadcubaMap.read("example_cube.fits")
 
-To acces attributes, the data for example, we can call them directly:
+We can also create an instance manually by providing any attribute stated
+:ref:`before <madcubamap_attributes>`, for example:
+
+    >>> import numpy as np
+    >>> madcubamap = MadcubaMap(data=np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]]))
+
+To access attributes, the data for example, we can call them directly:
 
     >>> madcubamap.data
 
@@ -93,12 +101,13 @@ functions that improve usability and accuracy when working with FITS files
 
 * **Noise Level Estimation**
 
-  * (**Soon to be implemented**) Automatically calculates and stores the noise level of the image,
-    simplifying further analysis.
+  * (**Soon to be implemented**) Automatically calculates and stores the noise
+    level of the image, simplifying further analysis.
 
 * **Extensibility**
 
-  * New features will continue to be added, enhancing its capabilities for FITSfile workflows.
+  * New features will continue to be added, enhancing its capabilities for FITS
+    file workflows.
 
 Why Use MadcubaMap?
 ===================

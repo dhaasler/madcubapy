@@ -19,7 +19,7 @@ Core Attributes
 The `~madcubapy.io.SpectraContainer` class stores FITS information in several
 attributes:
 
-- ``bintable``: Table containing the spectra data.
+- ``bintable``: `~astropy.table.Table` containing the spectra data.
 - ``hist``: Stores information from MADCUBA's :ref:`history file<hist_file>`.
 - ``filename``: Filename of the **.spec** file. Used for tracking several
   operations performed on the file.
@@ -27,18 +27,25 @@ attributes:
 Examples
 ^^^^^^^^
     
-Create an instance:
+Create an instance by reading a **.spec** file (recommended method):
 
     >>> from madcubapy.io import SpectraContainer
-    >>> spectracontainer = SpectraContainer.read("example_file.spec")
+    >>> spec_container = SpectraContainer.read("example_file.spec")
+
+We can also create an instance by providing any attribute stated before,
+although it is not recommended because creating a ``bintable`` by hand is much
+more complex than reading one. However, it can be useful to create a new
+`~madcubapy.io.SpectraContainer` by providing a previous ``bintable``:
+
+    >>> new_container = SpectraContainer(bintable=spec_container.bintable)
 
 To access the spectra data we can call the ``bintable`` attribute:
 
-    >>> spectracontainer.bintable
+    >>> spec_container.bintable
 
 The history information is present in the ``hist`` attribute:
 
-    >>> spectracontainer.hist
+    >>> spec_container.hist
 
 .. For a fully fledged example on how to work with a SpectraContainer object, check
 .. the begginer's tutorial on how to read and plot **.spec** files using

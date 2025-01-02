@@ -11,7 +11,7 @@ User Guide
             :maxdepth: 2
             :includehidden:
 
-            In/Out <io/index>
+            IO <io/index>
 
     .. grid-item-card::
         :padding: 2
