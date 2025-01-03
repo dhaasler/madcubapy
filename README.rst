@@ -27,7 +27,7 @@ Install from PyPI with:
 
 
 
-.. |madcubapy Logo| .. image:: docs/source/_static/logo-banner.png
+.. |madcubapy Logo| image:: docs/source/_static/logo-banner.png
     :alt: My Project Logo
     :align: center
 
