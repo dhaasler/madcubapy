@@ -1,4 +1,5 @@
-co |madcubapy logo| de
+.. image:: https://github.com/dhaasler/madcubapy/blob/new-logo/docs/source/_static/logo-banner.png
+    :align: center
 
 ----
 
