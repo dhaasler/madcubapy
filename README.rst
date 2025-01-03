@@ -28,7 +28,7 @@ Install from PyPI with:
 
 
 
-.. |madcubapy logo| image:: https://github.com/dhaasler/madcubapy/blob/new-logo/docs/source/_static/logo-banner.png
+.. |madcubapy logo| image:: docs/source/_static/logos/logo-banner.png
     :alt: madcubapy
 
 .. |Test Status| image:: https://github.com/dhaasler/madcubapy/actions/workflows/run_tests.yaml/badge.svg
