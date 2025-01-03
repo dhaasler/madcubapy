@@ -38,11 +38,11 @@ warnings.filterwarnings('ignore', category=AstropyWarning)
 # 
 # When MADCUBA exports a FITS map it also creates a
 # :ref:`history file <hist_file>` with the same name of the FITS file ended
-# with *_hist.csv*. With the `~madcubapy.io.madcubamap.MadcubaMap` class we can
-# open these FITS files alongside their history tables.
+# with *_hist.csv*. With the `~madcubapy.io.MadcubaMap` class we can open these
+# FITS files alongside their history tables.
 # 
 # We can read the FITS file with the
-# `MadcubaMap.read() <madcubapy.io.madcubamap.MadcubaMap.read>` method, and the
+# `MadcubaMap.read() <madcubapy.io.MadcubaMap.read>` method, and the
 # corresponding :ref:`history file <hist_file>` will be loaded as well if
 # present.
 
@@ -54,17 +54,16 @@ madcuba_map = MadcubaMap.read("data/IRAS16293_SO_2-1_moment0_madcuba.fits")
 #     warnings can pop up when reading FITS files. Usually these warnings are
 #     unexpected card names using non-standard conventions.
 # 
-# The `~madcubapy.io.madcubamap.MadcubaMap` class resembles the
-# `~astropy.nddata.CCDData` class from Astropy with ``data``, ``header``,
-# ``wcs``, and ``unit`` attributes, with the addition of a ``hist`` attribute,
-# the history table containing all the information from the
-# :ref:`history file <hist_file>`:
+# The `~madcubapy.io.MadcubaMap` class resembles the `~astropy.nddata.CCDData`
+# class from Astropy with ``data``, ``header``, ``wcs``, and ``unit``
+# attributes, with the addition of a ``hist`` attribute, the history table
+# containing all the information from the :ref:`history file <hist_file>`:
 
 madcuba_map.hist
 
 ###############################################################################
 # As a failsafe, a `~astropy.nddata.CCDData` object is also present inside the
-# `~madcubapy.io.madcubamap.MadcubaMap` object in the ``ccddata`` attribute.
+# `~madcubapy.io.MadcubaMap` object in the ``ccddata`` attribute.
 # This way, we can do anything a `~astropy.nddata.CCDData` object can with
 # ``madcubapy`` through this attribute.
 
@@ -80,16 +79,16 @@ madcuba_map.hist
 # 
 #     .. tab-item:: Method 1: Using ``madcubapy``
 #  
-#         The :func:`~madcubapy.visualization.wcsaxes_helpers.add_wcs_axes()`
+#         The :func:`~madcubapy.visualization.add_wcs_axes()`
 #         method of `madcubapy` lets the user plot a
-#         `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
+#         `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
 #         quickly using only two statements.
 #   
 #         A `~matplotlib.figure.Figure` must be set before calling
-#         :func:`~madcubapy.visualization.wcsaxes_helpers.add_wcs_axes()`, and it
+#         :func:`~madcubapy.visualization.add_wcs_axes`, and it
 #         must be the first input parameter of the function. The second mandatory
 #         parameter is ``fitsmap``, the map object to plot, which can be a
-#         `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`.
+#         `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`.
 #         Addionally, the user can set a series of ``kwargs`` parameters, which
 #         are passed to :func:`matplotlib.pyplot.imshow`, like ``vmin`` or
 #         ``vmax``, for example.
@@ -107,10 +106,10 @@ madcuba_map.hist
 #            :figclass: align-center
 #   
 #         We can very quickly add a colorbar using
-#         :func:`~madcubapy.visualization.wcsaxes_helpers.add_colorbar` or
-#         :func:`~madcubapy.visualization.wcsaxes_helpers.append_colorbar`.
-#         Check the :ref:`Colorbar example <example_colorbar>` to know more about how
-#         this two functions work.
+#         :func:`~madcubapy.visualization.add_colorbar` or
+#         :func:`~madcubapy.visualization.append_colorbar`.
+#         Check the :ref:`Colorbar page <colorbar>` to know more about how
+#         these two functions work.
 #   
 #         .. code-block:: python
 #   
@@ -142,9 +141,8 @@ madcuba_map.hist
 #             ``add_wcs_axes(fig_object, 1, 1, 1, map_object)``.
 #   
 #             This is due to the functionality of
-#             :func:`~madcubapy.visualization.wcsaxes_helpers.add_wcs_axes()`
-#             and its manual version
-#             :func:`~madcubapy.visualization.wcsaxes_helpers.add_manual_wcs_axes()`
+#             :func:`~madcubapy.visualization.add_wcs_axes()` and its manual
+#             version :func:`~madcubapy.visualization.add_manual_wcs_axes()`
 #             to plot several maps in one figure. This is explained thoroughly in
 #             the *in prep* tutorial.
 #   
@@ -218,7 +216,7 @@ madcuba_map.hist
 #   
 #         The colorbar is correctly placed, but we still have pixel coordinates. 
 #   
-#         We can use `astropy <https://docs.astropy.org/en/stable/>`_ to create
+#         We can use `Astropy <https://docs.astropy.org/en/stable/>`_ to create
 #         the plot using the WCS coordinates from the FITS file. 
 #   
 #         .. code-block:: python
@@ -243,7 +241,8 @@ madcuba_map.hist
 #            :alt: Image with imshow
 #            :figclass: align-center
 #   
-#         As we can see, astropy created a `WCSAxes` object and set the X and Y
+#         As we can see, astropy created a
+#         `~astropy.visualization.wcsaxes.WCSAxes` object and set the X and Y
 #         labels to the correct values read from the FITS file, but their
 #         representation looks kind of ugly, and we still do not have a label for
 #         the colorbar. We must set the labels manually, and we have to look into
@@ -271,8 +270,8 @@ madcuba_map.hist
 # =========
 # Some programs export the BUNIT fits card incorrectly with more than one slash
 # and `astropy` has problems parsing the units from those strings. The 
-# :meth:`MadcubaMap.fix_units() <madcubapy.io.madcubamap.MadcubaMap.fix_units>`
-# method tries to fix this problem and correctly parse the units.
+# :meth:`MadcubaMap.fix_units() <madcubapy.io.MadcubaMap.fix_units>` method
+# tries to fix this problem and correctly parse the units.
 # 
 # For example, CARTA exports units like this. When we read a CARTA map, 
 # `madcubapy` warns us that no :ref:`history file <hist_file>` has been found,
@@ -290,9 +289,10 @@ print(f"Astropy parsed unit: {carta_map.unit}")
 print(f"FITS header BUNIT: {carta_map.header["BUNIT"]}")
 
 ###############################################################################
-# We can run the :meth:`~madcubapy.io.madcubamap.MadcubaMap.fix_units` method
+# We can run the
+# :meth:`MadcubaMap.fix_units() <madcubapy.io.MadcubaMap.fix_units>` method
 # of the MadcubaMap object to fix this. It is important to note that the
-# `~astropy.nddata.CCDData` object inside `~madcubapy.io.madcubamap.MadcubaMap`
+# `~astropy.nddata.CCDData` object inside `~madcubapy.io.MadcubaMap`
 # also gets the correct units when they are fixed.
 
 carta_map.fix_units()
@@ -303,11 +303,14 @@ print(f"CCDData unit: {carta_map.ccddata.unit}")
 ###############################################################################
 # Even though a CARTA exported map does not have a *_hist.csv* file, it is
 # encouraged to read it as a MadcubaMap, even when the user wants to work with
-# a `~astropy.nddata.CCDData` object if some functionality isn't working with a `~madcubapy.io.madcubamap.MadcubaMap` object.
+# a `~astropy.nddata.CCDData` object if some functionality isn't working with a
+# `~madcubapy.io.MadcubaMap` object.
 # 
-# This is the reason why we have the failsafe `~astropy.nddata.CCDData` object in the
-# ``MadcubaMap.ccddata`` attribute. We can work with it just as if it was an object
-# directly read with the ``CCDData.read()`` method from `astropy` (because it actually is read this way).
+# This is the reason why we have the failsafe `~astropy.nddata.CCDData` object
+# in the `MadcubaMap.ccddata<madcubapy.io.MadcubaMap.ccddata>` attribute.
+# We can work with it just as if it was an object directly read with the
+# `CCDData.read()<astropy.nddata.fits_ccddata_reader>` method from `astropy`
+# (because it actually is read this way).
 
 
 

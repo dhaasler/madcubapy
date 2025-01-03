@@ -1,7 +1,8 @@
 .. _add_wcs_axes:
 
+######################################
 Plotting images with world coordinates
-======================================
+######################################
 
 The :func:`~madcubapy.visualization.add_wcs_axes` an
 :func:`~madcubapy.visualization.add_manual_wcs_axes` functions of `madcubapy`
@@ -16,7 +17,7 @@ To add a colorbar to a map, `madcubapy` offers the
 also explained :ref:`below <colorbar>`.
 
 Using :func:`~madcubapy.visualization.add_wcs_axes`
----------------------------------------------------
+===================================================
 
 This function adds an axis using the projection stored in the ``wcs`` attribute
 of the map object, returning an `~astropy.visualization.wcsaxes.WCSAxes`
@@ -52,7 +53,7 @@ occupying the entire figure size.
     * ``add_wcs_axes(fig=fig_object, fitsmap=map_object)``
 
 Examples
-^^^^^^^^
+--------
 The following code shows how quickly a map can be plotted using `madcubapy`:
 
 .. code-block:: python
@@ -105,7 +106,7 @@ a logarithmic noramlization:
    :figclass: align-center
 
 Using :func:`~madcubapy.visualization.add_manual_wcs_axes`
-----------------------------------------------------------
+==========================================================
 
 This is a manual version of the :func:`~madcubapy.visualization.add_wcs_axes`
 function. It offers the same functionality with one exception: the
@@ -116,7 +117,7 @@ lower-left corner, alongside its width and height: ``left``, ``bottom``,
 ``width``, ``height``. Their default values are 0, 0, 1, and 1, respectivelly.
 
 Examples
-^^^^^^^^
+--------
 
 The previous figure can be recreated using
 :func:`~madcubapy.visualization.add_manual_wcs_axes` by placing the left subplot
@@ -214,7 +215,7 @@ labels to prevent overplotting text.
 .. _colorbar:
 
 Add a colorbar to a map
------------------------
+=======================
 
 We can add a colorbar easily to any side of the map by using the
 :func:`~madcubapy.visualization.append_colorbar` or
@@ -252,10 +253,10 @@ Usage example:
    :figclass: align-center
 
 Placement of the colorbar
-^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------
 
-The two functions offer the same functionality but using two distincts methods
-to place the colorbar in a figure.
+The two functions offer the same functionality but using two different
+approaches to place the colorbar in a figure.
 
 - ``append_colorbar`` adds a colorbar to one side of the
   `~astropy.visualization.wcsaxes.WCSAxes` object, which is resized to
@@ -308,11 +309,11 @@ map on the left, while the map on the right (set with ``add_colorbar``)
 places the colorbarbar on new space on top of it without resizing the axes.
 
 Automatic unit parsing
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 By default both functions parse the units from the
 `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData` object if found, and
-sets the label acoordingly.
+sets the label accordingly.
 Due to a limitation in how the functions are coded, only the units of the last
 plotted map is correctly tracked. This is intentional to keep the number of
 needed arguments as low as possible.

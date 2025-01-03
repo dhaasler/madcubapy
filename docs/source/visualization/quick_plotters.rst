@@ -1,12 +1,13 @@
+##############
 Quick plotters
-==============
+##############
 
 The `madcubapy.visualization` package also offers various functions to quickly
 perform some tasks that do not need to be saved. The functions described in this
 page work on `~madcubapy.io.MadcubaMap` and `~astropy.nddata.CCDData` objects.
 
 Quickly plot a map
-------------------
+==================
 
 To quickly show the contents of a `~madcubapy.io.MadcubaMap` or
 `~astropy.nddata.CCDData` object in a pop-up window, we can use the
@@ -20,7 +21,7 @@ This function accepts additional parameters that are passed to
     >>> quick_show(madcuba_map, cmap='jet', norm='log')
 
 Compare two maps
-----------------
+================
 
 We can compare if two map objects are equal with the
 :func:`~madcubapy.visualization.are_equal` function. This function returns a

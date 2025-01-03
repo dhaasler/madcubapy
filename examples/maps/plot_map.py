@@ -4,8 +4,8 @@
 Plot a map
 ##########
 
-Example showing how to plot a fits map file with MadcubaMap using
-:func:`~madcubapy.visualization.wcsaxes_helpers.add_wcs_axes`.
+Example showing how to plot a fits map file with `~madcubapy.io.MadcubaMap`
+using :func:`~madcubapy.visualization.add_wcs_axes`.
 
 """
 
@@ -26,6 +26,8 @@ madcuba_map = MadcubaMap.read("../data/IRAS16293_SO_2-1_moment0_madcuba.fits")
 
 # Create empty figure
 fig = plt.figure(figsize=(6,6))
+
 # We can set kwargs that are passed to matplotlib.pyplot.imshow()
 ax, img = add_wcs_axes(fig, fitsmap=madcuba_map, vmin=0, vmax=100)
+
 plt.show()

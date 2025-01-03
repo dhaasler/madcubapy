@@ -5,7 +5,7 @@ Plot several maps
 #################
 
 Example showing how to plot several fits map files with MadcubaMap using
-:func:`~madcubapy.visualization.wcsaxes_helpers.add_wcs_axes`.
+:func:`~madcubapy.visualization.add_wcs_axes`.
 
 We can add as
 many subplots as needed following the same convention used for matplotlib's
@@ -31,9 +31,11 @@ madcuba_map = MadcubaMap.read("../data/IRAS16293_SO_2-1_moment0_madcuba.fits")
 
 # Create empty figure
 fig = plt.figure(figsize=(10,5))
+
 # Add as many WCS axes objects as desired.
 # We can pass kwargs for matplotlib.pyploy.imshow()
 ax1, img1 = add_wcs_axes(fig, 1, 2, 1, fitsmap=madcuba_map, vmin=0, vmax=100)
 ax2, img2 = add_wcs_axes(fig, 1, 2, 2, fitsmap=madcuba_map, vmin=0, vmax=100,
                        cmap='jet')
+
 plt.show()

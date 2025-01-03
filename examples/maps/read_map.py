@@ -4,8 +4,7 @@
 Read MadcubaMap
 ###################
 
-Example showing how to read a fits map file as a
-`~madcubapy.io.madcubamap.MadcubaMap`.
+Example showing how to read a fits map file as a `~madcubapy.io.MadcubaMap`.
 
 .. note::
     Due to how MADCUBA saves some fits header cards, several astropy warnings

@@ -4,16 +4,16 @@
 MadcubaMap
 ##########
 
-The `~madcubapy.io.madcubamap.MadcubaMap` class is a specialized container for
-FITS file data and metadata, aimed for MADCUBA workflows. While it closely
-resembles Astropy's `~astropy.nddata.CCDData` class, it includes additional
-functionality that makes it tailored for working with MADCUBA products, but also
-versatile for many other FITS workflows.
+The `~madcubapy.io.MadcubaMap` class is a specialized container for FITS file
+data and metadata, aimed for MADCUBA workflows. While it closely resembles
+Astropy's `~astropy.nddata.CCDData` class, it includes additional functionality
+that makes it tailored for working with MADCUBA products, but also versatile for
+many other FITS workflows.
 
 Overview
 ========
 
-The `~madcubapy.io.madcubamap.MadcubaMap` class is designed to:
+The `~madcubapy.io.MadcubaMap` class is designed to:
 
 - Integrate FITS file data with metadata, including history from MADCUBA's
   external :ref:`history files<hist_file>`.
@@ -25,7 +25,7 @@ The `~madcubapy.io.madcubamap.MadcubaMap` class is designed to:
 Core Attributes
 ---------------
 
-The `~madcubapy.io.madcubamap.MadcubaMap` class stores FITS information in
+The `~madcubapy.io.MadcubaMap` class stores FITS information in
 several attributes, some of which are identical to those contained in a 
 `~astropy.nddata.CCDData` object:
 
@@ -42,15 +42,21 @@ alongisde additional attributes:
   performed on the file.
 - ``ccddata``: A `~astropy.nddata.CCDData` object representing the same FITS
   data. Used as a failsafe for incompatibilities with
-  `~madcubapy.io.madcubamap.MadcubaMap`.
+  `~madcubapy.io.MadcubaMap`.
 
 Examples
 ^^^^^^^^
     
-Create an instance by reading a FITS file (recommended method):
+Create an instance by reading a FITS file through
+`MadcubaMap.read() <madcubapy.io.MadcubaMap.read>` (recommended method):
 
     >>> from madcubapy.io import MadcubaMap
     >>> madcubamap = MadcubaMap.read("example_cube.fits")
+
+.. note::
+    Due to how MADCUBA saves some fits header cards, several astropy warnings
+    can pop up when reading fits files. Usually these warnings are unexpected
+    card names using non-standard conventions.
 
 We can also create an instance manually by providing any attribute stated
 :ref:`before <madcubamap_attributes>`, for example:
@@ -68,13 +74,13 @@ The history information is present in the ``hist`` attribute:
 
 For a fully fledged example on how to work with a MadcubaMap object, check the
 begginer's :ref:`tutorial<tutorial_read_plot_maps>` on how to read and plot FITS
-files using `~madcubapy.io.madcubamap.MadcubaMap`.
+files using `~madcubapy.io.MadcubaMap`.
 
 Compatibility with `~astropy.nddata.CCDData`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``ccddata`` attribute provides a failsafe for scenarios where functions are
-incompatible with the `~madcubapy.io.madcubamap.MadcubaMap` class.
+incompatible with the `~madcubapy.io.MadcubaMap` class.
 By accessing this attribute, users can work with a standard
 `~astropy.nddata.CCDData` object while retaining access to the original FITS
 data:
@@ -86,7 +92,7 @@ We can directly use this attribute or set a variable to point to its content:
 Quality-of-Life Features
 ------------------------
 
-The `~madcubapy.io.madcubamap.MadcubaMap` class also introduces methods and
+The `~madcubapy.io.MadcubaMap` class also introduces methods and
 functions that improve usability and accuracy when working with FITS files
 (even non-MADCUBA products):
 
@@ -115,7 +121,7 @@ Why Use MadcubaMap?
 Advantages Over CCDData
 -----------------------
 
-The `~madcubapy.io.madcubamap.MadcubaMap` class provides the following benefits:
+The `~madcubapy.io.MadcubaMap` class provides the following benefits:
 
 - **Integrated History**: Combines FITS data with history files for a unified
   representation.
@@ -129,6 +135,6 @@ The `~madcubapy.io.madcubamap.MadcubaMap` class provides the following benefits:
 Beyond MADCUBA
 --------------
 
-While designed for MADCUBA workflows, the `~madcubapy.io.madcubamap.MadcubaMap`
+While designed for MADCUBA workflows, the `~madcubapy.io.MadcubaMap`
 class is suitable for general-purpose FITS file processing. Its features make it
 a powerful tool even for FITS files unrelated to MADCUBA.

@@ -7,7 +7,7 @@
 MADCUBApy documentation
 #######################
 
-``madcubapy`` is a package developed to work with MADCUBA products to quickly
+`madcubapy` is a package developed to work with MADCUBA products to quickly
 access their data in python. 
 
 `MADCUBA <https://cab.inta-csic.es/madcuba/>`_ is a software developed in the

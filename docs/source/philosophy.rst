@@ -43,9 +43,9 @@ Why choose `madcubapy`?
 - **Enhanced functionality**: Offers several tools to automatically resolve unit
   inconsistencies and other common issues, even with non-MADCUBA products.
 - **Visualization Tools**: Includes helpers for visualizing data created to work
-  with `~madcubapy.io.madcubamap.MadcubaMap` objects, but also fully compatible
+  with `~madcubapy.io.MadcubaMap` objects, but also fully compatible
   with Astropy’s `~astropy.nddata.CCDData` objects.
-- **Failsafe mechanism**: The `MadcubaMap` object contains a 
-  `~madcubapy.io.madcubamap.Madcubamap.ccddata` attribute, which is a
+- **Failsafe mechanism**: The `~madcubapy.io.MadcubaMap` object contains a 
+  `~madcubapy.io.MadcubaMap.ccddata` attribute, which is a
   `~astropy.nddata.CCDData` object that can be used for operations that lack
-  compatibility with `~madcubapy.io.madcubamap.Madcubamap` objects.
+  compatibility with `~madcubapy.io.MadcubaMap` objects.
