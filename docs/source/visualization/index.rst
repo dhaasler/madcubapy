@@ -20,6 +20,7 @@ Contents
     :includehidden:
 
     add_wcsaxes
+    quick_plotters
 
 API Reference
 =============
