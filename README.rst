@@ -27,7 +27,6 @@ Install from PyPI with:
     :align: center
 
 .. |astropy logo| image:: https://github.com/astropy/repo_stats/blob/main/dashboard_template/astropy_banner_gray.svg
-    :target: https://www.astropy.org/
     :alt: Astropy
 
 .. |Test Status| image:: https://github.com/dhaasler/madcubapy/actions/workflows/run_tests.yaml/badge.svg
