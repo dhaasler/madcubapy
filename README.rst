@@ -1,8 +1,10 @@
-|astropy logo|
+|madcubapy logo|
 
 ----
 
 |Test Status| |Documentation Status| |PyPI Status|
+
+----
 
 *NOTE: This package is in its first test versions and should not be used in its
 current state.*
@@ -23,11 +25,11 @@ Install from PyPI with:
     
     pip install madcubapy
 
-.. |madcubapy logo| image:: https://github.com/dhaasler/madcubapy/blob/new-logo/docs/source/_static/logo-banner.png
-    :align: center
 
-.. |astropy logo| image:: https://github.com/astropy/repo_stats/blob/main/dashboard_template/astropy_banner_gray.svg
-    :align: center
+
+
+.. |madcubapy logo| image:: https://github.com/dhaasler/madcubapy/blob/new-logo/docs/source/_static/logo-banner.png
+    :alt: madcubapy
 
 .. |Test Status| image:: https://github.com/dhaasler/madcubapy/actions/workflows/run_tests.yaml/badge.svg
     :target: https://github.com/dhaasler/madcubapy/actions
