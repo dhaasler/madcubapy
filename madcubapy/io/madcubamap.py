@@ -15,8 +15,8 @@ __all__ = [
 ]
 
 class MadcubaMap(MadcubaFits):
-    """A container for MADCUBA FITS maps, using the
-    `~madcubapy.io.madcubafits.MadcubaFits` interface.
+    """A container for MADCUBA FITS maps, using the `~madcubapy.io.MadcubaFits`
+    interface.
 
     This class is basically a wrapper to read MADCUBA exported FITS maps and
     their history files with astropy.
@@ -165,9 +165,9 @@ class MadcubaMap(MadcubaFits):
     @classmethod
     def read(cls, filepath, **kwargs):
         """
-        ``Classmethod`` to generate a `~madcubapy.io.madcubamap.MadcubaMap`
-        object from a FITS file. This method creates an
-        `~astropy.nddata.CCDData` from the fits file.
+        ``Classmethod`` to generate a `~madcubapy.io.MadcubaMap` object from a
+        FITS file. This method creates an `~astropy.nddata.CCDData` from the
+        FITS file.
 
         Parameters
         ----------
@@ -216,8 +216,8 @@ class MadcubaMap(MadcubaFits):
 
     def write(self, filepath, **kwargs):
         """
-        Write a `~madcubapy.io.madcubamap.MadcubaMap` into a FITS file
-        alongside its history file.
+        Write a `~madcubapy.io.MadcubaMap` into a FITS file alongside its
+        history file.
 
         Parameters
         ----------
@@ -264,7 +264,7 @@ class MadcubaMap(MadcubaFits):
 
     def copy(self):
         """
-        Create a copy of the `~madcubapy.io.madcubamap.MadcubaMap`.
+        Create a copy of the `~madcubapy.io.MadcubaMap`.
         """
         if self._hist:
             new_hist = self._hist.copy()

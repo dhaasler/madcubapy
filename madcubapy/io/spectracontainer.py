@@ -88,8 +88,7 @@ class SpectraContainer(MadcubaFits):
     def read(cls, filepath):
         """
         ``Classmethod`` to generate a
-        `~madcubapy.io.spectracontainer.SpectraContainer` from a
-        *.spec* file.
+        `~madcubapy.io.spectracontainer.SpectraContainer` from a *.spec* file.
 
         Parameters
         ----------
@@ -127,7 +126,7 @@ class SpectraContainer(MadcubaFits):
 
     def copy(self):
         """
-        Create a copy of the `~madcubapy.io.spectracontainer.SpectraContainer`.
+        Create a copy of the `~madcubapy.io.SpectraContainer`.
         """
         if self._bintable:
             new_bintable = self._bintable.copy()
@@ -145,8 +144,7 @@ class SpectraContainer(MadcubaFits):
     def _generate_spectral_axes(self):
         """
         Generate arrays for the spectral axes of every spectra inside the
-        `~madcubapy.io.spectracontainer.SpectraContainer` and add them as a new
-        table column.
+        `~madcubapy.io.SpectraContainer` and add them as a new table column.
 
         """
         data = []
@@ -200,13 +198,13 @@ class SpectraContainer(MadcubaFits):
 def parse_row_spectral_axis(table_row):
     """
     Generate an array for the spectral axis of a spectrum inside a
-    `~madcubapy.io.spectracontainer.SpectraContainer`.
+    `~madcubapy.io.SpectraContainer`.
 
     Parameters
     ----------
     table_row : `astropy.table.Row`
-        Row of a `~madcubapy.io.spectracontainer.SpectraContainer`'s bintable.
-        This is the data for a spectrum inside a MADCUBA FITS file.
+        Row of a `~madcubapy.io.SpectraContainer`'s bintable. This is the data
+        for a spectrum inside a MADCUBA FITS file.
     
     Returns
     -------

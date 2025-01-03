@@ -27,7 +27,7 @@ def quick_show(
 
     Parameters
     ----------
-    fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
+    fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
         Map to be displayed.
 
     Other Parameters
@@ -74,9 +74,9 @@ def are_equal(
 
     Parameters
     ----------
-    fitsmap_1 : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
+    fitsmap_1 : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
         Map object to compare.
-    fitsmap_2 : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
+    fitsmap_2 : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
         Map object to compare.
     show_maps : `~bool`, default: False
         If true both maps are plotted alongside the residuals of their

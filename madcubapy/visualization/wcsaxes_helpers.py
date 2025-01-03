@@ -22,12 +22,13 @@ def add_wcs_axes(
         fitsmap=None,
         use_std=False,
         **kwargs):
-    """Add an Axes object with WCS coordinates into an existing figure.
+    """Add a `~astropy.visualization.wcsaxes.WCSAxes` object with WCS
+    coordinates into an existing figure.
 
-    A figure with no axes has to be set before calling this function. This is
-    due to the inability to change axis coordinates after it has been called.
-    The coordinates have to be called when creating the axes object. The
-    function returns objects for the axes and the image.
+    A `~matplotlib.figure.Figure` with no axes has to be set before calling
+    this function. This is due to the inability to change axis coordinates
+    after it has been called. The coordinates have to be called when creating
+    the axes object. The function returns objects for the axes and the image.
 
     Parameters
     ----------
@@ -39,7 +40,7 @@ def add_wcs_axes(
         Number of columns on the subplot grid.
     number : `~int`
         Number of subplot in the grid in which to paint the Axes.
-    fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
+    fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
         Map to be displayed.
     use_std : `~bool`
         If true, set color limits to ±3 times the standard deviation of the
@@ -47,7 +48,7 @@ def add_wcs_axes(
 
     Returns
     -------
-    ax : `~astropy.visualization.wcsaxes.WCSAxesSubplot`
+    ax : `~astropy.visualization.wcsaxes.WCSAxes`
         Axes object with the selected map coordinates.
     img : `~matplotlib.image.AxesImage`
         Image object of the selected map.
@@ -119,13 +120,13 @@ def add_manual_wcs_axes(
         fitsmap=None,
         use_std=False,
         **kwargs):
-    """Add an Axes object with WCS coordinates in a manually set position into
-    an existing figure.
+    """Add a `~astropy.visualization.wcsaxes.WCSAxes` object with WCS
+    coordinates in a manually set position into an existing figure.
 
-    A figure with no axes has to be set before calling this function. This is
-    due to the inability to change axis coordinates after it has been called.
-    The coordinates have to be called when creating the axes object. The
-    function returns objects for the axes and the image.
+    A `~matplotlib.figure.Figure` with no axes has to be set before calling
+    this function. This is due to the inability to change axis coordinates
+    after it has been called. The coordinates have to be called when creating
+    the axes object. The function returns objects for the axes and the image.
 
     Parameters
     ----------
@@ -139,7 +140,7 @@ def add_manual_wcs_axes(
         Width of the Axes subplot.
     height : `~float`
         Height of the Axes subplot.
-    fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
+    fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
         Map to be displayed.
     use_std : `~bool`
         If true, set color limits to ±3 times the standard deviation of the
@@ -147,7 +148,7 @@ def add_manual_wcs_axes(
 
     Returns
     -------
-    ax : `~astropy.visualization.wcsaxes.WCSAxesSubplot`
+    ax : `~astropy.visualization.wcsaxes.WCSAxes`
         Axes object with the selected map coordinates.
     img : `~matplotlib.image.AxesImage`
         Image object of the selected map.
@@ -211,12 +212,12 @@ def add_manual_wcs_axes(
 
 
 def parse_clabel(fitsmap):
-    """Parse colorbar text from a `~madcubapy.io.madcubamap.MadcubaMap` or
+    """Parse colorbar text from a `~madcubapy.io.MadcubaMap` or
     `~astropy.nddata.CCDData` unit attribute.
 
     Parameters
     ----------
-    fitsmap : `~madcubapy.io.madcubamap.MadcubaMap` or `~astropy.nddata.CCDData`
+    fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
         Map object from which to extract units information.
 
     Returns
@@ -249,14 +250,16 @@ def append_colorbar(
         width='5%',
         pad=0.05,
         **kwargs):
-    """Append a colorbar to one side of an Axes, fitting it into the same space.
+    """Append a colorbar to one side of a
+    `~astropy.visualization.wcsaxes.WCSAxes`, fitting it into the same space.
 
     Parameters
     ----------
     ax : `~astropy.visualization.wcsaxes.WCSAxes`
         Axes to which the colorbar is added.
     location : {"left", "right", "bottom", "top"}
-        Where the colorbar is positioned relative to the main Axes.
+        Where the colorbar is positioned relative to the main
+        `~astropy.visualization.wcsaxes.WCSAxes`.
     width : `~str`
         Size percentage of 'ax' to use as width for the colorbar.
     pad : `~float`
@@ -389,14 +392,16 @@ def add_colorbar(
         width=0.05,
         pad=0.03,
         **kwargs):
-    """Add a colorbar to one side of an Axes.
+    """Add a colorbar to one side of a
+    `~astropy.visualization.wcsaxes.WCSAxes`.
 
     Parameters
     ----------
     ax : `~astropy.visualization.wcsaxes.WCSAxes`
         Axes to which the colorbar is added.
     location : {"left", "right", "bottom", "top"}
-        Where the colorbar is positioned relative to the main Axes.
+        Where the colorbar is positioned relative to the main
+        `~astropy.visualization.wcsaxes.WCSAxes`.
     width : `~float`
         Fraction of 'ax' to use as width for the colorbar.
     pad : `~float`
