@@ -1,3 +1,5 @@
+|madcubapy Logo|
+
 #########
 MADCUBApy
 #########
@@ -22,6 +24,12 @@ Install from PyPI with:
 .. code-block:: bash
     
     pip install madcubapy
+
+
+
+.. |madcubapy Logo| .. image:: docs/source/_static/logo-banner.png
+    :alt: My Project Logo
+    :align: center
 
 .. |Test Status| image:: https://github.com/dhaasler/madcubapy/actions/workflows/run_tests.yaml/badge.svg
     :target: https://github.com/dhaasler/madcubapy/actions
