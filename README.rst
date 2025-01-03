@@ -1,4 +1,4 @@
-|Astropy Logo|
+|astropy logo|
 
 ----
 
@@ -26,7 +26,7 @@ Install from PyPI with:
 .. |madcubapy logo| image:: https://github.com/dhaasler/madcubapy/blob/new-logo/docs/source/_static/logo-banner.png
     :align: center
 
-.. |Astropy Logo| image:: https://github.com/astropy/repo_stats/blob/main/dashboard_template/astropy_banner_gray.svg
+.. |astropy logo| image:: https://github.com/astropy/repo_stats/blob/main/dashboard_template/astropy_banner_gray.svg
     :target: https://www.astropy.org/
     :alt: Astropy
 
