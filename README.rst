@@ -1,11 +1,6 @@
-#########
-MADCUBApy
-#########
+|madcubapy logo|
 
-.. image:: docs/source/_static/logo-banner.png
-    :align: center
-
-|madcubapy logo| 
+----
 
 |Test Status| |Documentation Status| |PyPI Status|
 
