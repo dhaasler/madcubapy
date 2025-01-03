@@ -71,4 +71,4 @@ html_css_files = [
     # 'custom_dark_theme.css',
     'remove_download_note.css',
 ]
-html_logo = "_static/logos/logo-banner.png"
+html_logo = "_static/logos/docs-banner.png"
