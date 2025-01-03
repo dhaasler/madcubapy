@@ -5,6 +5,8 @@ MADCUBApy
 .. image:: docs/source/_static/logo-banner.png
     :align: center
 
+|madcubapy logo|
+
 |Test Status| |Documentation Status| |PyPI Status|
 
 *NOTE: This package is in its first test versions and should not be used in its
@@ -28,8 +30,7 @@ Install from PyPI with:
 
 
 
-.. |madcubapy Logo| image:: docs/source/_static/logo-banner.png
-    :alt: My Project Logo
+.. |madcubapy logo| image:: docs/source/_static/logo-banner.png
     :align: center
 
 .. |Test Status| image:: https://github.com/dhaasler/madcubapy/actions/workflows/run_tests.yaml/badge.svg
