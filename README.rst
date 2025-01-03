@@ -1,4 +1,4 @@
-|madcubapy logo|
+co |madcubapy logo| de
 
 ----
 
