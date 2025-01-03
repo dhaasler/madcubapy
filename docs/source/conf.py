@@ -20,6 +20,7 @@ release = '0.1.0'
 
 extensions = [
     'numpydoc',
+    'matplotlib.sphinxext.plot_directive',
     'sphinx_changelog',
     'sphinx_design',
     'sphinx.ext.autodoc',

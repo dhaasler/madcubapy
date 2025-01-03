@@ -2,7 +2,7 @@
 MADCUBA IO
 ##########
 
-The IO package of `madcubapy` allows the user to read MADCUBA products like FITS
+The `madcubapy.io` package allows the user to read MADCUBA products like FITS
 and *.spec* files alongside their :ref:`history files <hist_file>`.
 
 MadcubaMap
