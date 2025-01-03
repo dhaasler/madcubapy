@@ -23,8 +23,6 @@ Install from PyPI with:
     
     pip install madcubapy
 
-
-
 .. |madcubapy logo| image:: docs/source/_static/logo-banner.png
     :align: center
 
