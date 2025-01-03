@@ -11,7 +11,7 @@ import sys
 sys.path.insert(0, os.path.abspath('../../'))
 
 project = 'madcubapy'
-copyright = '2024, David Haasler García'
+copyright = '2025, David Haasler García'
 author = 'David Haasler García'
 release = '0.1.0'
 
