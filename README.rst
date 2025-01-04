@@ -1,8 +1,8 @@
-#########
-MADCUBApy
-#########
+|madcubapy banner|
 
 |Test Status| |Documentation Status| |PyPI Status|
+
+----
 
 *NOTE: This package is in its first test versions and should not be used in its
 current state.*
@@ -22,6 +22,12 @@ Install from PyPI with:
 .. code-block:: bash
     
     pip install madcubapy
+
+
+
+
+.. |madcubapy banner| image:: docs/source/_static/logos/readme-banner.svg
+    :alt: madcubapy
 
 .. |Test Status| image:: https://github.com/dhaasler/madcubapy/actions/workflows/run_tests.yaml/badge.svg
     :target: https://github.com/dhaasler/madcubapy/actions
