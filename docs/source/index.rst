@@ -7,14 +7,27 @@
 MADCUBApy documentation
 #######################
 
-`madcubapy` is a package developed to work with MADCUBA products to quickly
-access their data in python. 
+Welcome to the documentation for the `madcubapy` package.
+
+`madcubapy` is a package developed to work with MADCUBA products to quickly and
+easily access their data in python.
 
 `MADCUBA <https://cab.inta-csic.es/madcuba/>`_ is a software developed in the
 spanish Center of Astrobiology (CSIC-INTA) to analyze astronomical datacubes,
 and is built using the ImageJ infrastructure.
 
-This is the main page of the documentation for the `madcubapy` package.
+.. Important:: 
+    This package is in its first test versions and should not be used in its
+    current state.
+
+Get Started
+===========
+
+Check out the :ref:`introduction` page to know more about the project where I
+will try to convince you to use it.
+
+Learn how to use `madcubapy` by reading the :ref:`user_guide` or by taking a
+look at our :ref:`tutorials` designed for begginers.
 
 .. toctree::
     :maxdepth: 1
