@@ -1,6 +1,18 @@
 |madcubapy banner|
 
-|Test Status| |Documentation Status| |PyPI Status|
+.. raw:: html
+
+    <div align="center">
+        <a href="https://github.com/dhaasler/madcubapy/actions">
+            <img src="https://github.com/dhaasler/madcubapy/actions/workflows/run_tests.yaml/badge.svg" alt="Test Status">
+        </a>
+        <a href="https://madcubapy.readthedocs.io/en/latest/?badge=latest">
+            <img src="https://img.shields.io/readthedocs/madcubapy/latest.svg?logo=read%20the%20docs&logoColor=white&label=Docs" alt="Documentation Status">
+        </a>
+        <a href="https://pypi.org/project/madcubapy">
+            <img src="https://img.shields.io/pypi/v/madcubapy" alt="PyPI Status">
+        </a>
+    </div>
 
 ----
 
