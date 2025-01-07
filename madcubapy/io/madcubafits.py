@@ -32,7 +32,7 @@ class MadcubaFits:
     ):
         if hist is not None and not isinstance(hist, astropy.table.Table):
             raise TypeError(
-                "The hist must be an astropy Table")
+                "The hist attribute must be an astropy Table")
         self._hist = hist
 
     @property
@@ -46,7 +46,7 @@ class MadcubaFits:
     def hist(self, value):
         if value is not None and not isinstance(value, astropy.table.Table):
             raise TypeError(
-                "The hist must be an astropy Table")
+                "The hist attribute must be an astropy Table")
         self._hist = value
 
     def add_hist(self, filename):
@@ -77,7 +77,7 @@ class MadcubaFits:
         """
         if not self._hist:
             raise ValueError(
-                f"This object does not have a hist table."
+                f"This object does not have a history table."
             )
         # Fixed keys
         index = self._hist[-1]['Index'] + 1

@@ -67,11 +67,11 @@ class MadcubaMap(MadcubaFits):
         self._header = header
 
         if wcs is not None and not isinstance(wcs, astropy.wcs.WCS):
-            raise TypeError("The header must be an astropy.wcs.WCS.")
+            raise TypeError("The WCS must be an astropy.wcs.WCS.")
         self._wcs = wcs
 
         if unit is not None and not isinstance(unit, astropy.units.UnitBase):
-            raise TypeError("The data must be an astropy unit.")
+            raise TypeError("The unit must be an astropy unit.")
         self._unit = unit
 
         if ccddata is not None and not isinstance(ccddata, astropy.nddata.CCDData):
@@ -146,7 +146,7 @@ class MadcubaMap(MadcubaFits):
     @wcs.setter
     def wcs(self, value):
         if value is not None and not isinstance(value, astropy.wcs.WCS):
-            raise TypeError("The header must be an astropy.wcs.WCS.")
+            raise TypeError("The WCS must be an astropy.wcs.WCS.")
         self._wcs = value
 
     @property
@@ -159,7 +159,7 @@ class MadcubaMap(MadcubaFits):
     @unit.setter
     def unit(self, value):
         if value is not None and not isinstance(value, astropy.units.UnitBase):
-            raise TypeError("The data must be an astropy unit.")
+            raise TypeError("The unit must be an astropy unit.")
         self._unit = value
 
     @classmethod
@@ -189,7 +189,7 @@ class MadcubaMap(MadcubaFits):
         # Load the Table from the .csv file if present
         hist_filepath = os.path.splitext(fits_filepath)[0] + "_hist.csv"
         if not os.path.isfile(hist_filepath):
-            print("WARNING: Default hist file not found.")
+            print("WARNING: Default history file not found.")
             hist = None
         else:
             hist = Table.read(hist_filepath, format='csv')
