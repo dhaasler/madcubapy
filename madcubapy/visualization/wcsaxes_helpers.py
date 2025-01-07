@@ -247,7 +247,7 @@ def parse_clabel(fitsmap):
 def append_colorbar(
         ax=None,
         location='right',
-        width='5%',
+        size='5%',
         pad=0.05,
         **kwargs):
     """Append a colorbar to one side of a
@@ -260,8 +260,8 @@ def append_colorbar(
     location : {"left", "right", "bottom", "top"}
         Where the colorbar is positioned relative to the main
         `~astropy.visualization.wcsaxes.WCSAxes`.
-    width : `~str`
-        Size percentage of 'ax' to use as width for the colorbar.
+    size : `~str`
+        Size percentage of 'ax' to use as size for the colorbar.
     pad : `~float`
         Separation between the colorbar bar and 'ax'.
 
@@ -302,8 +302,8 @@ def append_colorbar(
         else:
             kwargs['label'] = last_bunit
     divider = make_axes_locatable(ax)
-    cax = divider.append_axes(location, size=width, 
-                                pad=pad, axes_class=maxes.Axes)
+    cax = divider.append_axes(location, size=size, 
+                              pad=pad, axes_class=maxes.Axes)
     if location == 'right':
         colorbar = fig.colorbar(img, cax=cax,
                                 orientation='vertical', **kwargs)
@@ -389,7 +389,7 @@ def append_colorbar(
 def add_colorbar(
         ax=None,
         location='right',
-        width=0.05,
+        size=0.05,
         pad=0.03,
         **kwargs):
     """Add a colorbar to one side of a
@@ -402,8 +402,8 @@ def add_colorbar(
     location : {"left", "right", "bottom", "top"}
         Where the colorbar is positioned relative to the main
         `~astropy.visualization.wcsaxes.WCSAxes`.
-    width : `~float`
-        Fraction of 'ax' to use as width for the colorbar.
+    size : `~float`
+        Fraction of 'ax' to use as size for the colorbar.
     pad : `~float`
         Separation between the colorbar bar and 'ax'.
 
@@ -449,7 +449,7 @@ def add_colorbar(
     if location == 'right':
         cax = fig.add_axes([ax_xini+ax_width+pad*(ax_width),
                             ax_yini,
-                            width*ax_width,
+                            size*ax_width,
                             ax_height])
         colorbar = fig.colorbar(img, cax=cax,
                                 orientation='vertical', **kwargs)
@@ -470,9 +470,9 @@ def add_colorbar(
         )
         ax.coords[1].set_axislabel_position('l')
     elif location == 'left':
-        cax = fig.add_axes([ax_xini-pad*(ax_width)-width*(ax_width),
+        cax = fig.add_axes([ax_xini-pad*(ax_width)-size*(ax_width),
                             ax_yini,
-                            width*ax_width,
+                            size*ax_width,
                             ax_height])
         colorbar = fig.colorbar(img, cax=cax,
                                 orientation='vertical', **kwargs)
@@ -496,7 +496,7 @@ def add_colorbar(
         cax = fig.add_axes([ax_xini,
                             ax_yini+ax_height+pad*(ax_height),
                             ax_width,
-                            width*ax_height])
+                            size*ax_height])
         colorbar = fig.colorbar(img, cax=cax,
                                 orientation='horizontal', **kwargs)
         colorbar.ax.tick_params(
@@ -518,9 +518,9 @@ def add_colorbar(
         ax.set_title(None)
     elif location == 'bottom':
         cax = fig.add_axes([ax_xini,
-                            ax_yini-pad*(ax_height)-width*(ax_height),
+                            ax_yini-pad*(ax_height)-size*(ax_height),
                             ax_width,
-                            width*ax_height])
+                            size*ax_height])
         colorbar = fig.colorbar(img, cax=cax,
                                 orientation='horizontal', **kwargs)
         colorbar.ax.tick_params(

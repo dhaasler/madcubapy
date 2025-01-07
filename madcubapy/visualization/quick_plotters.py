@@ -162,8 +162,6 @@ def are_equal(
         vmin = median - 3 * std
         vmax = median + 3 * std
         norm = 'linear'
-        cbar_width='5%'
-        cbar_pad=0.05
         # Figure calling
         ax3 = plt.subplot(1, 3, 3, projection=wcs)
         img3 = ax3.imshow(data, vmin=vmin, vmax=vmax, cmap='viridis',
