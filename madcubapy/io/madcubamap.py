@@ -279,6 +279,14 @@ class MadcubaMap(MadcubaFits):
             ccddata=deepcopy(self._ccddata),
         )
 
+    def show(self, **kwargs):
+        """
+        Show the map in a pop-up window.
+
+        """
+        from madcubapy.visualization.quick_plotters import quick_show
+        quick_show(self, **kwargs)
+
     def fix_units(self):
         """
         Tries to fix problems when the units are incorrectly parsed. The user

@@ -98,22 +98,28 @@ functions that improve usability and accuracy when working with FITS files
 
 * **Correction of data unit**
 
-  * Fixes improperly formatted units in the `BUNIT` header card, ensuring
-    compatibility with Astropy.
-    We can tell the program to try to fix the units with the
-    :meth:`~madcubapy.io.MadcubaMap.fix_units` method:
+  Fixes improperly formatted units in the `BUNIT` header card, ensuring
+  compatibility with Astropy.
+  We can tell the program to try to fix the units with the
+  :meth:`~madcubapy.io.MadcubaMap.fix_units` method:
  
-        >>> madcubamap.fix_units()
+      >>> madcubamap.fix_units()
 
 * **Noise Level Estimation**
 
-  * (**Soon to be implemented**) Automatically calculates and stores the noise
-    level of the image, simplifying further analysis.
+  (**Soon to be implemented**) Automatically calculates and stores the noise
+  level of the image, simplifying further analysis.
+
+* **Quick map visualization**
+  
+  The user can quickly take a look at a map in a pop-up window using:
+
+      >>> madcubamap.show()
 
 * **Extensibility**
 
-  * New features will continue to be added, enhancing its capabilities for FITS
-    file workflows.
+  New features will continue to be added, enhancing its capabilities for FITS
+  file workflows.
 
 Why Use MadcubaMap?
 ===================

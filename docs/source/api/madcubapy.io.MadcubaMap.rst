@@ -27,6 +27,7 @@ MadcubaMap
       ~MadcubaMap.copy
       ~MadcubaMap.fix_units
       ~MadcubaMap.read
+      ~MadcubaMap.show
       ~MadcubaMap.write
 
    .. rubric:: Attributes Documentation
@@ -46,4 +47,5 @@ MadcubaMap
    .. automethod:: copy
    .. automethod:: fix_units
    .. automethod:: read
+   .. automethod:: show
    .. automethod:: write
