@@ -288,6 +288,14 @@ class MadcubaMap(MadcubaFits):
         from madcubapy.visualization.quick_plotters import quick_show
         quick_show(self, **kwargs)
 
+    def get_input(self, **kwargs):
+        """
+        Return mouse click coordinates from this map.
+
+        """
+        from madcubapy.visualization.interaction import _get_input_from_map
+        return _get_input_from_map(self, **kwargs)
+
     def fix_units(self):
         """
         Tries to fix problems when the units are incorrectly parsed. The user

@@ -22,3 +22,6 @@ dist/
 docs/source/gallery_examples
 docs/source/gallery_tutorials
 docs/source/sg_execution_times.rst
+
+# Tests notebook to quickly check new code
+tests.ipynb
