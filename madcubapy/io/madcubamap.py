@@ -15,7 +15,8 @@ __all__ = [
 ]
 
 class MadcubaMap(MadcubaFits):
-    """A container for MADCUBA FITS maps, using the `~madcubapy.io.MadcubaFits`
+    """
+    A container for MADCUBA FITS maps, using the `~madcubapy.io.MadcubaFits`
     interface.
 
     This class is basically a wrapper to read MADCUBA exported FITS maps and
@@ -45,6 +46,7 @@ class MadcubaMap(MadcubaFits):
         Load the history table from a csv file.
 
     """
+    
     def __init__(
         self,
         data=None,
@@ -282,7 +284,6 @@ class MadcubaMap(MadcubaFits):
     def show(self, **kwargs):
         """
         Show the map in a pop-up window.
-
         """
         from madcubapy.visualization.quick_plotters import quick_show
         quick_show(self, **kwargs)
@@ -291,7 +292,6 @@ class MadcubaMap(MadcubaFits):
         """
         Tries to fix problems when the units are incorrectly parsed. The user
         should confirm that the new units are correct.
-
         """
         unit_str = self.header["BUNIT"]
         # Fix CARTA strings
@@ -306,7 +306,6 @@ class MadcubaMap(MadcubaFits):
     def convert_unit_to(self, unit):
         """
         Convert the units of the map to other units.
-
         """
         # Change unit in CCDDdata and copy it into MadcubaMap
         converted_ccddata = self._ccddata.convert_unit_to(unit)
@@ -343,7 +342,6 @@ def _fix_unit_string_multiple_slashes(unit_str):
     """
     This function converts dots to spaces and slashes to '-1' exponents if the
     BUNIT card contains more than one slash.
-
     """
     result = []
     # Split by slashes
@@ -368,7 +366,6 @@ def _fix_unit_string_multiple_slashes(unit_str):
 def _parse_madcuba_friendly_bunit(unit):
     """
     This function returns a BUNIT card string that MADCUBA can recognize.
-
     """
     if not isinstance(unit, u.UnitBase):
         raise TypeError("Input value is not an Astropy unit")

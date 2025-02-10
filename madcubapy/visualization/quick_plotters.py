@@ -23,7 +23,8 @@ __all__ = [
 def quick_show(
         fitsmap,
         **kwargs):
-    """Show a map on a separate window.
+    """
+    Show a map on a separate window.
 
     Parameters
     ----------
@@ -70,7 +71,8 @@ def are_equal(
         fitsmap_1,
         fitsmap_2,
         show_maps=False):
-    """Compare two maps to check if they are equal.
+    """
+    Compare two maps to check if they are equal.
 
     Parameters
     ----------
@@ -88,6 +90,7 @@ def are_equal(
         Returns True if the two maps are the same map.
 
     """
+    
     print('Checking if the two maps are equal\n')
     # Check fitsmap types
     if not (isinstance(fitsmap_1, (MadcubaMap, CCDData)) and

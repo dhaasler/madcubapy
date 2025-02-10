@@ -15,7 +15,8 @@ __all__ = [
 ]
 
 class SpectraContainer(MadcubaFits):
-    """A container for MADCUBA spectra, using the
+    """
+    A container for MADCUBA spectra, using the
     `~madcubapy.io.madcubafits.MadcubaFits` interface.
 
     This class is basically a wrapper to read MADCUBA exported spectra and
@@ -38,6 +39,7 @@ class SpectraContainer(MadcubaFits):
         Load the history table from a csv file.
 
     """
+
     def __init__(
         self,
         bintable=None,
@@ -145,7 +147,6 @@ class SpectraContainer(MadcubaFits):
         """
         Generate arrays for the spectral axes of every spectra inside the
         `~madcubapy.io.SpectraContainer` and add them as a new table column.
-
         """
         data = []
         for i in range(len(self.bintable)):
@@ -160,7 +161,6 @@ class SpectraContainer(MadcubaFits):
         """
         Parse the BUNIT column values. If all are equal, set it as the unit for
         the DATA column.
-
         """
         if np.all(self.bintable["BUNIT"] == self.bintable["BUNIT"][0]):
             unit_code = self.bintable["BUNIT"][0]

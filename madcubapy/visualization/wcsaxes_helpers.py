@@ -23,7 +23,8 @@ def add_wcs_axes(
         fitsmap=None,
         use_std=False,
         **kwargs):
-    """Add a `~astropy.visualization.wcsaxes.WCSAxes` object with WCS
+    """
+    Add a `~astropy.visualization.wcsaxes.WCSAxes` object with WCS
     coordinates into an existing figure.
 
     A `~matplotlib.figure.Figure` with no axes has to be set before calling
@@ -121,7 +122,8 @@ def add_manual_wcs_axes(
         fitsmap=None,
         use_std=False,
         **kwargs):
-    """Add a `~astropy.visualization.wcsaxes.WCSAxes` object with WCS
+    """
+    Add a `~astropy.visualization.wcsaxes.WCSAxes` object with WCS
     coordinates in a manually set position into an existing figure.
 
     A `~matplotlib.figure.Figure` with no axes has to be set before calling
@@ -213,7 +215,8 @@ def add_manual_wcs_axes(
 
 
 def parse_clabel(fitsmap):
-    """Parse colorbar text from a `~madcubapy.io.MadcubaMap` or
+    """
+    Parse colorbar text from a `~madcubapy.io.MadcubaMap` or
     `~astropy.nddata.CCDData` unit attribute.
 
     Parameters
@@ -251,8 +254,8 @@ def add_colorbar(
         size=0.05,
         pad=0.03,
         **kwargs):
-    """Add a colorbar to one side of a
-    `~astropy.visualization.wcsaxes.WCSAxes`.
+    """
+    Add a colorbar to one side of a `~astropy.visualization.wcsaxes.WCSAxes`.
 
     Parameters
     ----------
@@ -409,7 +412,8 @@ def insert_colorbar(
         size='5%',
         pad=0.05,
         **kwargs):
-    """Insert a colorbar to one side of a
+    """
+    Insert a colorbar to one side of a
     `~astropy.visualization.wcsaxes.WCSAxes`, fitting it into the same space.
 
     Parameters

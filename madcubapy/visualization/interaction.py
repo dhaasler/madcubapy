@@ -16,7 +16,8 @@ __all__ = [
 
 
 def get_input(obj, **kwargs):
-    """Get the pixel coordinates of points selected by mouse clicks in a
+    """
+    Get the pixel coordinates of points selected by mouse clicks in a
     previously plotted figure or a map object.
 
     Parameters
@@ -50,7 +51,8 @@ def get_input(obj, **kwargs):
 
 
 def _get_input_from_figure(fig):
-    """Returns mouse click coordinates using a previously created figure.
+    """
+    Returns mouse click coordinates using a previously created figure.
 
     Parameters
     ----------
@@ -98,7 +100,8 @@ def _get_input_from_figure(fig):
 
 
 def _get_input_from_map(fitsmap, **kwargs):
-    """Returns mouse click coordinates using a `~astropy.nddata.CCDData` or
+    """
+    Returns mouse click coordinates using a `~astropy.nddata.CCDData` or
     `~madcubapy.io.madcubaMap` object.
 
     Parameters

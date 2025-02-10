@@ -11,7 +11,8 @@ __all__ = [
 ]
 
 def stack_emission(*fitsmaps):
-    """Adds the data of multiple map objects (`~madcubapy.io.MadcubaMap` or
+    """
+    Adds the data of multiple map objects (`~madcubapy.io.MadcubaMap` or
     `~astropy.nddata.CCDData`) together and returns the result as a new map
     object with the metadata of the first input map.
     

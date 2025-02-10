@@ -50,7 +50,8 @@ class MadcubaFits:
         self._hist = value
 
     def add_hist(self, filename):
-        """Load the history table from a csv file.
+        """
+        Load the history table from a csv file.
 
         Parameters
         ----------
@@ -63,7 +64,8 @@ class MadcubaFits:
         self._hist = Table.read(filename, format='csv')
 
     def _update_hist(self, action, **hist_keys):
-        """Add a new row with information to the hist table.
+        """
+        Add a new row with information to the hist table.
 
         Parameters
         ----------
