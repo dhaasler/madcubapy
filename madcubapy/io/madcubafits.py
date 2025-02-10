@@ -74,7 +74,7 @@ class MadcubaFits:
 
         Other Parameters
         ----------------
-        **hist_keys
+        **hist_keys : dict
             Additional kwargs passed to the new row of the hist table.
             Allowed arguments for columns are: FITS, Type, FROM_ROW, TO_ROW,
             and Roi_Range.
