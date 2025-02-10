@@ -57,7 +57,7 @@ def add_wcs_axes(
 
     Other Parameters
     ----------------
-    **kwargs : dict
+    **kwargs
         Parameters to pass to :func:`matplotlib.pyplot.imshow`.
 
     """
@@ -158,7 +158,7 @@ def add_manual_wcs_axes(
 
     Other Parameters
     ----------------
-    **kwargs : dict
+    **kwargs
         Parameters to pass to :func:`matplotlib.pyplot.imshow`.
 
     """
@@ -276,7 +276,7 @@ def add_colorbar(
 
     Other Parameters
     ----------------
-    **kwargs : dict
+    **kwargs
         Parameters to pass to :func:`matplotlib.pyplot.colorbar`.
 
     """
@@ -435,7 +435,7 @@ def insert_colorbar(
 
     Other Parameters
     ----------------
-    **kwargs : dict
+    **kwargs
         Parameters to pass to :func:`matplotlib.pyplot.colorbar`.
 
     """

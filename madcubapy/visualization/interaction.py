@@ -34,7 +34,7 @@ def get_input(obj, **kwargs):
 
     Other Parameters
     ----------------    
-    **kwargs : dict
+    **kwargs
         Parameters to pass to :func:`~madcubapy.visualization.add_wcs_axes`
         only if `obj` is a `~astropy.nddata.CCDData` or
         `~madcubapy.io.MadcubaMap` object.
@@ -116,7 +116,7 @@ def _get_input_from_map(fitsmap, **kwargs):
 
     Other Parameters
     ----------------
-    **kwargs : dict
+    **kwargs
         Parameters to pass to :func:`~madcubapy.visualization.add_wcs_axes`.
 
     """

@@ -33,7 +33,7 @@ def quick_show(
 
     Other Parameters
     ----------------
-    **kwargs : dict
+    **kwargs
         Parameters to pass to :func:`matplotlib.pyplot.imshow`.
 
     """
