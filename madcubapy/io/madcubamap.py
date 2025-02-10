@@ -175,6 +175,9 @@ class MadcubaMap(MadcubaFits):
         ----------
         filepath : `~str`
             Name of FITS file.
+
+        Other Parameters
+        ----------------
         **kwargs
             Additional keyword parameters passed through to the Astropy
             :func:`~astropy.nddata.fits_ccddata_reader` function.
@@ -225,6 +228,9 @@ class MadcubaMap(MadcubaFits):
         ----------
         filepath : `~str`
             Name of output FITS file.
+        
+        Other Parameters
+        ----------------
         **kwargs
             Additional keyword parameters passed through to the Astropy
             :func:`~astropy.nddata.fits_ccddata_writer` function.
@@ -284,6 +290,11 @@ class MadcubaMap(MadcubaFits):
     def show(self, **kwargs):
         """
         Show the map in a pop-up window.
+
+        Other Parameters
+        ----------------
+        kwargs
+            Parameters passed to :func:`~madcubapy.visualization.add_wcs_axes`.
         """
         from madcubapy.visualization.quick_plotters import quick_show
         quick_show(self, **kwargs)
@@ -292,6 +303,10 @@ class MadcubaMap(MadcubaFits):
         """
         Return mouse click coordinates from this map.
 
+        Other Parameters
+        ----------------
+        kwargs
+            Parameters passed to :func:`~madcubapy.visualization.add_wcs_axes`.
         """
         from madcubapy.visualization.interaction import _get_input_from_map
         return _get_input_from_map(self, **kwargs)

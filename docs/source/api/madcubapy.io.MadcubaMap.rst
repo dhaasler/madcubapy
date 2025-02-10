@@ -26,6 +26,7 @@ MadcubaMap
       ~MadcubaMap.convert_unit_to
       ~MadcubaMap.copy
       ~MadcubaMap.fix_units
+      ~MadcubaMap.get_input
       ~MadcubaMap.read
       ~MadcubaMap.show
       ~MadcubaMap.write
@@ -46,6 +47,7 @@ MadcubaMap
    .. automethod:: convert_unit_to
    .. automethod:: copy
    .. automethod:: fix_units
+   .. automethod:: get_input
    .. automethod:: read
    .. automethod:: show
    .. automethod:: write

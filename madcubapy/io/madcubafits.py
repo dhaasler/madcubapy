@@ -71,8 +71,11 @@ class MadcubaFits:
         ----------
         faction : `~str`
             String describing the performed action.
+
+        Other Parameters
+        ----------------
         **hist_keys
-            Additional parameters passed to the new row of the hist table.
+            Additional kwargs passed to the new row of the hist table.
             Allowed arguments for columns are: FITS, Type, FROM_ROW, TO_ROW,
             and Roi_Range.
 
