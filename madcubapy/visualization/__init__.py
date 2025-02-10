@@ -6,5 +6,6 @@ visualize astronomical data, with a special emphasis on products exported by
 MADCUBA.
 """
 
-from .wcsaxes_helpers import *
+from .interaction import *
 from .quick_plotters import *
+from .wcsaxes_helpers import *
