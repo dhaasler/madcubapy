@@ -41,29 +41,47 @@ def quick_show(
     # Create tkinter window
     root = tk.Tk()
     root.wm_title("Quick map plot")
-    # Create arbitrary matplotlib figure as a mpl.figure.Figure. This
-    # way it will not show in the inline backend at the end.
-    fig = mpl.figure.Figure(figsize=(6,5))
+
+    # Create a Matplotlib figure
+    fig = mpl.figure.Figure(figsize=(6,5), dpi=100)
     ax, img = add_wcs_axes(fig, 1, 1, 1, fitsmap=fitsmap, **kwargs)
     cbar = insert_colorbar(ax)
+    
+    # Display minor ticks
     ax.coords[0].display_minor_ticks(True)
     ax.coords[1].display_minor_ticks(True)
-    # Add matplotlib figure to the tkinter window as a canvas
-    canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
-    canvas.draw()
+
+    # Exit function to close the window
+    def _quit():
+        root.quit()
+        root.destroy()
+
+    # Add close shortcut
+    def onkeypress(event):
+        if event.key == 'q':
+            root.quit()
+            root.destroy()
+    
+    # Create a Matplotlib canvas embedded within the Tkinter window
+    canvas = FigureCanvasTkAgg(fig, master=root)
     canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+
     # Add matplotlib tk toolbar
     toolbar = NavigationToolbar2Tk(canvas, root)
     toolbar.update()
     canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-    # Exit function to close the window.
-    def _quit():
-        root.quit()
-        root.destroy()
-    # Add an exit button
-    button = tk.Button(master=root, text="Quit", command=_quit)
-    button.pack(side=tk.BOTTOM)
-    # Start the tkinter window loop
+
+    # Create a frame for buttons
+    control_frame = tk.Frame(root)
+    control_frame.pack(side=tk.BOTTOM, pady=5)
+    #Exit button
+    clear_button = tk.Button(control_frame, text="Quit", command=_quit)
+    clear_button.pack(side=tk.LEFT)
+
+    # Connect the onclick and onkeypress events to the canvas
+    canvas.mpl_connect('key_press_event', onkeypress)
+
+    # Start the Tkinter event loop
     root.mainloop()
 
 
