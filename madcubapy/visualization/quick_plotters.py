@@ -13,7 +13,7 @@ import sys
 from madcubapy.io import MadcubaFits
 from madcubapy.io import MadcubaMap
 from .wcsaxes_helpers import add_wcs_axes
-from .wcsaxes_helpers import append_colorbar
+from .wcsaxes_helpers import insert_colorbar
 
 __all__ = [
     'quick_show',
@@ -44,7 +44,7 @@ def quick_show(
     # way it will not show in the inline backend at the end.
     fig = mpl.figure.Figure(figsize=(6,5))
     ax, img = add_wcs_axes(fig, 1, 1, 1, fitsmap=fitsmap, **kwargs)
-    cbar = append_colorbar(ax)
+    cbar = insert_colorbar(ax)
     ax.coords[0].display_minor_ticks(True)
     ax.coords[1].display_minor_ticks(True)
     # Add matplotlib figure to the tkinter window as a canvas
@@ -139,7 +139,7 @@ def are_equal(
         fig = plt.figure(figsize=(15,6))
         # Map 1
         ax1, img1 = add_wcs_axes(fig, 1, 3, 1, fitsmap=map_1, use_std=True)
-        cbar1 = append_colorbar(ax1, 'top')
+        cbar1 = insert_colorbar(ax1, 'top')
         ax1.set_title('MAP 1', pad=60)
         ax1.coords[1].set_ticklabel(
             rotation=90,
@@ -148,7 +148,7 @@ def are_equal(
         )
         # Map 2
         ax2, img2 = add_wcs_axes(fig, 1, 3, 2, fitsmap=map_2, use_std=True)
-        cbar2 = append_colorbar(ax2, 'top')
+        cbar2 = insert_colorbar(ax2, 'top')
         ax2.set_title('MAP 2', pad=60)
         ax2.coords[1].set_ticklabel(
             rotation=90,
@@ -173,7 +173,7 @@ def are_equal(
         )
         ax3.set_xlabel('RA (ICRS)')
         ax3.set_ylabel('DEC (ICRS)')
-        cbar3 = append_colorbar(ax3, 'top')
+        cbar3 = insert_colorbar(ax3, 'top')
         ax3.set_title('Residuals (1-2)', pad=60)
     # Check
     if np.array_equal(data_1, data_2, equal_nan=True):

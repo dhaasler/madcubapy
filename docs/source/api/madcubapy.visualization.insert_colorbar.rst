@@ -1,6 +1,6 @@
-append_colorbar
+insert_colorbar
 ===============
 
 .. currentmodule:: madcubapy.visualization
 
-.. autofunction:: append_colorbar
+.. autofunction:: insert_colorbar

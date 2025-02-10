@@ -17,7 +17,7 @@ We start by importing the necessary libraries for this tutorial.
 from madcubapy.io import MadcubaMap
 from madcubapy.visualization import add_wcs_axes
 from madcubapy.visualization import add_manual_wcs_axes
-from madcubapy.visualization import append_colorbar
+from madcubapy.visualization import insert_colorbar
 import matplotlib.pyplot as plt
 
 # sphinx_gallery_start_ignore
@@ -107,7 +107,7 @@ madcuba_map.hist
 #   
 #         We can very quickly add a colorbar using
 #         :func:`~madcubapy.visualization.add_colorbar` or
-#         :func:`~madcubapy.visualization.append_colorbar`.
+#         :func:`~madcubapy.visualization.insert_colorbar`.
 #         Check the :ref:`Colorbar page <colorbar>` to know more about how
 #         these two functions work.
 #   
@@ -118,7 +118,7 @@ madcuba_map.hist
 #             # Use add_wcs_axes() to plot the map.
 #             ax, img = add_wcs_axes(fig=fig, fitsmap=madcuba_map, vmin=0, vmax=300)
 #             # Add colorbar
-#             cbar = append_colorbar(ax)
+#             cbar = insert_colorbar(ax)
 #             plt.show()
 #  
 #         .. figure:: read_and_plot_fig_wcsaxes2.png
@@ -144,7 +144,7 @@ madcuba_map.hist
 #             :func:`~madcubapy.visualization.add_wcs_axes()` and its manual
 #             version :func:`~madcubapy.visualization.add_manual_wcs_axes()`
 #             to plot several maps in one figure. This is explained thoroughly in
-#             the *in prep* tutorial.
+#             :ref:`Plotting image with coordinates <wcsaxes_helpers>`.
 #   
 #     .. tab-item:: Method 2: Using ``matplotlib`` and ``astropy``
 #  
@@ -417,7 +417,7 @@ fig = plt.figure(figsize=(6, 5))
 # Use add_wcs_axes() to plot the map.
 ax, img = add_wcs_axes(fig=fig, fitsmap=madcuba_map, vmin=0, vmax=300)
 # Add colorbar
-cbar = append_colorbar(ax)
+cbar = insert_colorbar(ax)
 
 
 plt.savefig('../docs/source/gallery_tutorials/read_and_plot_fig_wcsaxes2.png')

@@ -1,4 +1,4 @@
-.. _add_wcs_axes:
+.. _wcsaxes_helpers:
 
 ######################################
 Plotting images with world coordinates
@@ -13,7 +13,7 @@ information from the FITS headers to automatically set axes and colorbar labels.
 
 To add a colorbar to a map, `madcubapy` offers the
 :func:`~madcubapy.visualization.add_colorbar` and
-:func:`~madcubapy.visualization.append_colorbar` functions. These functions are
+:func:`~madcubapy.visualization.insert_colorbar` functions. These functions are
 also explained :ref:`below <colorbar>`.
 
 Using :func:`~madcubapy.visualization.add_wcs_axes`
@@ -81,7 +81,7 @@ The next code generates a figure with two maps aligned horizontaly. Notice that
 the *nrows* and *ncols* parameters are 1 and 2, respectively. This way we have
 one row and two columns of images. The third number is the **index** value,
 going in order left to right. Here the map on the right (number 2) is using
-a logarithmic noramlization:
+a logarithmic normalization:
 
 .. code-block:: python
 
@@ -218,8 +218,8 @@ Add a colorbar to a map
 =======================
 
 We can add a colorbar easily to any side of the map by using the
-:func:`~madcubapy.visualization.append_colorbar` or
-:func:`~madcubapy.visualization.add_colorbar` functions.
+:func:`~madcubapy.visualization.add_colorbar` or
+:func:`~madcubapy.visualization.insert_colorbar` functions.
 
 Both functions need the ``ax`` parameter, which must be a
 `~astropy.visualization.wcsaxes.WCSAxes` object. The position of the colorbar is
@@ -235,7 +235,7 @@ Usage example:
     from madcubapy.io import MadcubaMap
     from madcubapy.visualization import add_wcs_axes
     from madcubapy.visualization import add_colorbar
-    from madcubapy.visualization import append_colorbar
+    from madcubapy.visualization import insert_colorbar
 
     example_file = "../../../examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
     madcuba_map = MadcubaMap.read(example_file)
@@ -258,7 +258,7 @@ Placement of the colorbar
 The two functions offer the same functionality but using two different
 approaches to place the colorbar in a figure.
 
-- ``append_colorbar`` adds a colorbar to one side of the
+- ``insert_colorbar`` adds a colorbar to one side of the
   `~astropy.visualization.wcsaxes.WCSAxes` object, which is resized to
   accomodate the colorbar inside the space it was taking.
   The colorbar axes will always maintain the width that was set in the
@@ -272,15 +272,15 @@ approaches to place the colorbar in a figure.
   the map if it changes size later.
 
 The following code shows the difference between
-:func:`~madcubapy.visualization.append_colorbar` and
-:func:`~madcubapy.visualization.add_colorbar`:
+:func:`~madcubapy.visualization.add_colorbar` and
+:func:`~madcubapy.visualization.insert_colorbar`:
 
 .. code-block:: python
 
     from madcubapy.io import MadcubaMap
     from madcubapy.visualization import add_wcs_axes
     from madcubapy.visualization import add_colorbar
-    from madcubapy.visualization import append_colorbar
+    from madcubapy.visualization import insert_colorbar
 
     example_file = "examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
     madcuba_map = MadcubaMap.read(example_file)
@@ -294,7 +294,7 @@ The following code shows the difference between
                              use_std=True, cmap='jet')
 
     # Append a colorbar to the top of the axes
-    cbar2 = append_colorbar(ax=ax2, location='top', label='custom units')
+    cbar2 = insert_colorbar(ax=ax2, location='top', label='custom units')
     # Add a colororbar on top of the axces
     cbar3 = add_colorbar(ax=ax3, location='top', label='custom units')
 
@@ -303,7 +303,7 @@ The following code shows the difference between
 .. figure:: ../_static/figures/colorbar_differences_2.png
    :figclass: align-center
 
-As we can see, the map in the middle (set with ``append_colorbar``) has been
+As we can see, the map in the middle (set with ``insert_colorbar``) has been
 resized to accomodate the colorbar on top of it using the same space as the
 map on the left, while the map on the right (set with ``add_colorbar``)
 places the colorbarbar on new space on top of it without resizing the axes.

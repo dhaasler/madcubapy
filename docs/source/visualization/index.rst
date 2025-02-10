@@ -19,7 +19,7 @@ Contents
     :maxdepth: 1
     :includehidden:
 
-    add_wcsaxes
+    wcsaxes_helpers
     quick_plotters
 
 API Reference

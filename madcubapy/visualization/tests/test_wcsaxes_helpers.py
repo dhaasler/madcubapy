@@ -3,8 +3,8 @@ from astropy.nddata import CCDData
 from madcubapy.io import MadcubaMap
 from madcubapy.visualization import add_wcs_axes
 from madcubapy.visualization import add_manual_wcs_axes
-from madcubapy.visualization import append_colorbar
 from madcubapy.visualization import add_colorbar
+from madcubapy.visualization import insert_colorbar
 from madcubapy.visualization import parse_clabel
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -42,6 +42,12 @@ def test_add_colorbar(example_madcuba_map):
     fig = plt.figure(figsize=(10,5))
     ax, img = add_wcs_axes(fig, 1, 2, 1, fitsmap=example_madcuba_map)
     cbar = add_colorbar(ax=ax, location='top', label='custom units')
+    assert isinstance(cbar, mpl.colorbar.Colorbar)
+
+def test_insert_colorbar(example_madcuba_map):
+    fig = plt.figure(figsize=(10,5))
+    ax, img = add_wcs_axes(fig, 1, 2, 1, fitsmap=example_madcuba_map)
+    cbar = insert_colorbar(ax=ax, location='top', label='custom units')
     assert isinstance(cbar, mpl.colorbar.Colorbar)
 
 def test_parse_clabel(example_madcuba_map):
