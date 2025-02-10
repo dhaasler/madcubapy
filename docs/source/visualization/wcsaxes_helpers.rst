@@ -315,7 +315,7 @@ By default both functions parse the units from the
 `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData` object if found, and
 sets the label accordingly.
 Due to a limitation in how the functions are coded, only the units of the last
-plotted map is correctly tracked. This is intentional to keep the number of
+plotted map are correctly tracked. This is intentional to keep the number of
 needed arguments as low as possible.
 
 To allow for a correct parsing of the units of every map, the colorbar must
