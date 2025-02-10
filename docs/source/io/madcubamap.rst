@@ -105,7 +105,7 @@ functions that improve usability and accuracy when working with FITS files
  
       >>> madcubamap.fix_units()
 
-* **Noise Level Estimation**
+* **Noise measurement**
 
   (**Soon to be implemented**) Automatically calculates and stores the noise
   level of the image, simplifying further analysis.

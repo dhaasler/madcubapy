@@ -21,6 +21,7 @@ Contents
 
     wcsaxes_helpers
     quick_plotters
+    interaction
 
 API Reference
 =============
