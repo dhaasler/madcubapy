@@ -340,6 +340,8 @@ class MadcubaMap(MadcubaFits):
         from madcubapy.operations.maps.noise import measure_noise
         sigma = measure_noise(self, statistic, **kwargs)
         # Update sigma header card
+        if np.isnan(sigma):
+            raise Exception("Function aborted.")
         self.header["SIGMA"] = (sigma, 'madcubapy update sigma')
         self.ccddata.header["SIGMA"] = (sigma, 'madcubapy update sigma')
         # Update hist file

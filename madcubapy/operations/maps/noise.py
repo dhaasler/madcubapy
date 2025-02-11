@@ -51,6 +51,10 @@ def measure_noise(
         Optional map visualization parameters passed to
         :func:`~madcubapy.visualization.add_wcs_axes`.
 
+    Notes
+    -----
+    The function can be aborted by closing the window or pressing 'q'.
+
     """
 
     if not isinstance(fitsmap, CCDData) and not isinstance(fitsmap, MadcubaMap):
@@ -170,6 +174,12 @@ def measure_noise(
             # Refresh the canvas
             canvas.draw()
 
+    # Abort function
+    def _abort():
+        print("\nFunction aborted")
+        root.quit()
+        root.destroy()
+
     # Close function
     def _quit():
         sigma = get_sigma()
@@ -183,7 +193,7 @@ def measure_noise(
     # Close shortcut
     def onkeypress(event):
         if event.key == 'q':
-            _quit()
+            _abort()
 
     # Clear all drawn and selected polygons
     def clear_polygons():
@@ -264,7 +274,9 @@ def measure_noise(
     sigma_frame.pack(side=tk.BOTTOM)
     clear_button = tk.Button(sigma_frame, text="Clear", command=clear_polygons)
     clear_button.pack(side=tk.LEFT, padx=3)
-    abort_button_sigma = tk.Button(sigma_frame, text="Finish", command=_quit)
+    finish_button_sigma = tk.Button(sigma_frame, text="Finish", command=_quit)
+    finish_button_sigma.pack(side=tk.RIGHT, padx=3)
+    abort_button_sigma = tk.Button(sigma_frame, text="Abort", command=_abort)
     abort_button_sigma.pack(side=tk.RIGHT, padx=3)
 
     # Connect the onclick and onkeypress events to the canvas
