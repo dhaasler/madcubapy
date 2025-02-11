@@ -1,6 +1,6 @@
 measure_noise
 =============
 
-.. currentmodule:: madcubapy.visualization
+.. currentmodule:: madcubapy.operations
 
 .. autofunction:: measure_noise

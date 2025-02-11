@@ -29,7 +29,7 @@ User Guide
         .. toctree::
             :maxdepth: 2
 
-            Visualization helpers <visualization/index>
+            Visualization <visualization/index>
 
     .. grid-item-card::
         :padding: 2

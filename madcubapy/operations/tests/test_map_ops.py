@@ -1,9 +1,7 @@
-from astropy.table import Table
-import astropy.units as u
-from astropy.utils.diff import report_diff_values
 import numpy as np
 import pytest
 from madcubapy.io.madcubamap import MadcubaMap
+from madcubapy.operations import measure_noise
 from madcubapy.operations import stack_emission
 
 @pytest.fixture
@@ -19,3 +17,9 @@ def test_stack_emission(example_madcuba_map):
     assert (sum_map.hist[-1]["Macro"] ==
         "//PYTHON: Stack emission. Files: 'IRAS16293_SO_2-1_moment0_madcuba.fits', 'IRAS16293_SO_2-1_moment0_madcuba.fits'"
     )
+
+def test_invalid_object_type_measure_noise():
+    with pytest.raises(TypeError):
+        measure_noise("string")
+    with pytest.raises(TypeError):
+        measure_noise(999)
