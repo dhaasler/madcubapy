@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "madcubapy"
 version = "0.2.0"
 description = "The MADCUBA python package."
-readme = "README.rst"
+readme = "PYPIREADME.rst"
 license = {file = "LICENSE"}
 authors = [
     {name = "David Haasler García", email = "dhaasler@cab.inta-csic.es"}

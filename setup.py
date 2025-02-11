@@ -10,7 +10,7 @@ setup(
     author="David Haasler García",
     author_email="dhaasler@cab.inta-csic.es",
     description=DESCRIPTION,
-    long_description=open('README.rst', 'r').read(),
+    long_description=open('PYPIREADME.rst', 'r').read(),
     long_description_content_type='text/x-rst',
     url='https://github.com/dhaasler/madcubapy',
     packages=find_packages(),
