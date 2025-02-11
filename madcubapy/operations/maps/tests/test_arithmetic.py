@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 from madcubapy.io.madcubamap import MadcubaMap
-from madcubapy.operations.maps import stack_emission
+from madcubapy.operations.maps import stack_maps
 
 @pytest.fixture
 def example_madcuba_map():
@@ -10,9 +10,9 @@ def example_madcuba_map():
         "madcubapy/operations/maps/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
     )
 
-def test_stack_emission(example_madcuba_map):
-    sum_map = stack_emission(example_madcuba_map, example_madcuba_map)
+def test_stack_maps(example_madcuba_map):
+    sum_map = stack_maps(example_madcuba_map, example_madcuba_map)
     assert np.array_equal(sum_map.data, example_madcuba_map.data*2, equal_nan=True)
     assert (sum_map.hist[-1]["Macro"] ==
-        "//PYTHON: Stack emission. Files: 'IRAS16293_SO_2-1_moment0_madcuba.fits', 'IRAS16293_SO_2-1_moment0_madcuba.fits'"
+        "//PYTHON: Stack maps. Files: 'IRAS16293_SO_2-1_moment0_madcuba.fits', 'IRAS16293_SO_2-1_moment0_madcuba.fits'"
     )

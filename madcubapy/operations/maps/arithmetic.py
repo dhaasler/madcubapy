@@ -6,11 +6,11 @@ import numpy as np
 from madcubapy.io import MadcubaMap
 
 __all__ = [
-    'stack_emission',
+    'stack_maps',
 ]
 
 
-def stack_emission(*fitsmaps):
+def stack_maps(*fitsmaps):
     """
     Adds the data of multiple map objects (`~madcubapy.io.MadcubaMap` or
     `~astropy.nddata.CCDData`) together and returns the result as a new map
@@ -81,11 +81,11 @@ def stack_emission(*fitsmaps):
         # Create history action
         if all(obj.filename is not None for obj in fitsmaps):
             stacked_maps_names = [obj.filename for obj in fitsmaps]
-            update_action = ("Stack emission. Files: '" +
+            update_action = ("Stack maps. Files: '" +
                              "', '".join(stacked_maps_names) + "'")
         else:
             update_action = (
-                "Stack emission. Manually created objects with no files"
+                "Stack maps. Manually created objects with no files"
             )
         # Update history if present
         if new_madcubamap.hist:
