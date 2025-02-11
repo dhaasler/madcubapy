@@ -6,23 +6,19 @@ Introduction
 ============
 
 The `madcubapy.operations` package is a collection of functions to perform
-operations on data of FITS and **.spec** files.
+operations on the data of FITS and **.spec** files.
 
-Arithmetic
-==========
+.. Note:: Only operations on map objects are available at the moment.
 
-Addition
---------
+Contents
+========
 
-So far, the only available utility function is
-:func:`~madcubapy.operations.stack_emission`, which adds the emission of any
-number of maps. The function accepts `~madcubapy.io.MadcubaMap` and
-`~astropy.nddata.CCDData` objects, but all of them must be from the same object
-type. The returned object will be a `~madcubapy.io.MadcubaMap` or
-`~astropy.nddata.CCDData` with the metadata of the first input map.
+.. toctree::
+    :maxdepth: 1
+    :includehidden:
 
-    >>> from madcubapy.operations import stack_emission
-    >>> sum_map = stack_emission(madcuba_map_1, madcuba_map_2, madcuba_map_3)
+    arithmetic
+    noise
 
 API Reference
 =============

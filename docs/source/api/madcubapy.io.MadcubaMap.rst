@@ -29,6 +29,7 @@ MadcubaMap
       ~MadcubaMap.get_input
       ~MadcubaMap.read
       ~MadcubaMap.show
+      ~MadcubaMap.update_sigma
       ~MadcubaMap.write
 
    .. rubric:: Attributes Documentation
@@ -50,4 +51,5 @@ MadcubaMap
    .. automethod:: get_input
    .. automethod:: read
    .. automethod:: show
+   .. automethod:: update_sigma
    .. automethod:: write

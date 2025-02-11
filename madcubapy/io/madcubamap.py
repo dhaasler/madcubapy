@@ -314,6 +314,38 @@ class MadcubaMap(MadcubaFits):
         from madcubapy.visualization.interaction import _get_input_from_map
         return _get_input_from_map(self, **kwargs)
 
+    def update_sigma(self, statistic='std', **kwargs):
+        """
+        Measure the noise (sigma) of the map by calculating the standard
+        deviation (std) or root mean squared (rms) inside several polygons selected
+        by mouse clicks, and store it in the SIGMA header card.
+
+        - Left clicks create polygon vertices.
+        - Right click closes the current polygon, and a subsequent left click
+          starts a new polygon.
+
+        Parameters
+        ----------
+        statistic : {'std', 'rms'}, optional
+            Statistic to be used as sigma. Defaults to 'std' and can be changed
+            at runtime via GUI buttons.
+
+        Other Parameters
+        ----------------
+        **kwargs
+            Additional parameters passed to
+            :func:`~madcubapy.visualization.add_wcs_axes`.
+        
+        """
+        from madcubapy.operations.maps.noise import measure_noise
+        sigma = measure_noise(self, statistic, **kwargs)
+        # Update sigma header card
+        self.header["SIGMA"] = (sigma, 'madcubapy update sigma')
+        self.ccddata.header["SIGMA"] = (sigma, 'madcubapy update sigma')
+        # Update hist file
+        if self._hist:
+            self._update_hist((f"Update sigma to '{sigma}'."))
+
     def fix_units(self):
         """
         Tries to fix problems when the units are incorrectly parsed. The user

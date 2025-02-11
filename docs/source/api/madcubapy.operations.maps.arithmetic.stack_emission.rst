@@ -1,6 +1,6 @@
 stack_emission
 ==============
 
-.. currentmodule:: madcubapy.operations
+.. currentmodule:: madcubapy.operations.maps.arithmetic
 
 .. autofunction:: stack_emission
