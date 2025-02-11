@@ -50,6 +50,10 @@ def measure_noise(
 
     """
 
+    if not isinstance(fitsmap, CCDData) and not isinstance(fitsmap, MadcubaMap):
+        raise TypeError(f"Unsupported type: {type(fitsmap)}. "
+                        + "Provide a MadcubaMap or CCDData object.")
+
     if statistic != 'std' and statistic != 'rms':
         raise ValueError(f"Invalid input for statistic: '{statistic}'. "
                          + "Accepted values are 'std' or 'rms'.")
