@@ -1,7 +1,7 @@
-Version 0.2.0 (2025-02-10)
+Version 0.2.0 (2025-02-11)
 ==========================
 
--New features:
+- New features:
 
   - Add ``measure_noise`` function.
 
