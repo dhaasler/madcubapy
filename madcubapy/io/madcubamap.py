@@ -317,8 +317,8 @@ class MadcubaMap(MadcubaFits):
     def update_sigma(self, statistic='std', **kwargs):
         """
         Measure the noise (sigma) of the map by calculating the standard
-        deviation (std) or root mean squared (rms) inside several polygons selected
-        by mouse clicks, and store it in the SIGMA header card.
+        deviation (std) or root mean square (rms) inside several polygons
+        selected by mouse clicks, and store it in the SIGMA header card.
 
         - Left clicks create polygon vertices.
         - Right click closes the current polygon, and a subsequent left click

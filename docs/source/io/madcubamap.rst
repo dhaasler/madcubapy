@@ -96,7 +96,7 @@ The `~madcubapy.io.MadcubaMap` class also introduces methods and
 functions that improve usability and accuracy when working with FITS files
 (even non-MADCUBA products):
 
-* **Correction of data unit**
+* **Correction of data units**
 
   Fixes improperly formatted units in the `BUNIT` header card, ensuring
   compatibility with Astropy.
@@ -107,14 +107,27 @@ functions that improve usability and accuracy when working with FITS files
 
 * **Noise measurement**
 
-  (**Soon to be implemented**) Automatically calculates and stores the noise
-  level of the image, simplifying further analysis.
+  The user can measure the noise level of an image with the 
+  :meth:`~madcubapy.io.MadcubaMap.update_sigma` method.
+
+  >>> madcubamap.update_sigma()
+
+  The map is shown in pop-up window where the user can select several polygons
+  using the mouse. This method automatically calculates the noise value inside
+  the polygons and stores it in the `SIGMA` header card.
+
+  This method calls the :func:`~madcubapy.operations.maps.measure_noise` function
+  on itself to calculate the noise level. Check the
+  :ref:`documentation page<measure_noise>` for a detailed overview
+  on the noise measurement functionality, or take a look into the
+  :ref:`tutorial_measure_noise` tutorial for a beginner
+  friendly explanation on the basics.
 
 * **Quick map visualization**
   
   The user can quickly take a look at a map in a pop-up window using:
 
-      >>> madcubamap.show()
+  >>> madcubamap.show()
 
 * **Extensibility**
 

@@ -1,8 +1,8 @@
 """
 .. _example_read_map:
 
-Read MadcubaMap
-###################
+Read a FITS file with MadcubaMap
+################################
 
 Example showing how to read a fits map file as a `~madcubapy.io.MadcubaMap`.
 

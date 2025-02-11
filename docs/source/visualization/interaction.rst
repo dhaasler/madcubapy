@@ -4,8 +4,8 @@
 Interacting with Maps and Figures
 #################################
 
-The `madcubapy.visualization` package offers various functions to let the user
-interact with plotted figures and maps. 
+The :ref:`madcubapy.visualization.interaction<interaction>` module offers
+various functions to let the user interact with plotted figures and maps. 
 
 Get pixel coordinates from mouse clicks
 =======================================

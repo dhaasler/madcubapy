@@ -17,8 +17,8 @@ Contents
     :maxdepth: 1
     :includehidden:
 
+    Noise measurement <noise>
     arithmetic
-    noise
 
 API Reference
 =============

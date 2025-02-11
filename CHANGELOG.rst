@@ -1,3 +1,27 @@
+Version 0.2.0 (2025-02-10)
+==========================
+
+-New features:
+
+  - Add ``measure_noise`` function.
+
+    - Add an ``update_sigma`` method to ``MadcubaMap`` to measure the noise and
+      save it in the FITS header.
+
+  - Add interaction module with ``get_input`` function.
+    
+    - Add a ``get_input`` method to ``MadcubaMap`` to do the same.
+  
+  - Add ``show()`` method to ``MadcubaMap``.
+
+- Changes:
+
+  - Rename ``append_colorbar`` to ``insert_colorbar``.
+  - Change ``width`` parameter to ``size`` in ``add_colorbar`` and
+    ``append_colorbar``.
+  - ``MadcubaMap`` method ``convert_unit_to`` now converts the SIGMA header
+    card if present.
+
 Version 0.1.0 (2024-12-13)
 ==========================
 

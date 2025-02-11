@@ -25,7 +25,7 @@ def measure_noise(
         **kwargs):
     """
     Measure the noise (sigma) in a map object by calculating the standard
-    deviation (std) or root mean squared (rms) inside several polygons selected
+    deviation (std) or root mean square (rms) inside several polygons selected
     by mouse clicks.
 
     - Left clicks create polygon vertices.
