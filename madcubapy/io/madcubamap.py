@@ -333,11 +333,19 @@ class MadcubaMap(MadcubaFits):
         """
         Convert the units of the map to other units.
         """
+        previous_unit = self.unit
         # Change unit in CCDDdata and copy it into MadcubaMap
         converted_ccddata = self._ccddata.convert_unit_to(unit)
         self._ccddata = converted_ccddata
         self._data = converted_ccddata.data
         self._unit = converted_ccddata.unit
+        # Convert sigma header card
+        if "SIGMA" in self.header:
+            sigma = self.header["SIGMA"] * previous_unit
+            converted_sigma = sigma.to(unit).value
+            self.header["SIGMA"] = (converted_sigma, 'madcubapy convert unit')
+            self.ccddata.header["SIGMA"] = (converted_sigma,
+                                            'madcubapy convert unit')
         if self._hist:
             self._update_hist((f"Convert units to "
                              + f"'{unit.to_string(format='fits')}'"))
