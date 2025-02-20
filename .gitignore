@@ -25,3 +25,7 @@ docs/source/sg_execution_times.rst
 
 # Tests notebook to quickly check new code
 tests.ipynb
+
+# mac stuff
+.DS_Store
+*/.DS_Store
