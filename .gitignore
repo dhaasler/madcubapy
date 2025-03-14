@@ -15,6 +15,9 @@ build/
 # VSCode
 .vscode/
 
+# idea
+.idea/
+
 # Distribution files
 dist/
 
