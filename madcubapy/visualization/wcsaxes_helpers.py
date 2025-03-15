@@ -1,8 +1,9 @@
 from astropy.nddata import CCDData
 import astropy.stats as stats
+from astropy.visualization.wcsaxes import WCSAxes
 from madcubapy.io import MadcubaMap
 import matplotlib as mpl
-import matplotlib.axes as maxes
+from matplotlib.axes import Axes
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
@@ -255,11 +256,12 @@ def add_colorbar(
         pad=0.03,
         **kwargs):
     """
-    Add a colorbar to one side of a `~astropy.visualization.wcsaxes.WCSAxes`.
+    Add a colorbar to one side of a `~matplotlib.axes.Axes` or
+    `~astropy.visualization.wcsaxes.WCSAxes` object.
 
     Parameters
     ----------
-    ax : `~astropy.visualization.wcsaxes.WCSAxes`
+    ax : `~matplotlib.axes.Axes` or `~astropy.visualization.wcsaxes.WCSAxes`
         Axes to which the colorbar is added.
     location : {"left", "right", "bottom", "top"}
         Where the colorbar is positioned relative to the main
@@ -324,13 +326,25 @@ def add_colorbar(
             labelright=True,
         )
         colorbar.ax.yaxis.set_label_position('right')
-        ax.coords[1].tick_params(
-            axis="y",
-            which="both",
-            labelleft=True,
-            labelright=False,
-        )
-        ax.coords[1].set_axislabel_position('l')
+        if isinstance(ax, WCSAxes):
+            ax.coords[1].tick_params(
+                axis="y",
+                which="both",
+                labelleft=True,
+                labelright=False,
+            )
+            ax.coords[1].set_axislabel_position('l')
+        else:
+            ax.tick_params(
+                axis="both",
+                which="both",
+                top=True,
+                bottom=True,
+                left=True,
+                right=True,
+                labelleft=True,
+                labelright=False,
+            )
     elif location == 'left':
         cax = fig.add_axes([ax_xini-pad*(ax_width)-size*(ax_width),
                             ax_yini,
@@ -347,13 +361,25 @@ def add_colorbar(
             labelright=False,
         )
         colorbar.ax.yaxis.set_label_position('left')
-        ax.coords[1].tick_params(
-            axis="y",
-            which="both",
-            labelleft=False,
-            labelright=True,
-        )
-        ax.coords[1].set_axislabel_position('r')
+        if isinstance(ax, WCSAxes):
+            ax.coords[1].tick_params(
+                axis="y",
+                which="both",
+                labelleft=False,
+                labelright=True,
+            )
+            ax.coords[1].set_axislabel_position('r')
+        else:
+            ax.tick_params(
+                axis="both",
+                which="both",
+                top=True,
+                bottom=True,
+                left=True,
+                right=True,
+                labelleft=False,
+                labelright=True,
+            )
     elif location == 'top':
         cax = fig.add_axes([ax_xini,
                             ax_yini+ax_height+pad*(ax_height),
@@ -370,13 +396,25 @@ def add_colorbar(
             labelbottom=False,
         )
         colorbar.ax.xaxis.set_label_position('top')
-        ax.coords[0].tick_params(
-            axis="x",
-            which="both",
-            labeltop=False,
-            labelbottom=True,
-        )
-        ax.coords[0].set_axislabel_position('b')
+        if isinstance(ax, WCSAxes):
+            ax.coords[0].tick_params(
+                axis="x",
+                which="both",
+                labeltop=False,
+                labelbottom=True,
+            )
+            ax.coords[0].set_axislabel_position('b')
+        else:
+            ax.tick_params(
+                axis="both",
+                which="both",
+                top=True,
+                bottom=True,
+                left=True,
+                right=True,
+                labeltop=False,
+                labelbottom=True,
+            )
         ax.set_title(None)
     elif location == 'bottom':
         cax = fig.add_axes([ax_xini,
@@ -394,13 +432,25 @@ def add_colorbar(
             labelbottom=True,
         )
         colorbar.ax.xaxis.set_label_position('bottom')
-        ax.coords[0].tick_params(
-            axis="x",
-            which="both",
-            labeltop=True,
-            labelbottom=False
-        )
-        ax.coords[0].set_axislabel_position('t')
+        if isinstance(ax, WCSAxes):
+            ax.coords[0].tick_params(
+                axis="x",
+                which="both",
+                labeltop=True,
+                labelbottom=False
+            )
+            ax.coords[0].set_axislabel_position('t')
+        else:
+            ax.tick_params(
+                axis="both",
+                which="both",
+                top=True,
+                bottom=True,
+                left=True,
+                right=True,
+                labeltop=True,
+                labelbottom=False,
+            )
         ax.set_title(None)
 
     return colorbar
@@ -413,12 +463,13 @@ def insert_colorbar(
         pad=0.05,
         **kwargs):
     """
-    Insert a colorbar to one side of a
-    `~astropy.visualization.wcsaxes.WCSAxes`, fitting it into the same space.
+    Insert a colorbar to one side of a `~matplotlib.axes.Axes` or 
+    `~astropy.visualization.wcsaxes.WCSAxes` object, fitting it into the same
+    space.
 
     Parameters
     ----------
-    ax : `~astropy.visualization.wcsaxes.WCSAxes`
+    ax : `~matplotlib.axes.Axes` or `~astropy.visualization.wcsaxes.WCSAxes`
         Axes to which the colorbar is added.
     location : {"left", "right", "bottom", "top"}
         Where the colorbar is positioned relative to the main
@@ -466,7 +517,7 @@ def insert_colorbar(
             kwargs['label'] = last_bunit
     divider = make_axes_locatable(ax)
     cax = divider.append_axes(location, size=size, 
-                              pad=pad, axes_class=maxes.Axes)
+                              pad=pad, axes_class=Axes)
     if location == 'right':
         colorbar = fig.colorbar(img, cax=cax,
                                 orientation='vertical', **kwargs)
@@ -479,13 +530,25 @@ def insert_colorbar(
             labelright=True,
         )
         colorbar.ax.yaxis.set_label_position('right')
-        ax.coords[1].tick_params(
-            axis="y",
-            which="both",
-            labelleft=True,
-            labelright=False,
-        )
-        ax.coords[1].set_axislabel_position('l')
+        if isinstance(ax, WCSAxes):
+            ax.coords[1].tick_params(
+                axis="y",
+                which="both",
+                labelleft=True,
+                labelright=False,
+            )
+            ax.coords[1].set_axislabel_position('l')
+        else:
+            ax.tick_params(
+                axis="both",
+                which="both",
+                top=True,
+                bottom=True,
+                left=True,
+                right=True,
+                labelleft=True,
+                labelright=False,
+            )
     elif location == 'left':
         colorbar = fig.colorbar(img, cax=cax,
                                 orientation='vertical', **kwargs)
@@ -498,13 +561,25 @@ def insert_colorbar(
             labelright=False,
         )
         colorbar.ax.yaxis.set_label_position('left')
-        ax.coords[1].tick_params(
-            axis="y",
-            which="both",
-            labelleft=False,
-            labelright=True,
-        )
-        ax.coords[1].set_axislabel_position('r')
+        if isinstance(ax, WCSAxes):
+            ax.coords[1].tick_params(
+                axis="y",
+                which="both",
+                labelleft=False,
+                labelright=True,
+            )
+            ax.coords[1].set_axislabel_position('r')
+        else:
+            ax.tick_params(
+                axis="both",
+                which="both",
+                top=True,
+                bottom=True,
+                left=True,
+                right=True,
+                labelleft=False,
+                labelright=True,
+            )
     elif location == 'top':
         colorbar = fig.colorbar(img, cax=cax,
                                 orientation='horizontal', **kwargs)
@@ -517,13 +592,25 @@ def insert_colorbar(
             labelbottom=False,
         )
         colorbar.ax.xaxis.set_label_position('top')
-        ax.coords[0].tick_params(
-            axis="x",
-            which="both",
-            labeltop=False,
-            labelbottom=True,
-        )
-        ax.coords[0].set_axislabel_position('b')
+        if isinstance(ax, WCSAxes):
+            ax.coords[0].tick_params(
+                axis="x",
+                which="both",
+                labeltop=False,
+                labelbottom=True,
+            )
+            ax.coords[0].set_axislabel_position('b')
+        else:
+            ax.tick_params(
+                axis="both",
+                which="both",
+                top=True,
+                bottom=True,
+                left=True,
+                right=True,
+                labeltop=False,
+                labelbottom=True,
+            )
         ax.set_title(None)
     elif location == 'bottom':
         colorbar = fig.colorbar(img, cax=cax,
@@ -537,13 +624,25 @@ def insert_colorbar(
             labelbottom=True,
         )
         colorbar.ax.xaxis.set_label_position('bottom')
-        ax.coords[0].tick_params(
-            axis="x",
-            which="both",
-            labeltop=True,
-            labelbottom=False
-        )
-        ax.coords[0].set_axislabel_position('t')
+        if isinstance(ax, WCSAxes):
+            ax.coords[0].tick_params(
+                axis="x",
+                which="both",
+                labeltop=True,
+                labelbottom=False
+            )
+            ax.coords[0].set_axislabel_position('t')
+        else:
+            ax.tick_params(
+                axis="both",
+                which="both",
+                top=True,
+                bottom=True,
+                left=True,
+                right=True,
+                labeltop=True,
+                labelbottom=False,
+            )
         ax.set_title(None)
 
     return colorbar
