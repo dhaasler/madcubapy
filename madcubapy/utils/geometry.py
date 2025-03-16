@@ -34,7 +34,7 @@ def get_angle_offset_point(points, ref_point, fitsmap):
     return points_offset_angle
 
 
-def get_angle_separation(point_pix, ref_point, fitsmap):
+def get_angle_separation(points, ref_point, fitsmap):
     """Get separation between a point or set of points, and a reference pixel
     in angular units.
 
@@ -54,13 +54,13 @@ def get_angle_separation(point_pix, ref_point, fitsmap):
 
     """
 
-    point_offset_angle = get_angle_offset_point(point_pix, ref_point, fitsmap)
-    angle_separation = np.linalg.norm(point_offset_angle, axis=-1)
+    points_offset_angle = get_angle_offset_point(points, ref_point, fitsmap)
+    angle_separation = np.linalg.norm(points_offset_angle, axis=-1)
 
     return angle_separation
 
 
-def get_physical_offset_point(point_pix, ref_point, fitsmap, distance):
+def get_physical_offset_point(points, ref_point, fitsmap, distance):
     """Get offset coordinates of a point or set of points, with respect to a
     reference point in physical distance units.
 
@@ -82,16 +82,16 @@ def get_physical_offset_point(point_pix, ref_point, fitsmap, distance):
 
     """
 
-    point_offset_angle = get_angle_offset_point(point_pix, ref_point, fitsmap)
+    points_offset_angle = get_angle_offset_point(points, ref_point, fitsmap)
 
-    point_offset_physical = (point_offset_angle * distance).to(
+    points_offset_physical = (points_offset_angle * distance).to(
         u.au, equivalencies=u.dimensionless_angles()
     )
 
-    return point_offset_physical
+    return points_offset_physical
 
 
-def get_physical_separation(point_pix, ref_point, fitsmap, distance):
+def get_physical_separation(points, ref_point, fitsmap, distance):
     """Get separation between a point or set of points, and a reference pixel
     in physical distance units.
 
@@ -113,7 +113,7 @@ def get_physical_separation(point_pix, ref_point, fitsmap, distance):
 
     """
 
-    point_offset_physical = get_physical_offset_point(point_pix, ref_point, fitsmap, distance)
-    physical_separation = np.linalg.norm(point_offset_physical, axis=-1)
+    points_offset_physical = get_physical_offset_point(points, ref_point, fitsmap, distance)
+    physical_separation = np.linalg.norm(points_offset_physical, axis=-1)
 
     return physical_separation
