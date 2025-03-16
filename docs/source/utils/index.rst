@@ -6,24 +6,18 @@ Introduction
 ============
 
 The `madcubapy.utils` package is a collection of common utility functions
-directly available to end users to quickly perform actions on some data.
+directly available to end users to quickly perform actions on different types
+of data.
 
-Create spectral arrays
-======================
+Contents
+========
 
-So far, the only available utility function is
-:func:`~madcubapy.utils.create_spectral_array`, which creates an spectral array
-by providing the following parameters:
+.. toctree::
+    :maxdepth: 1
+    :includehidden:
 
-* ``nchan`` : Number of channels in the spectrum.
-* ``cdelt`` : Width of a channel.
-* ``crpix`` : Reference channel of the spectrum.
-* ``crval`` : Value of the reference channel.
-
-    >>> from madcubapy.utils import create_spectral_array
-    >>> x_axis = create_spectral_array(nchan=5, cdelt=2, crpix=2, crval=10)
-    >>> x_axis
-    array([8, 10, 12, 14, 16])
+    geometry
+    spectral
 
 API Reference
 =============
