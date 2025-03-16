@@ -6,3 +6,4 @@ work with astronomical data.
 """
 
 from .spectral import *
+from .geometry import *
