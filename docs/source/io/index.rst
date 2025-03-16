@@ -8,12 +8,6 @@ and *.spec* files alongside their :ref:`history files <hist_file>`.
 MadcubaMap
 ==========
 
-.. toctree::
-    :maxdepth: 1
-    :hidden:
-
-    madcubamap
-
 The `~madcubapy.io.MadcubaMap` class stores the data and metadata of FITS files.
 This class resembles a `~astropy.nddata.CCDData` class with the addition of a
 ``hist`` attribute containing the history information of the FITS file.
@@ -30,12 +24,6 @@ of the class, its attributes and its methods.
 SpectraContainer
 ================
 
-.. toctree::
-    :maxdepth: 1
-    :hidden:
-
-    spectracontainer
-
 The purpose of the `~madcubapy.io.SpectraContainer` class is storing spectra
 data exported by MADCUBA in **.spec** format. These **.spec** archives contain
 astronomical spectra inside a FITS bintable, alongside the history file.
@@ -49,6 +37,16 @@ method, although it can also be created by passing a ``bintable`` in an astropy
 
 Look into the :ref:`SpectraContainer page <info_spectracontainer>` for a
 detailed overview of the class, and its attributes and methods.
+
+Contents
+========
+
+.. toctree::
+    :maxdepth: 1
+
+    madcubafits
+    madcubamap
+    spectracontainer
 
 API Reference
 =============
