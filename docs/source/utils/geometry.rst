@@ -10,8 +10,8 @@ Convert points to offsets
 
 The :func:`~madcubapy.utils.get_angular_offset_points` and
 :func:`~madcubapy.utils.get_physical_offset_points` functions let the user
-get the coordinates of a point or set of points as angular or physical offset
-with respect to a reference point.
+get the coordinates of a point or set of points as angular or physical
+(providing a distance) offset with respect to a reference point.
 
 >>> from madcubapy.io import MadcubaMap
 >>> from madcubapy.utils import get_angular_offset_points
@@ -42,7 +42,7 @@ Calculate separations
 The :func:`~madcubapy.utils.get_angular_separation` and
 :func:`~madcubapy.utils.get_physical_separation` functions let the user
 get the separation between a point or set of points and a reference point in
-angular or physical units.
+angular or physical (providing a distance) units.
 
 >>> from madcubapy.io import MadcubaMap
 >>> from madcubapy.utils import get_angular_offset_points
@@ -55,5 +55,5 @@ angular or physical units.
 
 >>> import astropy.units as u
 >>> distance = 141 * u.pc
->>> get_phisical_separation(points, ref_point, madcubamap, distance)
+>>> get_physical_separation(points, ref_point, madcubamap, distance)
 [2228.78142939 2057.62242542 1887.13843753 1717.53048602] AU
