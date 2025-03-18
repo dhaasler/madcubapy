@@ -1,4 +1,11 @@
-Version 0.3.0 (2025-03-16)
+Version 0.3.1 (2025-03-18)
+==========================
+
+- Bugfixes:
+  
+  - Fix swapping right-middle mouse buttons depending on system OS.
+
+Version 0.3.0 (2025-03-18)
 ==========================
 
 - New features:

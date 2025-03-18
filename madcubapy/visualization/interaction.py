@@ -4,6 +4,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 import matplotlib.pyplot as plt
 import numpy as np
+import platform
 import tkinter as tk
 
 from madcubapy.io import MadcubaMap
@@ -65,6 +66,14 @@ def _get_input_from_figure(fig):
         Coordinates of the clicked points.
 
     """
+
+    # OS check
+    if platform.system() == 'Darwin':
+        right_click = 2
+        middle_click = 3
+    else:
+        right_click = 3
+        middle_click = 2
     
     original_backend = mpl.get_backend()
 
@@ -78,7 +87,8 @@ def _get_input_from_figure(fig):
         fig.set_canvas(new_manager.canvas)
         # Get input from clicks
         selected_points = fig.ginput(
-            n=0, timeout=0, mouse_add=1, mouse_pop=2, mouse_stop=3
+            n=0, timeout=0,
+            mouse_add=1, mouse_pop=middle_click, mouse_stop=right_click,
         )
         # Close figure to prevent issues
         plt.close('all')
@@ -120,6 +130,14 @@ def _get_input_from_map(fitsmap, **kwargs):
         Parameters to pass to :func:`~madcubapy.visualization.add_wcs_axes`.
 
     """
+
+    # OS check
+    if platform.system() == 'Darwin':
+        right_click = 2
+        middle_click = 3
+    else:
+        right_click = 3
+        middle_click = 2
 
     # Create a Tkinter window
     root = tk.Tk()
@@ -165,7 +183,7 @@ def _get_input_from_map(fitsmap, **kwargs):
                 # Refresh the canvas
                 canvas.draw()
         # Middle-click to remove last selected point
-        elif event.button == 2:
+        elif event.button == middle_click:
             if selected_points:
                 # Remove last selected point
                 selected_points.pop()
@@ -176,7 +194,7 @@ def _get_input_from_map(fitsmap, **kwargs):
                 # Refresh the canvas
                 canvas.draw()
         # Right-click to finalize the current polygon
-        elif event.button == 3:
+        elif event.button == right_click:
             # Refresh the canvas
             _quit()
 
