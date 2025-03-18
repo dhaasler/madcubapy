@@ -1,3 +1,20 @@
+Version 0.3.0 (2025-03-16)
+==========================
+
+- New features:
+
+  - Create ``geometry module in utils subpackage`` with
+    ``get_angle_offset_point``, ``get_angle_separation``,
+    ``get_physical_offset_point``, ``get_physical_separation`` functions.
+
+Version 0.2.1 (2025-03-15)
+==========================
+
+- Changes:
+
+  - Add compatibility of ``add_colorbar`` and ``insert_colorbar`` with
+    ``matplotlib.axes.Axes``.
+
 Version 0.2.0 (2025-02-11)
 ==========================
 
