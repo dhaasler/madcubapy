@@ -2,16 +2,16 @@ import astropy.units as u
 import numpy as np
 import pytest
 from madcubapy.io.madcubamap import MadcubaMap
-from madcubapy.utils.geometry import get_angular_offset_points
-from madcubapy.utils.geometry import get_physical_offset_points
-from madcubapy.utils.geometry import get_angular_separation
-from madcubapy.utils.geometry import get_physical_separation
+from madcubapy.coordinates.offsets import get_angular_offset_points
+from madcubapy.coordinates.offsets import get_physical_offset_points
+from madcubapy.coordinates.offsets import get_angular_separation
+from madcubapy.coordinates.offsets import get_physical_separation
 
 @pytest.fixture
 def example_madcuba_map():
     # Create and return a Map instance to be used in tests
     return MadcubaMap.read(
-        "madcubapy/utils/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
+        "madcubapy/coordinates/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
     )
 
 def test_get_angular_offset_points(example_madcuba_map):

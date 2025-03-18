@@ -21,6 +21,14 @@ User Guide
         .. toctree::
             :maxdepth: 2
 
+            Coordinates <coordinates/index>
+
+    .. grid-item-card::
+        :padding: 2
+
+        .. toctree::
+            :maxdepth: 2
+
             Operations <operations/index>
 
     .. grid-item-card::

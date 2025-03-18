@@ -1,13 +1,12 @@
-#####
-Utils
-#####
+###########
+Coordinates
+###########
 
 Introduction
 ============
 
-The `madcubapy.utils` package is a collection of common utility functions
-directly available to end users to quickly perform actions on different types
-of data.
+The `madcubapy.coordinates` package provides functions to help the user work
+with coordinates and transformations.
 
 Contents
 ========
@@ -16,7 +15,7 @@ Contents
     :maxdepth: 1
     :includehidden:
 
-    spectral
+    offsets
 
 API Reference
 =============

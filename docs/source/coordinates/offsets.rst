@@ -1,20 +1,20 @@
-##############
-Geometry utils
-##############
+#######
+Offsets
+#######
 
-The `madcubapy.utils` package offers a set of utils to perform operations on
-spectra data.
+The `madcubapy.coordinates` package offers a set of utility functions to work
+with coordinates and perform coordinates transformations.
 
 Convert points to offsets
 =========================
 
-The :func:`~madcubapy.utils.get_angular_offset_points` and
-:func:`~madcubapy.utils.get_physical_offset_points` functions let the user
+The :func:`~madcubapy.coordinates.get_angular_offset_points` and
+:func:`~madcubapy.coordinates.get_physical_offset_points` functions let the user
 get the coordinates of a point or set of points as angular or physical
 (providing a distance) offset with respect to a reference point.
 
 >>> from madcubapy.io import MadcubaMap
->>> from madcubapy.utils import get_angular_offset_points
+>>> from madcubapy.coordinates import get_angular_offset_points
 >>> madcubamap = MadcubaMap.read("example_cube.fits")
 
 >>> points = np.array([[120, 250], [140, 250], [160,250], [180,250]])
@@ -39,13 +39,13 @@ get the coordinates of a point or set of points as angular or physical
 Calculate separations
 =====================
 
-The :func:`~madcubapy.utils.get_angular_separation` and
-:func:`~madcubapy.utils.get_physical_separation` functions let the user
+The :func:`~madcubapy.coordinates.get_angular_separation` and
+:func:`~madcubapy.coordinates.get_physical_separation` functions let the user
 get the separation between a point or set of points and a reference point in
 angular or physical (providing a distance) units.
 
 >>> from madcubapy.io import MadcubaMap
->>> from madcubapy.utils import get_angular_offset_points
+>>> from madcubapy.coordinates import get_angular_offset_points
 >>> madcubamap = MadcubaMap.read("example_cube.fits")
 
 >>> points = np.array([[120, 250], [140, 250], [160,250], [180,250]])

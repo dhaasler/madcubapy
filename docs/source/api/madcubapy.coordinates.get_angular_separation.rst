@@ -1,6 +1,6 @@
 get_angular_separation
 ======================
 
-.. currentmodule:: madcubapy.utils
+.. currentmodule:: madcubapy.coordinates
 
 .. autofunction:: get_angular_separation
