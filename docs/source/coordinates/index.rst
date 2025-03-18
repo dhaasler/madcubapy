@@ -15,6 +15,7 @@ Contents
     :maxdepth: 1
     :includehidden:
 
+    transforms
     offsets
 
 API Reference
