@@ -278,7 +278,7 @@ madcuba_map.hist
 # `madcubapy` warns us that no :ref:`history file <hist_file>` has been found,
 # which we can ignore when working with FITS files not created by MADCUBA.
 
-carta_map = MadcubaMap.read("data/IRAS16293_SO2c_moment0_carta.fits")
+carta_map = MadcubaMap.read("../examples/data/IRAS16293_SO2c_moment0_carta.fits")
 
 ###############################################################################
 # If we check the units of the map we can see that they are incorrect,
