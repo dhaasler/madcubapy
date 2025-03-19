@@ -20,9 +20,9 @@ def copy_zoom_fitsmap(
 
     Parameters
     ----------
-    ref_fitsmap : `~astropy.nddata.CCDData`
+    ref_fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
         Reference mape.
-    target_fitsmap : `~astropy.nddata.CCDData`
+    target_fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
         Map into which limits are transformed.
     x_lim : array-like
         X axis limits from ref_fitsmap.
@@ -67,13 +67,14 @@ def copy_zoom_fitsmap(
 def copy_zoom_axes(
         ref_ax,
         target_ax):
-    """Copy a WCSAxes limits to another WCSAxes.
+    """Copy a `~astropy.visualization.wcsaxes.WCSAxes` limits to another
+    `~astropy.visualization.wcsaxes.WCSAxes`.
 
     Parameters
     ----------
-    ref_ax : `~astropy.visualization.WCSAxes`
+    ref_ax : `~astropy.visualization.wcsaxes.WCSAxes`
         Reference Axes.
-    target_ax : `~astropy.visualization.WCSAxes`
+    target_ax : `~astropy.visualization.wcsaxes.WCSAxes`
         Axes into which limits are transformed.
 
     """
@@ -98,11 +99,12 @@ def copy_zoom_axes(
 
 def sync_zoom(
         *axes):
-    """Synchronize X and Y limits between any number of WCSAxes objects.
+    """Synchronize X and Y limits between any number of
+    `~astropy.visualization.wcsaxes.WCSAxes` objects.
 
     Parameters
     ----------
-    *axes : `~astropy.visualization.WCSAxes`
+    *axes : `~astropy.visualization.wcsaxes.WCSAxes`
         WCSAxes objects to synchronize.
 
     Notes
