@@ -36,6 +36,6 @@ fig = plt.figure(figsize=(10,5))
 # We can pass kwargs for matplotlib.pyploy.imshow()
 ax1, img1 = add_wcs_axes(fig, 1, 2, 1, fitsmap=madcuba_map, vmin=0, vmax=100)
 ax2, img2 = add_wcs_axes(fig, 1, 2, 2, fitsmap=madcuba_map, vmin=0, vmax=100,
-                       cmap='jet')
+                         cmap='jet')
 
 plt.show()
