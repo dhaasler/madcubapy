@@ -25,8 +25,8 @@ def transform_coords_fitsmap(
         Origin of the coordinates of the image. 0 for numpy standards, and 1
         for FITS standards.
 
-    Return
-    ------
+    Returns
+    -------
     new_points : `~numpy.ndarray`
         Transformed points in the second image. 
 
@@ -64,7 +64,7 @@ def transform_coords_axes(
         target_ax,
         points):
     """Transform the pixel coordinates of one or more points between
-    two axes.
+    two WCSAxes.
 
     Parameters
     ----------
@@ -75,8 +75,8 @@ def transform_coords_axes(
     points : `~numpy.ndarray`
         Points from ref_axes to transform.
 
-    Return
-    ------
+    Returns
+    -------
     new_points : `~numpy.ndarray`
         Transformed points in the second image. 
 
