@@ -1,3 +1,20 @@
+Version 0.4.0 (2025-03-19)
+==========================
+
+- New features:
+
+  - Create coordinates subpackage.
+    
+    - Crete transforms module with ``transform_coords_axes`` and
+      ``transform_coords_fitsmap`` functions.
+
+    - Add ``copy_zoom_axes``, ``copy_zoom_fitsmap``, and ``sync_zoom`` to
+      ``visualization`` package.
+
+- Changes:
+
+  - Move and geometry module from utils into coordinates > offsets.
+
 Version 0.3.1 (2025-03-18)
 ==========================
 
