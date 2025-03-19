@@ -9,3 +9,4 @@ MADCUBA.
 from .interaction import *
 from .quick_plotters import *
 from .wcsaxes_helpers import *
+from .zoom_syncers import *
