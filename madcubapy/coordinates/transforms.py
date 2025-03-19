@@ -19,7 +19,7 @@ def transform_coords_fitsmap(
         Reference map.
     target_fitsmap : `~astropy.nddata.CCDData`
         Map into which the points are transformed.
-    points : `int` Nx2 array
+    points : `~numpy.ndarray`
         Points from ref_fitsmap to transform.
     origin : `int`, default:0
         Origin of the coordinates of the image. 0 for numpy standards, and 1
@@ -27,7 +27,7 @@ def transform_coords_fitsmap(
 
     Return
     ------
-    new_points : int Nx2 array
+    new_points : `~numpy.ndarray`
         Transformed points in the second image. 
 
     """
@@ -68,16 +68,16 @@ def transform_coords_axes(
 
     Parameters
     ----------
-    ref_ax : `~matplotlib.axes.Axes` or `~astropy.visualization.WCSAxes`
+    ref_ax : `~astropy.visualization.wcsaxes.WCSAxes`
         Reference axes.
-    target_ax : `~matplotlib.axes.Axes` or `~astropy.visualization.WCSAxes`
+    target_ax : `~astropy.visualization.wcsaxes.WCSAxes`
         Axes into which the points are transformed.
-    points : `int` Nx2 array
+    points : `~numpy.ndarray`
         Points from ref_axes to transform.
 
     Return
     ------
-    new_points : `int` Nx2 array
+    new_points : `~numpy.ndarray`
         Transformed points in the second image. 
 
     """

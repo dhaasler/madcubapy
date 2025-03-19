@@ -1,6 +1,6 @@
-#######
-Offsets
-#######
+##########
+Transforms
+##########
 
 The `madcubapy.coordinates` package offers a set of utility functions to work
 with coordinates and perform coordinates transformations.
@@ -10,7 +10,7 @@ Transform coordinates between two map objects
 
 The :func:`~madcubapy.coordinates.transform_coords_fitsmap` function lets the
 user transform one or several points FITS or image coordinates from one map
-to another.
+to another. This function uses the WCS data stored in the FITS file.
 
 .. code-block:: python
 
@@ -33,16 +33,16 @@ to another.
         
     >>> new_points
     [[102.89121886 120.1101461 ]
-    [102.89121888 137.33236833]
-    [102.89121889 154.55459055]]
+     [102.89121888 137.33236833]
+     [102.89121889 154.55459055]]
 
 
 Transform coordinates between two Axes objects
 ==============================================
 
 The :func:`~madcubapy.coordinates.transform_coords_axes` function lets the
-user transform one or several points FITS or image coordinates from one axes to
-another.
+user transform one or several points FITS or image coordinates from one
+`~astropy.visualization.wcsaxes.WCSAxes` to another.
 
 If we plot the map objects from the prior example we can also use the Axes to
 transform the coordinates of points
@@ -69,5 +69,5 @@ transform the coordinates of points
     
     >>> new_points
     [[102.89121886 120.1101461 ]
-    [102.89121888 137.33236833]
-    [102.89121889 154.55459055]]
+     [102.89121888 137.33236833]
+     [102.89121889 154.55459055]]
