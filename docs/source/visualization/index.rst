@@ -20,6 +20,7 @@ Contents
     :includehidden:
 
     wcsaxes_helpers
+    zoom_syncers
     quick_plotters
     interaction
 

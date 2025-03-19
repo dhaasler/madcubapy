@@ -1,8 +1,11 @@
+from astropy.visualization.wcsaxes import WCSAxes
+from astropy.wcs import WCS
 from madcubapy.io import MadcubaMap
 from madcubapy.visualization import add_wcs_axes
 from madcubapy.visualization import copy_zoom_axes
 from madcubapy.visualization import copy_zoom_fitsmap
 from madcubapy.visualization import sync_zoom
+from matplotlib.axes import Axes
 import matplotlib.pyplot as plt
 import numpy as np
 import pytest
@@ -22,16 +25,12 @@ def example_madcuba_map_tm2():
     )
 
 
-def test_sync_zoom_incorrent_type():
-    fig, ax = plt.subplots(figsize=(3,2))
+@pytest.mark.parametrize("invalid_input", [
+    None, 123, "string", [], {}, set(), object(), plt.figure().add_subplot(111)
+])
+def test_sync_zoom_incorrent_types(invalid_input):
     with pytest.raises(TypeError):
-        sync_zoom(ax)
-    with pytest.raises(TypeError):
-        sync_zoom(fig)
-    with pytest.raises(TypeError):
-        sync_zoom(1, 2)
-    with pytest.raises(TypeError):
-        sync_zoom('1', '2')
+        sync_zoom(invalid_input)
 
 
 def test_limits_results(example_madcuba_map_tm1, example_madcuba_map_tm2):

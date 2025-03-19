@@ -98,7 +98,7 @@ def copy_zoom_axes(
 
 def sync_zoom(
         *axes):
-    """Sync X and Y limits between two WCSAxes objects.
+    """Synchronize X and Y limits between any number of WCSAxes objects.
 
     Parameters
     ----------
