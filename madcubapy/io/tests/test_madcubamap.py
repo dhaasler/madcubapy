@@ -9,14 +9,14 @@ from madcubapy.io.madcubamap import MadcubaMap
 def example_madcuba_map():
     # Create and return a Map instance to be used in tests
     return MadcubaMap.read(
-        "madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
+        "examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
     )
 
 @pytest.fixture
 def example_carta_map():
     # Create and return a Map instance to be used in tests
     return MadcubaMap.read(
-        "madcubapy/io/tests/data/IRAS16293_SO2c_moment0_carta.fits"
+        "examples/data/IRAS16293_SO2c_moment0_carta.fits"
     )
 
 def test_read_madcuba_map(example_madcuba_map):
@@ -33,7 +33,7 @@ def test_read_madcuba_map(example_madcuba_map):
         equal_nan=True,
     )
     assert (example_madcuba_map.hist[-1]["Macro"] ==
-        "//PYTHON: Open cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits'"
+        "//PYTHON: Open cube: 'examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits'"
     )
 
 def test_invalid_file():
@@ -44,16 +44,16 @@ def test_write_madcuba_map(example_madcuba_map):
     # Assert filename and hist change after writing
     assert example_madcuba_map.filename == "IRAS16293_SO_2-1_moment0_madcuba.fits"
     example_madcuba_map.write(
-        "madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits",
+        "examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits",
         overwrite=True,
     )
     assert example_madcuba_map.filename == "IRAS16293_SO_2-1_moment0_madcuba_write.fits"
     assert (example_madcuba_map.hist[-1]["Macro"] ==
-        "//PYTHON: Save cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
+        "//PYTHON: Save cube: 'examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
     )
     # Read back the written file
     example_madcuba_map_write = MadcubaMap.read(
-        "madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits"
+        "examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits"
     )
     # Assert BUNIT was written correctly
     assert example_madcuba_map_write.header["BUNIT"] == 'Jy beam-1 m s-1'
@@ -78,10 +78,10 @@ def test_write_madcuba_map(example_madcuba_map):
     # Check filename and hist file
     assert example_madcuba_map_write.filename == "IRAS16293_SO_2-1_moment0_madcuba_write.fits"
     assert (example_madcuba_map_write.hist[-2]["Macro"] ==
-        "//PYTHON: Save cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
+        "//PYTHON: Save cube: 'examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
     )
     assert (example_madcuba_map_write.hist[-1]["Macro"] ==
-        "//PYTHON: Open cube: 'madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
+        "//PYTHON: Open cube: 'examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
     )
 
 def test_fix_units_correct(example_madcuba_map):

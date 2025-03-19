@@ -7,7 +7,7 @@ from madcubapy.operations.maps import stack_maps
 def example_madcuba_map():
     # Create and return a Map instance to be used in tests
     return MadcubaMap.read(
-        "madcubapy/operations/maps/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
+        "examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
     )
 
 def test_stack_maps(example_madcuba_map):

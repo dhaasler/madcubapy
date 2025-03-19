@@ -4,7 +4,7 @@
 Read and plot maps with MadcubaMap
 ##################################
 
-Introduction to using `madcubapy` to read and plot a FITS map.
+Introduction to using `madcubapy` to read and plot FITS maps.
 
 Usually, we would open and FITS files in python using `astropy` and plot them
 using `matplotlib`. This tutorial shows how this can be done with `madcubapy`,
@@ -46,7 +46,8 @@ warnings.filterwarnings('ignore', category=AstropyWarning)
 # corresponding :ref:`history file <hist_file>` will be loaded as well if
 # present.
 
-madcuba_map = MadcubaMap.read("data/IRAS16293_SO_2-1_moment0_madcuba.fits")
+madcuba_map = MadcubaMap.read(
+    "../examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits")
 
 ###############################################################################
 # .. note:: 
@@ -418,7 +419,6 @@ fig = plt.figure(figsize=(6, 5))
 ax, img = add_wcs_axes(fig=fig, fitsmap=madcuba_map, vmin=0, vmax=300)
 # Add colorbar
 cbar = insert_colorbar(ax)
-
 
 plt.savefig('../docs/source/gallery_tutorials/read_and_plot_fig_wcsaxes2.png')
 plt.close()  # close plot so that it does not show in the tutorial page

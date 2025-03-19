@@ -23,8 +23,8 @@ from madcubapy.visualization import sync_zoom
 import matplotlib.pyplot as plt
 
 # Read fits file
-map_high_res = MadcubaMap.read("../data/IRAS16293-SO2a-tm1.fits")
-map_low_res = MadcubaMap.read("../data/IRAS16293-SO2a-tm2.fits")
+map_high_res = MadcubaMap.read("../data/IRAS16293_SO2a_tm1.fits")
+map_low_res = MadcubaMap.read("../data/IRAS16293_SO2a_tm2.fits")
 
 # Create empty figure
 fig = plt.figure(figsize=(10,5))

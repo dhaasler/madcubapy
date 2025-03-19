@@ -42,7 +42,7 @@ def example_init_nohist_spec():
 def example_read_spec():
     # Create and return a Map instance to be used in tests
     return SpectraContainer.read(
-        "madcubapy/io/tests/data/IRAS16293_position_8_TM2_spectra.spec"
+        "examples/data/IRAS16293_position_8_TM2_spectra.spec"
     )
 
 def test_read_spec(example_read_spec):

@@ -14,14 +14,14 @@ import pytest
 def example_madcuba_map_tm1():
     # Create and return a Map instance to be used in tests
     return MadcubaMap.read(
-        "madcubapy/io/tests/data/IRAS16293-SO2a-tm1.fits"
+        "examples/data/IRAS16293_SO2a_tm1.fits"
     )
 
 @pytest.fixture
 def example_madcuba_map_tm2():
     # Create and return a Map instance to be used in tests
     return MadcubaMap.read(
-        "madcubapy/io/tests/data/IRAS16293-SO2a-tm2.fits"
+        "examples/data/IRAS16293_SO2a_tm2.fits"
     )
 
 

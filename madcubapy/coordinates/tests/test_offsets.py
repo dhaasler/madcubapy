@@ -11,7 +11,7 @@ from madcubapy.coordinates.offsets import get_physical_separation
 def example_madcuba_map():
     # Create and return a Map instance to be used in tests
     return MadcubaMap.read(
-        "madcubapy/coordinates/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
+        "examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
     )
 
 def test_get_angular_offset_points(example_madcuba_map):

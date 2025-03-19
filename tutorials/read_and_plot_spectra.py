@@ -40,7 +40,7 @@ warnings.filterwarnings('ignore', category=AstropyWarning)
 # present.
 
 spectra_container = SpectraContainer.read(
-    "data/IRAS16293_position_8_TM2_spectra.spec")
+    "../examples/data/IRAS16293_position_8_TM2_spectra.spec")
 
 ###############################################################################
 # .. note:: 

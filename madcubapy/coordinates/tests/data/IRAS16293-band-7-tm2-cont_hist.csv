@@ -1,3 +1,0 @@
-Index,FITS,Macro,Type,FROM_ROW,TO_ROW,Roi_Range,User,Date
-1,C,"//INFO: Import CASA FITS FILE, ESTIMATED_SIGMA=0.10951744548592295",P,,,,david,2024-03-12T11:43:42.713
-2,C,"run(""Import CASA FITS FILE"",""select='/home/david/Documents/MasterAstro/tfm/Data/Cubes/Band_7_12m-TM2/member.uid___A001_X133d_X321d.IRAS_16293-2422_sci.spw20_22_24.cont.I.pbcor.fits'"");",P,,,,david,2024-03-12T11:43:42.713

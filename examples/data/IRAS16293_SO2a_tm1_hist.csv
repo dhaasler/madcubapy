@@ -1,0 +1,9 @@
+Index,FITS,Macro,Type,FROM_ROW,TO_ROW,Roi_Range,User,Date
+1,C,//ORIGIN=/home/madcubapy/data/MAD_CUB_member.uid___A001_X133d_X321b.IRAS_16293-2422_sci.spw24.cube.I.pbcor.fits,I,,,,,
+2,C,"//INFO: Import CASA FITS FILE, ESTIMATED_SIGMA=0.015022878839534494",P,,,,madcubapy,2022-10-21T12:47:11.516
+3,C,"run(""Import CASA FITS FILE"",""select='/home/madcubapy/data/member.uid___A001_X133d_X321b.IRAS_16293-2422_sci.spw24.cube.I.pbcor.fits' changehead='Vrad$3$km/s'"");",P,,,,madcubapy,2022-10-21T12:47:11.516
+4,C,"run(""Open Virtual Cube"",""select='/home/madcubapy/data/MAD_CUB_member.uid___A001_X133d_X321b.IRAS_16293-2422_sci.spw24.cube.I.pbcor.fits' "");",P,,,,madcubapy,2023-05-02T13:48:06.935
+5,C,//ORIGIN=CUBE MAD_CUB_member.uid___A001_X133d_X321b.IRAS_16293-2422_sci.spw24.cube.I.pbcor.fits,I,,,,,
+6,C,"//selectWindow(""CUBE MAD_CUB_member.uid___A001_X133d_X321b.IRAS_16293-2422_sci.spw24.cube.I.pbcor.fits"");",I,,,,,
+7,C,"run(""INTEGRATED INTENSITY PLUGIN"",""ranges=500.0$5500.0$# axisunit=m s-1 interpolate=0"");",P,,,,madcubapy,2023-05-02T13:48:08.944
+8,C,"run(""Save Cube"",""select='/home/madcubapy/data/IRAS16293_SO2a_tm1.fits'"");",P,,,,madcubapy,2023-05-02T13:48:09.273

@@ -10,14 +10,14 @@ from madcubapy.visualization import add_wcs_axes
 def example_madcuba_map_m0():
     # Create and return a Map instance to be used in tests
     return MadcubaMap.read(
-        "madcubapy/coordinates/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
+        "examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
     )
 
 @pytest.fixture
 def example_madcuba_map_cont():
     # Create and return a Map instance to be used in tests
     return MadcubaMap.read(
-        "madcubapy/coordinates/tests/data/IRAS16293-band-7-tm2-cont.fits"
+        "examples/data/IRAS16293_band_7_tm2_cont.fits"
     )
 
 

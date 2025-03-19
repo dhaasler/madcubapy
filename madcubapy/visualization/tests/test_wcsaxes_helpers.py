@@ -15,7 +15,7 @@ import pytest
 def example_madcuba_map():
     # Create and return a Map instance to be used in tests
     return MadcubaMap.read(
-        "madcubapy/io/tests/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
+        "examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits"
     )
 
 def test_add_wcs_axes(example_madcuba_map):

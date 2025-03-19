@@ -23,7 +23,8 @@ warnings.filterwarnings('ignore', category=AstropyWarning)
 from madcubapy.io import MadcubaMap
 
 # Read fits file
-madcuba_map = MadcubaMap.read("data/IRAS16293_SO_2-1_moment0_madcuba.fits")
+madcuba_map = MadcubaMap.read(
+    "../examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits")
 
 ###############################################################################
 # To measure the noise level of the map we have two options:
