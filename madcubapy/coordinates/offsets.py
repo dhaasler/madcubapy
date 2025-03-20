@@ -35,8 +35,9 @@ def get_angular_offset_points(points, ref_point, fitsmap):
 
 
 def get_angular_separation(points, ref_point, fitsmap):
-    """Get separation between a point or set of points, and a reference pixel
-    in angular units.
+    """
+    Get separation between a point or set of points, and a reference pixel in
+    angular units.
 
     Parameters
     ----------
@@ -61,7 +62,8 @@ def get_angular_separation(points, ref_point, fitsmap):
 
 
 def get_physical_offset_points(points, ref_point, fitsmap, distance):
-    """Get offset coordinates of a point or set of points, with respect to a
+    """
+    Get offset coordinates of a point or set of points, with respect to a
     reference point in physical distance units.
 
     Parameters
@@ -92,8 +94,9 @@ def get_physical_offset_points(points, ref_point, fitsmap, distance):
 
 
 def get_physical_separation(points, ref_point, fitsmap, distance):
-    """Get separation between a point or set of points, and a reference pixel
-    in physical distance units.
+    """
+    Get separation between a point or set of points, and a reference pixel in
+    physical distance units.
 
     Parameters
     ----------

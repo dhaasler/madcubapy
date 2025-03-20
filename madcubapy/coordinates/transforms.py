@@ -10,14 +10,14 @@ def transform_coords_fitsmap(
         target_fitsmap,
         points,
         origin=0):
-    """Transform the pixel coordinates of one or more points between
-    two images.
+    """
+    Transform the pixel coordinates of one or more points between two maps.
 
     Parameters
     ----------
-    ref_fitsmap : `~astropy.nddata.CCDData`
+    ref_fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
         Reference map.
-    target_fitsmap : `~astropy.nddata.CCDData`
+    target_fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
         Map into which the points are transformed.
     points : `~numpy.ndarray`
         Points from ref_fitsmap to transform.
@@ -63,8 +63,9 @@ def transform_coords_axes(
         ref_ax,
         target_ax,
         points):
-    """Transform the pixel coordinates of one or more points between
-    two WCSAxes.
+    """
+    Transform the pixel coordinates of one or more points between two
+    `~astropy.visualization.wcsaxes.WCSAxes`.
 
     Parameters
     ----------

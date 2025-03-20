@@ -16,7 +16,8 @@ def copy_zoom_fitsmap(
         x_lim,
         y_lim,
         origin=0):
-    """Copy a map's limits to another map.
+    """
+    Copy a map's limits to another map.
 
     Parameters
     ----------
@@ -67,7 +68,8 @@ def copy_zoom_fitsmap(
 def copy_zoom_axes(
         ref_ax,
         target_ax):
-    """Copy a `~astropy.visualization.wcsaxes.WCSAxes` limits to another
+    """
+    Copy a `~astropy.visualization.wcsaxes.WCSAxes` limits to another
     `~astropy.visualization.wcsaxes.WCSAxes`.
 
     Parameters
@@ -99,7 +101,8 @@ def copy_zoom_axes(
 
 def sync_zoom(
         *axes):
-    """Synchronize X and Y limits between any number of
+    """
+    Synchronize X and Y limits between any number of
     `~astropy.visualization.wcsaxes.WCSAxes` objects.
 
     Parameters
