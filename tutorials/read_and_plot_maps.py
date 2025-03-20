@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 # sphinx_gallery_start_ignore
 # Needed imports for creating the matplotlib + astropy figures. I do not want
 # them to show in the main example for the simple usecase of madcubapy.
+import astropy
 import matplotlib.axes as maxes
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 # Do not show warnings in tutorial page. A note tells the user what to expect
@@ -66,7 +67,7 @@ madcuba_map.hist
 # As a failsafe, a `~astropy.nddata.CCDData` object is also present inside the
 # `~madcubapy.io.MadcubaMap` object in the ``ccddata`` attribute.
 # This way, we can do anything a `~astropy.nddata.CCDData` object can with
-# ``madcubapy`` through this attribute.
+# `madcubapy` through this attribute.
 
 ###############################################################################
 # Plotting the FITS map

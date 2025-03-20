@@ -8,18 +8,17 @@ madcubapy.egg-info/
 # Build files
 build/
 
-# Virtual environment
-.venv-madcubapy/
-.venv-minimum/
+# Distribution files
+dist/
+
+# Coverage
+.coverage
 
 # VSCode
 .vscode/
 
 # idea
 .idea/
-
-# Distribution files
-dist/
 
 # Sphinx-gallery
 docs/source/gallery_examples

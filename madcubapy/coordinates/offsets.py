@@ -9,7 +9,8 @@ __all__ = [
 ]
 
 def get_angular_offset_points(points, ref_point, fitsmap):
-    """Get offset coordinates of a point or set of points, with respect to a
+    """
+    Get offset coordinates of a point or set of points, with respect to a
     reference point in angular units.
 
     Parameters
