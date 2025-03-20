@@ -8,6 +8,7 @@ import matplotlib.patches as patches
 import matplotlib.patheffects as PathEffects
 import matplotlib.pyplot as plt
 import numpy as np
+import platform
 import tkinter as tk
 
 from madcubapy.io import MadcubaMap
@@ -56,6 +57,14 @@ def measure_noise(
     The function can be aborted by closing the window or pressing 'q'.
 
     """
+
+    # OS check
+    if platform.system() == 'Darwin':
+        right_click = 2
+        middle_click = 3
+    else:
+        right_click = 3
+        middle_click = 2
 
     if not isinstance(fitsmap, CCDData) and not isinstance(fitsmap, MadcubaMap):
         raise TypeError(f"Unsupported type: {type(fitsmap)}. "
@@ -125,7 +134,7 @@ def measure_noise(
             # Refresh the canvas
             canvas.draw()
         # Right-click to finalize the current polygon
-        elif event.button == 3 and current_polygon:
+        elif event.button == right_click and current_polygon:
             polygon = np.array(current_polygon)
             # Draw the last side of the polygon
             closed_polygon = np.vstack((polygon, polygon[0]))
