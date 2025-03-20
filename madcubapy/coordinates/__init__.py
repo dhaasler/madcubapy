@@ -5,5 +5,6 @@ The `madcubapy.coordinates` package provides functions to help the user
 work with coordinates and transformations.
 """
 
-from .offsets import *
+from .conversions import *
 from .transforms import *
+from .offsets import *
