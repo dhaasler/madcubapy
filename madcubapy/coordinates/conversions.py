@@ -552,7 +552,7 @@ def angle_to_pixels(
             )
         # List of quantities
         elif all(isinstance(elem, u.Quantity) for elem in length):
-            # Convert list to tuple
+            # Convert tuple to list
             if isinstance(length, tuple):
                 length = list(length)
             # Return pixels
@@ -664,6 +664,9 @@ def pixels_to_angle(
             )
         # List of quantities (only pix supported)
         elif all(isinstance(elem, u.Quantity) for elem in pix_length):
+            # Convert tuple to list
+            if isinstance(pix_length, tuple):
+                pix_length = list(pix_length)
             if not all((elem.unit == u.pix) for elem in pix_length):
                 raise ValueError(
                     f'Input unit not supported. Only unit allowed is "{u.pix}"'
