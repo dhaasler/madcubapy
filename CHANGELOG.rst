@@ -1,9 +1,18 @@
+Version 0.4.5 (2025-03-21)
+==========================
+
+- New features:
+
+  - Create `coordinates` > ``conversions`` module with ``fits_to_python``,
+    ``python_to_fits``, ``world_to_pixel``, ``pixel_to_world``,
+    ``angle_to_pixels``, and ``pixels_to_angle`` functions.
+
 Version 0.4.0 (2025-03-19)
 ==========================
 
 - New features:
 
-  - Create coordinates subpackage.
+  - Create `coordinates` subpackage.
     
     - Crete transforms module with ``transform_coords_axes`` and
       ``transform_coords_fitsmap`` functions.
