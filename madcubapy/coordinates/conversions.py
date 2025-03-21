@@ -488,7 +488,7 @@ def pixel_to_world(
 def angle_to_pixels(
         length,
         fitsmap,
-        axis='x',
+        axis='y',
         log=False):
     """
     Convert a length value (or values) in angular units to data pixels.
@@ -610,7 +610,7 @@ def angle_to_pixels(
 def pixels_to_angle(
         pix_length,
         fitsmap,
-        axis='x',
+        axis='y',
         log=False):
     """
     Convert an angle value (or values) in pixels to an angular quantity.
