@@ -337,13 +337,13 @@ def test_pixel_to_world_conversion_invalid_type(example_map):
 # or several smaller parametrized test definitions.
 def test_angle_to_pixels_conversion_results(example_map):
     # Expected results
-    result_one_length = np.array([-4.34782607])
-    result_two_lengths = np.array([-8.69565215, -4.34782607])
+    result_one_length = np.array([4.34782607])
+    result_two_lengths = np.array([8.69565215, 4.34782607])
     # Simple length no units, defaults to deg
     angle_simple = 1
     assert np.allclose(
         angle_to_pixels(angle_simple, example_map),
-        -15652.173864642871,
+        15652.173864642871,
     )
     # Simple length quantity
     angle_simple_quantity = 1 * u.arcsec
@@ -352,7 +352,7 @@ def test_angle_to_pixels_conversion_results(example_map):
         result_one_length,
     )
     # Simple length quantity in pixels
-    angle_simple_quantity_pix = -4.34782607 * u.pix
+    angle_simple_quantity_pix = 4.34782607 * u.pix
     assert np.allclose(
         angle_to_pixels(angle_simple_quantity_pix, example_map),
         result_one_length,
@@ -418,31 +418,31 @@ def test_pixels_to_angle_conversion_results(example_map):
     result_one_length = 1 * u.arcsec
     result_two_lengths = np.array([2, 1]) * u.arcsec
     # Simple length no units, defaults to pix
-    pixels_simple = -4.34782607
+    pixels_simple = 4.34782607
     assert np.allclose(
         pixels_to_angle(pixels_simple, example_map),
         result_one_length,
     )
     # Simple length quantity in pixels
-    pixels_simple_quantity = -4.34782607 * u.pix
+    pixels_simple_quantity = 4.34782607 * u.pix
     assert np.allclose(
         pixels_to_angle(pixels_simple_quantity, example_map),
         result_one_length,
     )
     # Simple tuple of quantities
-    pixels_tuple_quantities = (-8.69565215 * u.pix, -4.34782607 * u.pix)
+    pixels_tuple_quantities = (8.69565215 * u.pix, 4.34782607 * u.pix)
     assert np.allclose(
         pixels_to_angle(pixels_tuple_quantities, example_map),
         result_two_lengths,
     )
     # Simple list of quantities
-    pixels_list_quantities = [-8.69565215 * u.pix, -4.34782607 * u.pix]
+    pixels_list_quantities = [8.69565215 * u.pix, 4.34782607 * u.pix]
     assert np.allclose(
         pixels_to_angle(pixels_list_quantities, example_map),
         result_two_lengths,
     )
     # Quantity of simple array, tuple, or list
-    pixels_quantity_array = np.array([-8.69565215, -4.34782607])  * u.pix
+    pixels_quantity_array = np.array([8.69565215, 4.34782607])  * u.pix
     assert np.allclose(
         pixels_to_angle(pixels_quantity_array, example_map),
         result_two_lengths,
