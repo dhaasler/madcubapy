@@ -2,7 +2,7 @@ __all__ = [
     'is_number',
 ]
 
-def is_number(s):
+def _is_number(s):
     """Checks if a string is a float number or has other characters."""
     try:
         float(s)
