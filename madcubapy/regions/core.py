@@ -54,7 +54,8 @@ def import_roi(
         fitsmap=None,
         log=False,
         **kwargs):
-    """Import a RoI file as a matplotlib patch.
+    """
+    Import a RoI file as a matplotlib patch.
 
     Parameters
     ----------
