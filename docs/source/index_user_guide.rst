@@ -29,7 +29,7 @@ User Guide
         .. toctree::
             :maxdepth: 2
 
-            Operations <operations/index>
+            Regions <regions/index>
 
     .. grid-item-card::
         :padding: 2
@@ -38,6 +38,14 @@ User Guide
             :maxdepth: 2
 
             Visualization <visualization/index>
+
+    .. grid-item-card::
+        :padding: 2
+
+        .. toctree::
+            :maxdepth: 2
+
+            Utils <operations/index>
 
     .. grid-item-card::
         :padding: 2
