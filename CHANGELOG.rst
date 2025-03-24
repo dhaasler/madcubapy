@@ -1,3 +1,11 @@
+Version 0.5.0 (2025-03-24)
+==========================
+
+- New features:
+
+  - Create `regions` package to work with MADCUBA, pyroi, CRTF, and DS9 rois
+    with ``import_roi`` and ``export_roi`` functions.
+
 Version 0.4.5 (2025-03-21)
 ==========================
 
