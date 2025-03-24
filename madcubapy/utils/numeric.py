@@ -1,5 +1,4 @@
 __all__ = [
-    'is_number',
 ]
 
 def _is_number(s):
