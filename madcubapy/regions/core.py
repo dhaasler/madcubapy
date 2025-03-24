@@ -30,10 +30,10 @@ def export_roi(
     filename : `str` or `~pathlib.Path`
         Path of the output file.
     format : `str`, optional
-        The export format. Options: "pyroi" (default), "crtf".
+        The export format. Options: ``'pyroi'`` (default), ``'crtf'``.
     coord_frame : `str`
-        Coordinate frame to use.  Options: "world" and "image".
-    fitsmap : `~madcubapy.io.MadcubaMap` or ~astropy.nddata.CCDData`
+        Coordinate frame to use.  Options: ``'world'`` and ``'image'``.
+    fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`
         Map object used to transform coordinates.
     patch_info : `str`
         Custom information text to add to the roi file.
@@ -55,28 +55,25 @@ def import_roi(
         log=False,
         **kwargs):
     """Import a RoI file as a matplotlib patch.
-    Accepted ROI files are CARTA Region Text Format (CRTF), DS9 ROI
-    files, MADCUBA custom ROI files (.mcroi), and my custom Matplotlib
-    Patch ROIs (.pyroi).
 
     Parameters
     ----------
-    input_file : str or path
+    input_file : `str` or `pathlib.Path`
         Path of the .pyroi file to be imported.
-    fitsmap : astropy.nddata.ccddata.CCDData
-        CCD Data object used to get CDELT value.
-    log : bool
+    fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.ccddata.CCDData`
+        Map object used to transform coordinates.
+    log : `bool`
         If True, print parsed RoI info onscreen.
 
     Returns
     -------
-    patch : matplotlib.patches.Patch
+    patch : `~matplotlib.patches.Patch`
         Patch object.
 
     Other Parameters
     ----------------
     **kwargs
-        Parameters to pass to the matplotlib.patches.Patch class.
+        Parameters to pass to the `~matplotlib.patches.Patch` class.
 
     """
 
