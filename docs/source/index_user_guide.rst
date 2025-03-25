@@ -45,7 +45,7 @@ User Guide
         .. toctree::
             :maxdepth: 2
 
-            Utils <operations/index>
+            Operations <operations/index>
 
     .. grid-item-card::
         :padding: 2

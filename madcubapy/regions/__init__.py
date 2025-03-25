@@ -13,3 +13,4 @@ from .ds9 import *
 from .madcuba import *
 from .pyroi import *
 from .patches import *
+from .contours import *
