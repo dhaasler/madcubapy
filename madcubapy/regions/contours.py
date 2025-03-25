@@ -42,11 +42,11 @@ def import_region_contourset(
     ----------
     ax : `~matplotlib.axes.Axes` or `~astropy.visualization.wcsaxes.WCSAxes`
         Axes object into which the contour region will be added.
-    contour : `~matplotlib.contour.QuadContourSet`
+    contour : `~matplotlib.contour.ContourSet`
         Contour object from which to take information.
     index : `int`, default=0
         Index of the contour region to be imported.
-    ref_fitsmap : `~madcubapy.io.madcubaMap` or `~astropy.nddata.CCDData`, \
+    ref_fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`, \
                   optional
         Used to apply the transform if the fitsmap is different from
         the one plotted in the axes object.
@@ -91,11 +91,11 @@ def import_region_patch(
     ----------
     ax : `~matplotlib.axes.Axes` or `~astropy.visualization.wcsaxes.WCSAxes`
         Axes object into which the contour region will be added.
-    contour : `~matplotlib.contour.QuadContourSet`
+    contour : `~matplotlib.contour.ContourSet`
         Contour object from which to take information.
-    index : `int`
+    index : `int`, default=0
         Index of the contour region to be imported.
-    ref_fitsmap : `~madcubapy.io.madcubaMap` or `~astropy.nddata.CCDData`, \
+    ref_fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`, \
                   optional
         Used to apply the transform if the fitsmap is different from
         the one plotted in the axes object.
@@ -163,21 +163,21 @@ def check_contour(
         fig=None,
         ax=None,
         fitsmap=None,
-        plot_kwargs=None,
         **kwargs):
     """
-    Show the regions contained in a contour object and return the
-    polygon patches that have been clicked, alongside their indexes.
+    Shows the regions contained in a contour object in a pop-up window and lets
+    the user select closed contours as regions. Returns the indexes of the
+    regions that have been clicked.
     
     Parameters
     ----------
-    contour : `~matplotlib.contour.QuadContourSet`
+    contour : `~matplotlib.contour.ContourSet`
         Contour object to plot as polygons with indexes.
-    ax : `~astropy.visualization.WCSAxes`, optional
+    ax : `~astropy.visualization.wcsaxes.WCSAxes`, optional
         Ax object to use for displaying the contour.
-    fig : `~matplotlib.pyplot.Figure` or `~matplotlib.figure.Figure`, optional
+    fig : `~matplotlib.figure.Figure`, optional
         Fig object to use for displaying the contour.
-    fitsmap : `~madcubapy.io.madcubaMap` or `~astropy.nddata.CCDData`, optional
+    fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`, optional
         Map object to use for displaying the contour.
 
     Returns
@@ -187,10 +187,8 @@ def check_contour(
 
     Other Parameters
     ----------------
-    **plot_kwargs
-        Parameters to pass to the :func:`~matplotlib.pyplot.imshow()` function.
     **kwargs
-        Parameters to pass to `~matplotlib.patches.Polygon`.
+        Parameters to pass to the :func:`~matplotlib.pyplot.imshow()` function.
 
     """
 
@@ -207,10 +205,10 @@ def check_contour(
         else:
             # Create a Matplotlib figure.
             new_fig = Figure(figsize=(7,7))
-            if plot_kwargs is None:
-                plot_kwargs = {}
+            if kwargs is None:
+                kwargs = {}
             new_ax, new_img = add_wcs_axes(new_fig, 1, 1, 1, fitsmap=fitsmap,
-                                           **plot_kwargs)
+                                           **kwargs)
             new_cbar = add_colorbar(new_ax)
     elif ax != None:
         if fitsmap != None or fig != None:
@@ -224,11 +222,11 @@ def check_contour(
             og_img = ax.get_images()[0]
             data = np.array(og_img.get_array())
             clim = og_img.get_clim()
-            if plot_kwargs is None:
-                plot_kwargs = {}
-                plot_kwargs['vmin'] = clim[0]
-                plot_kwargs['vmax'] = clim[1]
-            new_img = new_ax.imshow(data, origin='lower', **plot_kwargs)
+            if kwargs is None:
+                kwargs = {}
+                kwargs['vmin'] = clim[0]
+                kwargs['vmax'] = clim[1]
+            new_img = new_ax.imshow(data, origin='lower', **kwargs)
     elif fig != None:
         if fitsmap != None or ax != None:
             raise TypeError(
@@ -242,11 +240,11 @@ def check_contour(
             og_img = ax.get_images()[0]
             data = np.array(og_img.get_array())
             clim = og_img.get_clim()
-            if plot_kwargs is None:
-                plot_kwargs = {}
-                plot_kwargs['vmin'] = clim[0]
-                plot_kwargs['vmax'] = clim[1]
-            new_img = new_ax.imshow(data, origin='lower', **plot_kwargs)
+            if kwargs is None:
+                kwargs = {}
+                kwargs['vmin'] = clim[0]
+                kwargs['vmax'] = clim[1]
+            new_img = new_ax.imshow(data, origin='lower', **kwargs)
     else:
         # Create a new Figure without a map
         new_fig = Figure(figsize=(7, 7))
@@ -443,7 +441,7 @@ def _all_in_one(
     ----------
     ax : `~astropy.visualization.wcsaxes.WCSAxes`
         Axes object in which to add the ContourSet object(s).
-    fitsmap : `~madcubapy.io.madcubaMap` or `~astropy.nddata.CCDData`, optional
+    fitsmap : `~madcubapy.io.MadcubaMap` or `~astropy.nddata.CCDData`, optional
         Map object to use for calculating sigma and its contours.
 
     """
