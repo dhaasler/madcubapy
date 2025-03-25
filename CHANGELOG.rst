@@ -1,3 +1,11 @@
+Version 0.5.5 (2025-03-25)
+==========================
+
+- New features:
+
+  - Add ``contours`` module to `regions` package with ``check_contour``,
+    ``import_region_contourset``, and ``import_region_patch`` functions.
+
 Version 0.5.0 (2025-03-24)
 ==========================
 
