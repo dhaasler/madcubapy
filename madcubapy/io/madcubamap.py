@@ -198,6 +198,11 @@ class MadcubaMap(MadcubaFits):
             hist = None
         else:
             hist = Table.read(hist_filepath, format='csv')
+            # Set default column types in history table to avoid errors
+            hist["Macro"] = np.array(hist["Macro"], dtype='U500')
+            hist["Type"] = np.array(hist["User"], dtype='U5')
+            hist["User"] = np.array(hist["User"], dtype='U50')
+            hist["Date"] = np.array(hist["Date"], dtype='U23')
         # Store the attributes
         data = ccddata.data
         header = ccddata.header
