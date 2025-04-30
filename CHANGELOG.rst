@@ -1,3 +1,18 @@
+Version 0.6.0 (2025-04-30)
+==========================
+
+- New features:
+
+  - Add ``spectral`` module to `coordinates` package with ``SpectralData``
+    class.
+  - Add spectral data conversions functions to `utils.spectral` module.
+
+Version 0.5.6 (2025-04-10)
+==========================
+
+- Bugfixes:
+  - Fix incorrect dtype initialization when reading incomplete history files.
+
 Version 0.5.5 (2025-03-25)
 ==========================
 
