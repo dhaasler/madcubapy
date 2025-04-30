@@ -18,6 +18,7 @@ Contents
     conversions
     transforms
     offsets
+    spectral_data
 
 API Reference
 =============

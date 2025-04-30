@@ -2,5 +2,4 @@ API Reference
 =============
 
 .. automodapi:: madcubapy.coordinates
-    :no-inheritance-diagram:
-    :inherited-members:
+   :no-inheritance-diagram:
