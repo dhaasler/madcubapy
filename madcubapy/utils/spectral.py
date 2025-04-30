@@ -55,16 +55,16 @@ def obs_to_rest(obs_freq, radial_velocity, doppler_convention):
 
     Parameters
     ----------
-    obs_freq : Quantity
+    obs_freq : `~astropy.units.Quantity`
         Observed frequency.
-    radial_velocity : Quantity
+    radial_velocity : `~astropy.units.Quantity`
         Radial velocity of the source relative to the observer.
-    doppler_convention : str, optional
+    doppler_convention : {"radio", "relativistic"}, optional
         The Doppler convention to use.
 
     Returns
     -------
-    rest_freq : Quantity
+    rest_freq : `~astropy.units.Quantity`
         Rest frequency.
 
     """
@@ -91,16 +91,16 @@ def rest_to_obs(rest_freq, radial_velocity, doppler_convention):
 
     Parameters
     ----------
-    rest_freq : Quantity
+    rest_freq : `~astropy.units.Quantity`
         Rest frequency.
-    radial_velocity : Quantity
+    radial_velocity : `~astropy.units.Quantity`
         Radial velocity of the source relative to the observer.
-    doppler_convention : str, optional
+    doppler_convention : {"radio", "relativistic"}, optional
         The Doppler convention to use.
 
     Returns
     -------
-    obs_freq : Quantity
+    obs_freq : `~astropy.units.Quantity`
         Observed frequency.
 
     """
@@ -127,16 +127,16 @@ def obs_to_vel(obs_freq, doppler_rest, doppler_convention):
 
     Parameters
     ----------
-    obs_freq : Quantity
+    obs_freq : `~astropy.units.Quantity`
         Observed frequency.
-    doppler_rest : Quantity
+    doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : str, optional
+    doppler_convention : {"radio", "relativistic"}, optional
         The Doppler convention to use.
 
     Returns
     -------
-    vel : Quantity
+    vel : `~astropy.units.Quantity`
         Velocity.
 
     """
@@ -163,16 +163,16 @@ def vel_to_obs(vel, doppler_rest, doppler_convention):
 
     Parameters
     ----------
-    vel : Quantity
+    vel : `~astropy.units.Quantity`
         Velocity.
-    doppler_rest : Quantity
+    doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : str, optional
+    doppler_convention : {"radio", "relativistic"}, optional
         The Doppler convention to use.
 
     Returns
     -------
-    obs_freq : Quantity
+    obs_freq : `~astropy.units.Quantity`
         Observed frequency.
 
     """
@@ -199,18 +199,18 @@ def rest_to_vel(rest_freq, radial_velocity, doppler_rest, doppler_convention):
 
     Parameters
     ----------
-    rest_freq : Quantity
+    rest_freq : `~astropy.units.Quantity`
         Observed frequency.
-    radial_velocity : Quantity
+    radial_velocity : `~astropy.units.Quantity`
         Radial velocity of the source relative to the observer.
-    doppler_rest : Quantity
+    doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : str, optional
+    doppler_convention : {"radio", "relativistic"}, optional
         The Doppler convention to use.
 
     Returns
     -------
-    vel : Quantity
+    vel : `~astropy.units.Quantity`
         Velocity.
 
     """
@@ -238,18 +238,18 @@ def vel_to_rest(vel, radial_velocity, doppler_rest, doppler_convention):
 
     Parameters
     ----------
-    vel : Quantity
+    vel : `~astropy.units.Quantity`
         Velocity.
-    radial_velocity : Quantity
+    radial_velocity : `~astropy.units.Quantity`
         Radial velocity of the source relative to the observer.
-    doppler_rest : Quantity
+    doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : str, optional
+    doppler_convention : {"radio", "relativistic"}, optional
         The Doppler convention to use.
 
     Returns
     -------
-    rest_freq : Quantity
+    rest_freq : `~astropy.units.Quantity`
         Rest frequency.
 
     """
