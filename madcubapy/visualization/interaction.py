@@ -1,4 +1,5 @@
 from astropy.nddata import CCDData
+from IPython import get_ipython
 import matplotlib as mpl
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
@@ -67,8 +68,14 @@ def _get_input_from_figure(fig):
 
     """
 
-    # OS check
-    if platform.system() == 'Darwin':
+    # OS check and kernel check
+    def in_jupyter_notebook():
+        try:
+            shell = get_ipython()
+            return shell and "IPKernelApp" in shell.config
+        except Exception:
+            return False
+    if in_jupyter_notebook() and platform.system() == 'Darwin':
         right_click = 2
         middle_click = 3
     else:
@@ -131,8 +138,14 @@ def _get_input_from_map(fitsmap, **kwargs):
 
     """
 
-    # OS check
-    if platform.system() == 'Darwin':
+    # OS check and kernel check
+    def in_jupyter_notebook():
+        try:
+            shell = get_ipython()
+            return shell and "IPKernelApp" in shell.config
+        except Exception:
+            return False
+    if in_jupyter_notebook() and platform.system() == 'Darwin':
         right_click = 2
         middle_click = 3
     else:
