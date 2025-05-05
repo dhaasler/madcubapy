@@ -2,6 +2,8 @@ import astropy.units as u
 
 import copy
 
+from IPython import get_ipython
+
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
@@ -446,12 +448,19 @@ def _all_in_one(
 
     """
 
-    # OS check
-    if platform.system() == 'Darwin':
+    # OS check and kernel check
+    def in_jupyter_notebook():
+        try:
+            shell = get_ipython()
+            return shell and "IPKernelApp" in shell.config
+        except Exception:
+            return False
+    if in_jupyter_notebook() and platform.system() == 'Darwin':
         right_click = 2
+        middle_click = 3
     else:
         right_click = 3
-    left_click = 1
+        middle_click = 2
 
     # Create a Tkinter window
     root = tk.Tk()
