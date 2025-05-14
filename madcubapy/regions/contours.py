@@ -461,6 +461,7 @@ def _all_in_one(
     else:
         right_click = 3
         middle_click = 2
+    left_click = 1
 
     # Create a Tkinter window
     root = tk.Tk()
