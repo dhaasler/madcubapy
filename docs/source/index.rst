@@ -17,7 +17,7 @@ spanish Center of Astrobiology (CSIC-INTA) to analyze astronomical datacubes,
 and is built using the ImageJ infrastructure.
 
 .. Important:: 
-    This package is in its first test versions and should not be used in its
+    This package is in pre-release form and should be used with caution in its
     current state.
 
 Get Started
