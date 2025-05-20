@@ -2,6 +2,7 @@ Version 0.6.1 (2025-04-30)
 ==========================
 
 - Bugfixes:
+
   - Fix incorrect right-click index recognition using scripts in macOS.
 
 Version 0.6.0 (2025-04-30)
@@ -17,6 +18,7 @@ Version 0.5.6 (2025-04-10)
 ==========================
 
 - Bugfixes:
+
   - Fix incorrect dtype initialization when reading incomplete history files.
 
 Version 0.5.5 (2025-03-25)

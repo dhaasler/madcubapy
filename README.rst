@@ -16,8 +16,8 @@
 
 ----
 
-*NOTE: This package is in its first test versions and should not be used in its
-current state.*
+*NOTE: This package is in pre-release form and should be used with caution in
+its current state.*
 
 ``madcubapy`` is a package developed to work with MADCUBA products to quickly
 access their data in python. 
@@ -34,6 +34,12 @@ Install from PyPI with:
 .. code-block:: bash
     
     pip install madcubapy
+
+How to use
+==========
+Check the official
+`Documentation <https://madcubapy.readthedocs.io/en/latest/?badge=latest>`_
+for the latest version.
 
 
 
