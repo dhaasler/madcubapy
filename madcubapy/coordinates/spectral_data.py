@@ -14,8 +14,8 @@ class SpectralData(SpectralCoord):
     rest-frame frequencies input.
     
     .. note:: Frame conversion between observed and rest frequencies always
-              uses the relativistic Doppler convention (matching Astropy
-              behavior). For expressing spectral coordinates as velocities, the
+              uses the relativistic convention (matching Astropy behavior).
+              For expressing spectral coordinates as velocities, the
               doppler_convention can be 'radio' or 'relativistic'.
 
     Parameters
@@ -66,7 +66,7 @@ class SpectralData(SpectralCoord):
                     "Hz, m, J, 1/m, or km/s, but no unit was given."
                 )
 
-        # Check if input is velocities (skip frame_type logic)
+        # If input is velocities skip frame_type logic
         if unit.is_equivalent(u.km/u.s):
             if frame_type != "observed":
                 raise ValueError(
@@ -103,14 +103,11 @@ class SpectralData(SpectralCoord):
                 'Input units must be equivalent to Hz, m, J, 1/m, or km/s.'
             )
 
-        # Handle rest -> observed conversion
+        # Create observed array if rest is provided
         if frame_type == "rest":
             if radial_velocity is None:
                 raise ValueError(
                     "radial_velocity required for frame_type='rest'")
-            # if not doppler_convention:
-            #     raise ValueError(
-            #         "doppler_convention required for frame_type='rest'")
             else:
                 frequency = rest_to_obs(value * unit_freq, radial_velocity, "relativistic")
                 value, unit_freq = frequency.value, frequency.unit
