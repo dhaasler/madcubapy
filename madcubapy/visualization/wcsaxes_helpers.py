@@ -316,7 +316,7 @@ def add_colorbar(
                             size*ax_width,
                             ax_height])
         colorbar = fig.colorbar(img, cax=cax,
-                                orientation='vertical', **kwargs)
+                                orientation=orientation, **kwargs)
         colorbar.ax.tick_params(
             axis="y",
             which="both",
@@ -351,7 +351,7 @@ def add_colorbar(
                             size*ax_width,
                             ax_height])
         colorbar = fig.colorbar(img, cax=cax,
-                                orientation='vertical', **kwargs)
+                                orientation=orientation, **kwargs)
         colorbar.ax.tick_params(
             axis="y",
             which="both",
@@ -386,7 +386,7 @@ def add_colorbar(
                             ax_width,
                             size*ax_height])
         colorbar = fig.colorbar(img, cax=cax,
-                                orientation='horizontal', **kwargs)
+                                orientation=orientation, **kwargs)
         colorbar.ax.tick_params(
             axis="x",
             which="both",
@@ -422,7 +422,7 @@ def add_colorbar(
                             ax_width,
                             size*ax_height])
         colorbar = fig.colorbar(img, cax=cax,
-                                orientation='horizontal', **kwargs)
+                                orientation=orientation, **kwargs)
         colorbar.ax.tick_params(
             axis="x",
             which="both",
@@ -463,7 +463,7 @@ def insert_colorbar(
         pad=0.05,
         **kwargs):
     """
-    Insert a colorbar to one side of a `~matplotlib.axes.Axes` or 
+    Insert a colorbar to one side of a `~matplotlib.axes.Axes` or
     `~astropy.visualization.wcsaxes.WCSAxes` object, fitting it into the same
     space.
 
@@ -518,9 +518,9 @@ def insert_colorbar(
     divider = make_axes_locatable(ax)
     cax = divider.append_axes(location, size=size, 
                               pad=pad, axes_class=Axes)
+    colorbar = fig.colorbar(img, cax=cax, orientation=orientation, **kwargs)
+    # Tweak ticks and labels
     if location == 'right':
-        colorbar = fig.colorbar(img, cax=cax,
-                                orientation='vertical', **kwargs)
         colorbar.ax.tick_params(
             axis="y",
             which="both",
@@ -550,8 +550,6 @@ def insert_colorbar(
                 labelright=False,
             )
     elif location == 'left':
-        colorbar = fig.colorbar(img, cax=cax,
-                                orientation='vertical', **kwargs)
         colorbar.ax.tick_params(
             axis="y",
             which="both",
@@ -581,8 +579,6 @@ def insert_colorbar(
                 labelright=True,
             )
     elif location == 'top':
-        colorbar = fig.colorbar(img, cax=cax,
-                                orientation='horizontal', **kwargs)
         colorbar.ax.tick_params(
             axis="x",
             which="both",
@@ -613,8 +609,6 @@ def insert_colorbar(
             )
         ax.set_title(None)
     elif location == 'bottom':
-        colorbar = fig.colorbar(img, cax=cax,
-                                orientation='horizontal', **kwargs)
         colorbar.ax.tick_params(
             axis="x",
             which="both",
