@@ -162,7 +162,8 @@ def _get_input_from_map(fitsmap, **kwargs):
     cbar = insert_colorbar(ax)
 
     # Prettier plot
-    ax.set_title('Sigma calculation', fontsize=15, pad=20)
+    current_title = ax.get_title()
+    ax.set_title(current_title, fontsize=13, pad=15)
     ax.coords[0].set_axislabel("RA (ICRS)", fontsize=12)
     ax.coords[1].set_axislabel("DEC (ICRS)", fontsize=12)
     ax.coords[0].tick_params(which="major",
