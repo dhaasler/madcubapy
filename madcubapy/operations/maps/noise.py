@@ -88,7 +88,7 @@ def measure_noise(
 
     # Create a Tkinter window
     root = tk.Tk()
-    root.title("Measure sigma")
+    root.title("Measure noise")
 
     # Create a Matplotlib figure
     # If I use mpl.pyplot.figure here and this function is used in a
