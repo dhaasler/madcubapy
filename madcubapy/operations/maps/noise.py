@@ -5,6 +5,7 @@ from IPython import get_ipython
 import matplotlib as mpl
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
+from matplotlib.figure import Figure
 import matplotlib.patches as patches
 import matplotlib.patheffects as PathEffects
 import matplotlib.pyplot as plt
@@ -44,7 +45,7 @@ def measure_noise(
 
     Returns
     -------
-    sigma : `float`
+    sigma : `~astropy.units.Quantity`
         Measured noise of the image in the same units as the data array.
 
     Other Parameters
@@ -93,7 +94,7 @@ def measure_noise(
     # Create a Matplotlib figure
     # If I use mpl.pyplot.figure here and this function is used in a
     # notebook, an inline plot of the final figure will be shown.
-    fig = mpl.figure.Figure(figsize=(7, 6), dpi=100)
+    fig = Figure(figsize=(7, 6), dpi=100)
     ax, img = add_wcs_axes(fig, 1, 1, 1, fitsmap=fitsmap, **kwargs)
     cbar = insert_colorbar(ax)
 
@@ -302,4 +303,4 @@ def measure_noise(
     # Start the Tkinter event loop
     tk.mainloop()
 
-    return sigma
+    return sigma * fitsmap.unit

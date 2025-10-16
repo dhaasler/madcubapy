@@ -1,6 +1,7 @@
 import astropy
 from astropy.io import fits
 from astropy.nddata import CCDData
+import astropy.stats as stats
 from astropy.table import Table
 import astropy.units as u
 from copy import deepcopy
@@ -29,9 +30,11 @@ class MadcubaMap(MadcubaFits):
     header : `~astropy.io.fits.Header`
         The header object associated with the FITS file.
     wcs : `~astropy.wcs.WCS`
-        Object with the world coordinate system for the data in the FITS file.
+        Object with the world coordinate system for the data.
     unit : `~astropy.units.Unit`
-        The unit of the data in the FITS file.
+        The unit of the data.
+    sigma : `~astropy.units.Quantity`
+        The noise of the data.
     hist : `~astropy.table.Table`
         Table containing the history information of the FITS file, which is
         stored in a separate *_hist.csv* file.
@@ -53,6 +56,7 @@ class MadcubaMap(MadcubaFits):
         header=None,
         wcs=None,
         unit=None,
+        sigma=None,
         hist=None,
         ccddata=None,
         filename=None,
@@ -75,6 +79,10 @@ class MadcubaMap(MadcubaFits):
         if unit is not None and not isinstance(unit, astropy.units.UnitBase):
             raise TypeError("The unit must be an astropy unit.")
         self._unit = unit
+
+        if sigma is not None and not isinstance(sigma, astropy.units.Quantity):
+            raise TypeError("Sigma must be an astropy Quantity.")
+        self._sigma = sigma
 
         if ccddata is not None and not isinstance(ccddata, astropy.nddata.CCDData):
             raise TypeError("The ccddata must be a CCDData instance.")
@@ -127,7 +135,7 @@ class MadcubaMap(MadcubaFits):
     @property
     def header(self):
         """
-        `~astropy.io.fits.Header` : The header object associated with the FITS
+        `~astropy.io.fits.Header` : The header object associated with the FITS.
         file.
         """
         return self._header
@@ -141,7 +149,7 @@ class MadcubaMap(MadcubaFits):
     @property
     def wcs(self):
         """
-        `~astropy.wcs.WCS` : Object with the world coordinate system for the data in the FITS file.
+        `~astropy.wcs.WCS` : Object with the world coordinate system for the data.
         """
         return self._wcs
 
@@ -154,7 +162,7 @@ class MadcubaMap(MadcubaFits):
     @property
     def unit(self):
         """
-        `~astropy.units.Unit` : The unit of the data in the FITS file.
+        `~astropy.units.Unit` : The unit of the data.
         """
         return self._unit
 
@@ -163,6 +171,19 @@ class MadcubaMap(MadcubaFits):
         if value is not None and not isinstance(value, astropy.units.UnitBase):
             raise TypeError("The unit must be an astropy unit.")
         self._unit = value
+
+    @property
+    def sigma(self):
+        """
+        `~astropy.units.Quantity` : The noise of the data.
+        """
+        return self._sigma
+
+    @sigma.setter
+    def sigma(self, value):
+        if value is not None and not isinstance(value, astropy.units.Quantity):
+            raise TypeError("Sigma must be an astropy Quantity.")
+        self._sigma = value
 
     @classmethod
     def read(cls, filepath, **kwargs):
@@ -209,12 +230,26 @@ class MadcubaMap(MadcubaFits):
         # header = fits.getheader(fits_filepath)
         wcs = ccddata.wcs
         unit = ccddata.unit
+        # Create sigma attribute
+        if "SIGMA" in header:
+            sigma = ccddata.header["SIGMA"] * unit
+        else:
+            data_no_nan = data[~np.isnan(data)]
+            mean, median, std = stats.sigma_clipped_stats(data_no_nan,
+                                                          sigma=3.0)
+            sigma = std * unit
+            # Update sigma header card
+            header["SIGMA"] = (sigma.value,
+                               'madcubapy read FITS. 3sigma clipped')
+            ccddata.header["SIGMA"] = (sigma.value,
+                                       'madcubapy read FITS. 3sigma clipped')
         # Return an instance of MadcubaFits
         madcuba_map = cls(
             data=data,
             header=header,
             wcs=wcs,
             unit=unit,
+            sigma=sigma,
             hist=hist,
             ccddata=ccddata,
             filename=filename,
@@ -233,7 +268,7 @@ class MadcubaMap(MadcubaFits):
         ----------
         filepath : `~str`
             Name of output FITS file.
-        
+
         Other Parameters
         ----------------
         **kwargs
@@ -288,6 +323,7 @@ class MadcubaMap(MadcubaFits):
             header=deepcopy(self._header),
             wcs=deepcopy(self._wcs),
             unit=deepcopy(self._unit),
+            sigma=deepcopy(self._sigma),
             hist=new_hist,
             ccddata=deepcopy(self._ccddata),
         )
@@ -315,6 +351,7 @@ class MadcubaMap(MadcubaFits):
         **kwargs
             Additional parameters passed to
             :func:`~madcubapy.visualization.add_wcs_axes`.
+
         """
         from madcubapy.visualization.interaction import _get_input_from_map
         return _get_input_from_map(self, **kwargs)
@@ -344,14 +381,16 @@ class MadcubaMap(MadcubaFits):
         """
         from madcubapy.operations.maps.noise import measure_noise
         sigma = measure_noise(self, statistic, **kwargs)
+        # Update sigma property
+        if np.isnan(sigma.value):
+            raise Exception("Measure sigma function aborted.")
+        self.sigma = sigma
         # Update sigma header card
-        if np.isnan(sigma):
-            raise Exception("Function aborted.")
-        self.header["SIGMA"] = (sigma, 'madcubapy update sigma')
-        self.ccddata.header["SIGMA"] = (sigma, 'madcubapy update sigma')
+        self.header["SIGMA"] = (sigma.value, 'madcubapy update sigma')
+        self.ccddata.header["SIGMA"] = (sigma.value, 'madcubapy update sigma')
         # Update hist file
         if self._hist:
-            self._update_hist((f"Update sigma to '{sigma}'."))
+            self._update_hist((f"Update sigma to '{sigma.value}'."))
 
     def fix_units(self):
         """
@@ -364,6 +403,7 @@ class MadcubaMap(MadcubaFits):
         # Overwrite units
         self._unit = u.Unit(new_unit_str)
         self._ccddata.unit = u.Unit(new_unit_str)
+        self._sigma = self._sigma.value * u.Unit(new_unit_str)
         if self._hist:
             self._update_hist((f"Fixed BUNIT card from '{unit_str}' "
                              + f"to '{new_unit_str}"))
@@ -377,13 +417,20 @@ class MadcubaMap(MadcubaFits):
         converted_ccddata = self._ccddata.convert_unit_to(unit)
         self._ccddata = converted_ccddata
         self._data = converted_ccddata.data
-        self._unit = converted_ccddata.unit
-        # Convert sigma header card
+        # Unit and BUNIT
+        self._unit = unit
+        unit.to_string(format='fits')
+        if "BUNIT" in self.header:
+            self.header["BUNIT"] = (unit.to_string(format='fits'),
+                                    'madcubapy convert unit')
+            self.ccddata.header["BUNIT"] = (unit.to_string(format='fits'),
+                                            'madcubapy convert unit')
+        # Convert sigma
+        self._sigma = self._sigma.to(unit)
         if "SIGMA" in self.header:
-            sigma = self.header["SIGMA"] * previous_unit
-            converted_sigma = sigma.to(unit).value
-            self.header["SIGMA"] = (converted_sigma, 'madcubapy convert unit')
-            self.ccddata.header["SIGMA"] = (converted_sigma,
+            self.header["SIGMA"] = (self._sigma.value,
+                                    'madcubapy convert unit')
+            self.ccddata.header["SIGMA"] = (self._sigma.value,
                                             'madcubapy convert unit')
         if self._hist:
             self._update_hist((f"Convert units to "
