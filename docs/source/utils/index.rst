@@ -16,8 +16,8 @@ Contents
     :maxdepth: 1
     :includehidden:
 
-    spectral
     geometry
+    spectral
 
 API Reference
 =============
