@@ -15,6 +15,7 @@ MadcubaMap
       ~MadcubaMap.filename
       ~MadcubaMap.header
       ~MadcubaMap.hist
+      ~MadcubaMap.sigma
       ~MadcubaMap.unit
       ~MadcubaMap.wcs
 
@@ -39,6 +40,7 @@ MadcubaMap
    .. autoattribute:: filename
    .. autoattribute:: header
    .. autoattribute:: hist
+   .. autoattribute:: sigma
    .. autoattribute:: unit
    .. autoattribute:: wcs
 

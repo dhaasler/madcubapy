@@ -17,6 +17,7 @@ Contents
     :includehidden:
 
     spectral
+    geometry
 
 API Reference
 =============
