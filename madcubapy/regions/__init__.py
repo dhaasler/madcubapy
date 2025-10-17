@@ -7,7 +7,7 @@ files from MADCUBA (.mcroi), DS9 (.ds9), and CARTA (.crtf) roi formats,
 alongside a custom format (.pyroi).
 """
 
-from .core import *
+from .interface import *
 from .carta import *
 from .ds9 import *
 from .madcuba import *
