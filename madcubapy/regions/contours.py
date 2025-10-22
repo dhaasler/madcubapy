@@ -26,7 +26,7 @@ from madcubapy.coordinates import pixel_to_world
 __all__ = [
     'import_region_contourset',
     'import_region_patch',
-    'check_contour',
+    'select_contour_regions',
 ]
 
 
@@ -160,7 +160,7 @@ def import_region_patch(
     return poly
 
 
-def check_contour(
+def select_contour_regions(
         contour,
         fig=None,
         ax=None,
@@ -426,7 +426,7 @@ def check_contour(
     return return_indexes
 
 
-def _all_in_one(
+def _check_sigma_contours(
         ax,
         fitsmap):
     """
@@ -610,7 +610,7 @@ def _all_in_one(
         else:
             return
 
-    # Check contour half
+    # Select contour regions half
     def plot_contour_fig():
         nonlocal sigma_contour
         nonlocal polygons
@@ -618,8 +618,9 @@ def _all_in_one(
         nonlocal selected_indexes
         nonlocal polygon_texts
         nonlocal level
+        checked_contour = True  # For now, always reset contour plotting
         # Reset the check contour figure to start over
-        if check_contour != None:
+        if checked_contour != None:
             # Reset check lists
             polygons = []
             selected_artists = []
@@ -638,7 +639,7 @@ def _all_in_one(
         plot_contours(sigma, level)
         canvas.figure = check_fig
         canvas.draw()
-    def check_contour_part():
+    def select_contour_regions_part():
         nonlocal current_figure
         if current_figure == 'sigma':
             plot_contour_fig()
@@ -748,12 +749,12 @@ def _all_in_one(
     sigma_contour = None
     
     # Create Matplotlib figures
-    sigma_fig = Figure(figsize=(7,6))
+    sigma_fig = mpl.figure.Figure(figsize=(7,6))
     sigma_ax, sigma_img = add_wcs_axes(sigma_fig, 1, 1, 1,
                                        fitsmap=fitsmap,
                                        vmin=0, vmax=300)
     sigma_cbar = add_colorbar(sigma_ax)
-    check_fig = Figure(figsize=(7,6))
+    check_fig = mpl.figure.Figure(figsize=(7,6))
     check_ax, check_img = add_wcs_axes(check_fig, 1, 1, 1,
                                        fitsmap=fitsmap,
                                        vmin=0, vmax=300)
@@ -786,7 +787,7 @@ def _all_in_one(
                              relief='sunken', command=calculate_sigma_part)
     sigma_button.pack(side=tk.LEFT, padx=2)
     check_button = tk.Button(tab_frame, text="Check contour",
-                             command=check_contour_part)
+                             command=select_contour_regions_part)
     check_button.pack(side=tk.LEFT, padx=2)
     # Create a Matplotlib canvas embedded within the Tkinter window
     canvas = FigureCanvasTkAgg(sigma_fig, master=root)

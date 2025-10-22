@@ -7,7 +7,7 @@ Working with contours
 The `madcubapy.regions` package also helps the user select regions by using
 contour levels from maps.
 
-The :func:`~madcubapy.regions.check_contour` function plots a
+The :func:`~madcubapy.regions.select_contour_regions` function plots a
 `~matplotlib.contour.ContourSet` object in a pop-up window and lets the user
 select different closed contours in the map via mouse clicks.
 
@@ -49,10 +49,10 @@ Example
                            origin=None, colors=['white'], linewidths=1)
 
   # Possible ways of getting region indexes
-  >>> region_index = check_contour(contour_set)
-  >>> region_index = check_contour(contour_set, fig=fig)
-  >>> region_index = check_contour(contour_set, ax=ax)
-  >>> region_index = check_contour(contour_set, fitsmap=madcuba_map)
+  >>> region_index = select_contour_regions(contour_set)
+  >>> region_index = select_contour_regions(contour_set, fig=fig)
+  >>> region_index = select_contour_regions(contour_set, ax=ax)
+  >>> region_index = select_contour_regions(contour_set, fitsmap=madcuba_map)
 
   # Get a specific region as a a contourset object
   >>> region_contour = import_region_contourset(ax, contour, index=region_index,
