@@ -38,6 +38,15 @@ method, although it can also be created by passing a ``bintable`` in an astropy
 Look into the :ref:`SpectraContainer page <info_spectracontainer>` for a
 detailed overview of the class, and its attributes and methods.
 
+SLIM
+====
+
+The `~madcubapy.io.slim` module privides functions to work with products from the Spectral Line Identification and Modelling (SLIM) tool of
+MADCUBA in `madcubapy`.
+
+Look into the :ref:`SLIM page <info_slim>` for a detailed overview of the SLIM
+Molecular Paramteres Tables functions.
+
 Contents
 ========
 
