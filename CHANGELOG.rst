@@ -1,3 +1,13 @@
+Version 0.7.0 (2025-10-28)
+==========================
+
+- New features:
+  
+  - Create ``slim`` module in ``io`` package with the Molecular Parameters
+    Tables functions ``import_molecular_parameters_table``,
+    ``format_molecular_parameters_columns``, and
+    ``output_latex_molecular_parameters_table``.
+
 Version 0.6.5 (2025-10-16)
 ==========================
 
