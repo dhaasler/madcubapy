@@ -41,8 +41,9 @@ detailed overview of the class, and its attributes and methods.
 SLIM
 ====
 
-The `~madcubapy.io.slim` module privides functions to work with products from the Spectral Line Identification and Modelling (SLIM) tool of
-MADCUBA in `madcubapy`.
+The `madcubapy.io.slim` module privides functions to work with products from
+the Spectral Line Identification and Modelling (SLIM) tool of MADCUBA in
+`madcubapy`.
 
 Look into the :ref:`SLIM page <info_slim>` for a detailed overview of the SLIM
 Molecular Paramteres Tables functions.
