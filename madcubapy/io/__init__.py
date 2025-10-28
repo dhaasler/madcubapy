@@ -7,4 +7,5 @@ python.
 
 from .madcubafits import *
 from .madcubamap import *
+from .slim import *
 from .spectracontainer import *

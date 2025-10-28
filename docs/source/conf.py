@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 project = 'madcubapy'
 copyright = '2025, David Haasler García'
 author = 'David Haasler García'
-release = '0.6.5'
+release = '0.7.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

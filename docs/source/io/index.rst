@@ -44,9 +44,9 @@ Contents
 .. toctree::
     :maxdepth: 1
 
-    madcubafits
     madcubamap
     spectracontainer
+    slim
 
 API Reference
 =============
