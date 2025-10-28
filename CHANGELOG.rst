@@ -1,3 +1,24 @@
+Version 0.6.5 (2025-10-16)
+==========================
+
+- New features:
+  
+  - Create ``geometry`` module in ``utils`` subpackage with ``polygon_area``,
+    ``polygon_signed_area``, and ``calculate_polygon_centroid``.
+  - Add a ``sigma`` attribute to ``MadcubaMap``.
+
+- Changes:
+
+  - Change sigma logic in MadcubaMap to be an `astropy.units.Quantity`.
+  - Change ``measure_noise`` to use `astropy.units.Quantity`.
+  - Rename ``check_contour`` to ``select_contour_regions``.
+  - Rename ``all_in_one`` to ``check_sigma_contours``.
+
+- Bugfixes:
+
+  - Fix ``MadcubaMap.convert_unit_to()`` not storing the new unit onto the
+    BUNIT header keyword.
+
 Version 0.6.1 (2025-04-30)
 ==========================
 
