@@ -94,6 +94,7 @@ class MadcubaMap(MadcubaFits):
         self._filename = filename
 
         # Initialize attributes from CCDData if provided
+        add_sigma_to_hist = False
         if ccddata is not None:
             if data is None:
                 self._data = deepcopy(ccddata.data)
@@ -116,12 +117,16 @@ class MadcubaMap(MadcubaFits):
                                        'madcubapy read FITS. 3sigma clipped')
                     self._ccddata.header["SIGMA"] = (self._sigma.value,
                                                'madcubapy read FITS. 3sigma clipped')
+                    add_sigma_to_hist = True
             update_action = f"Create cube initializing from a CDDData."
         else:
             update_action = f"Create cube initializing a MadcubaMap."
                     
         if self._hist and _update_hist_on_init:
             self._update_hist(update_action)
+            if add_sigma_to_hist:
+                self._update_hist(
+                    f"Update sigma to '{self._sigma.value}' on MadcubaMap init.")
             
 
     @property
@@ -285,6 +290,7 @@ class MadcubaMap(MadcubaFits):
         wcs = ccddata.wcs
         unit = ccddata.unit
         # Create sigma attribute
+        add_sigma_to_hist = False
         if "SIGMA" in header:
             sigma = ccddata.header["SIGMA"] * unit
         else:
@@ -297,6 +303,7 @@ class MadcubaMap(MadcubaFits):
                                'madcubapy read FITS. 3sigma clipped')
             ccddata.header["SIGMA"] = (sigma.value,
                                        'madcubapy read FITS. 3sigma clipped')
+            add_sigma_to_hist = True
         # Return an instance of MadcubaFits
         madcuba_map = cls(
             data=data,
@@ -312,6 +319,9 @@ class MadcubaMap(MadcubaFits):
         if madcuba_map._hist:
             update_action = f"Open cube: '{str(filepath)}'"
             madcuba_map._update_hist(update_action)
+            if add_sigma_to_hist:
+                madcuba_map._update_hist(
+                    f"Update sigma to '{sigma.value}' on file read.")
         return madcuba_map
 
     def write(self, filepath, **kwargs):
@@ -451,7 +461,7 @@ class MadcubaMap(MadcubaFits):
         self._ccddata.header["SIGMA"] = (sigma.value, 'madcubapy update sigma')
         # Update hist file
         if self._hist:
-            self._update_hist((f"Update sigma to '{sigma.value}'."))
+            self._update_hist(f"Update sigma to '{sigma.value}'.")
 
     def update_header_keyword(self, key, value, comment=None):
         """
