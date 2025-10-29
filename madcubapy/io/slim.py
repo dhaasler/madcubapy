@@ -151,7 +151,6 @@ def import_molecular_parameters_table(filein=None, format='ascii'):
     return table_out
 
 
-
 def format_molecular_parameters_columns(table):
     """Add new columns to a Molecular Parameters Table with LaTeX formatted
     strings for the physical parameters column density, excitation temperature,
@@ -335,7 +334,6 @@ def format_molecular_parameters_columns(table):
             table_out[index][formatted_col] = f"{value_formatted}"
 
     return table_out
-
 
 
 def output_latex_molecular_parameters_table(table, fileout, mol_list='all'):

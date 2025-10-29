@@ -30,6 +30,7 @@ MadcubaMap
       ~MadcubaMap.get_input
       ~MadcubaMap.read
       ~MadcubaMap.show
+      ~MadcubaMap.update_header_keyword
       ~MadcubaMap.update_sigma
       ~MadcubaMap.write
 
@@ -53,5 +54,6 @@ MadcubaMap
    .. automethod:: get_input
    .. automethod:: read
    .. automethod:: show
+   .. automethod:: update_header_keyword
    .. automethod:: update_sigma
    .. automethod:: write

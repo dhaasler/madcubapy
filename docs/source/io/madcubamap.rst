@@ -34,6 +34,7 @@ several attributes, some of which are identical to those contained in a
 - ``wcs``: The World Coordinate System (WCS) information for the FITS file.
 - ``unit``: The physical unit of the data, derived from the FITS header's
   `BUNIT` keyword.
+- ``sigma``: The measured noise of the data.
 
 alongisde additional attributes:
 
@@ -44,14 +45,25 @@ alongisde additional attributes:
   data. Used as a failsafe for incompatibilities with
   `~madcubapy.io.MadcubaMap`.
 
+.. note::
+    Modifying a `~madcubapy.io.MadcubaMap` object attributes manually will also
+    set the same attributes into the underlying `~astropy.nddata.CCDData`
+    object.
+    However, due to compatibility reasons, the opposite is not the case.
+    Changes in a ``MadcubaMap.ccddata`` attributes will not be
+    reflected onto the `~madcubapy.io.MadcubaMap` object.
+    Users are encouraged to work with `~madcubapy.io.MadcubaMap` directly and
+    only use the ``ccddata`` attribute as a failsafe in workflows that raise
+    errors when using a `~madcubapy.io.MadcubaMap` instance.
+
 Examples
 ^^^^^^^^
     
 Create an instance by reading a FITS file through
 `MadcubaMap.read() <madcubapy.io.MadcubaMap.read>` (recommended method):
 
-    >>> from madcubapy.io import MadcubaMap
-    >>> madcubamap = MadcubaMap.read("example_cube.fits")
+>>> from madcubapy.io import MadcubaMap
+>>> madcubamap = MadcubaMap.read("example_cube.fits")
 
 .. note::
     Due to how MADCUBA saves some fits header cards, several astropy warnings
@@ -61,16 +73,16 @@ Create an instance by reading a FITS file through
 We can also create an instance manually by providing any attribute stated
 :ref:`before <madcubamap_attributes>`, for example:
 
-    >>> import numpy as np
-    >>> madcubamap = MadcubaMap(data=np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]]))
+>>> import numpy as np
+>>> madcubamap = MadcubaMap(data=np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]]))
 
 To access attributes, the data for example, we can call them directly:
 
-    >>> madcubamap.data
+>>> madcubamap.data
 
 The history information is present in the ``hist`` attribute:
 
-    >>> madcubamap.hist
+>>> madcubamap.hist
 
 For a fully fledged example on how to work with a MadcubaMap object, check the
 begginer's :ref:`tutorial<tutorial_read_plot_maps>` on how to read and plot FITS
@@ -87,7 +99,7 @@ data:
 
 We can directly use this attribute or set a variable to point to its content:
 
-    >>> ccd = madcubamap.ccddata
+>>> ccd = madcubamap.ccddata
 
 Quality-of-Life Features
 ------------------------
@@ -102,8 +114,8 @@ functions that improve usability and accuracy when working with FITS files
   compatibility with Astropy.
   We can tell the program to try to fix the units with the
   :meth:`~madcubapy.io.MadcubaMap.fix_units` method:
- 
-      >>> madcubamap.fix_units()
+
+  >>> madcubamap.fix_units()
 
 * **Noise measurement**
 
@@ -114,7 +126,8 @@ functions that improve usability and accuracy when working with FITS files
 
   The map is shown in pop-up window where the user can select several polygons
   using the mouse. This method automatically calculates the noise value inside
-  the polygons and stores it in the `SIGMA` header card.
+  the polygons and stores it in the ``sigma`` attribute and adds it to the FITS
+  header using the 'SIGMA' keyword.
 
   This method calls the :func:`~madcubapy.operations.maps.measure_noise` function
   on itself to calculate the noise level. Check the

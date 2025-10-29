@@ -49,7 +49,7 @@ class MadcubaMap(MadcubaFits):
         Load the history table from a csv file.
 
     """
-    
+
     def __init__(
         self,
         data=None,
@@ -61,20 +61,20 @@ class MadcubaMap(MadcubaFits):
         ccddata=None,
         filename=None,
     ):
-        # inherit hist
-        super().__init__(hist)  # Initialize the parent class with hist
+        # Inherit hist
+        super().__init__(hist.copy() if hist is not None else None)
 
         if data is not None and not isinstance(data, np.ndarray):
             raise TypeError("The data must be a numpy array.")
-        self._data = data
+        self._data = deepcopy(data)
 
         if header is not None and not isinstance(header, astropy.io.fits.Header):
             raise TypeError("The header must be an astropy.io.fits.Header.")
-        self._header = header
+        self._header = deepcopy(header)
 
         if wcs is not None and not isinstance(wcs, astropy.wcs.WCS):
             raise TypeError("The WCS must be an astropy.wcs.WCS.")
-        self._wcs = wcs
+        self._wcs = deepcopy(wcs)
 
         if unit is not None and not isinstance(unit, astropy.units.UnitBase):
             raise TypeError("The unit must be an astropy unit.")
@@ -86,11 +86,42 @@ class MadcubaMap(MadcubaFits):
 
         if ccddata is not None and not isinstance(ccddata, astropy.nddata.CCDData):
             raise TypeError("The ccddata must be a CCDData instance.")
-        self._ccddata = ccddata
+        self._ccddata = deepcopy(ccddata)
 
         if filename is not None and not isinstance(filename, str):
             raise TypeError("The filename must be a string.")
         self._filename = filename
+
+        # Initialize attributes from CCDData if provided
+        if ccddata is not None:
+            if data is None:
+                self._data = deepcopy(ccddata.data)
+            if header is None:
+                self._header = deepcopy(ccddata.header)
+            if wcs is None:
+                self._wcs = deepcopy(ccddata.wcs)
+            if unit is None:
+                self._unit = ccddata.unit
+            if sigma is None:
+                if "SIGMA" in ccddata.header:
+                    self._sigma = ccddata.header["SIGMA"] * self._unit
+                else:
+                    data_no_nan = ccddata.data[~np.isnan(ccddata.data)]
+                    mean, median, std = stats.sigma_clipped_stats(data_no_nan,
+                                                                  sigma=3.0)
+                    self._sigma = std * self._unit
+                    # Update sigma header card
+                    self._header["SIGMA"] = (self._sigma.value,
+                                       'madcubapy read FITS. 3sigma clipped')
+                    self._ccddata.header["SIGMA"] = (self._sigma.value,
+                                               'madcubapy read FITS. 3sigma clipped')
+            update_action = f"Create cube initializing from a CDDData."
+        else:
+            update_action = f"Create cube initializing a MadcubaMap."
+                    
+        if self._hist:
+            self._update_hist(update_action)
+            
 
     @property
     def ccddata(self):
@@ -104,7 +135,9 @@ class MadcubaMap(MadcubaFits):
     def ccddata(self, value):
         if value is not None and not isinstance(value, CCDData):
             raise TypeError("The ccddata must be a CCDData instance.")
-        self._ccddata = value
+        self._ccddata = deepcopy(value)
+        if self._hist:
+            self._update_hist(f"Updated CCDData object manually")
 
     @property
     def filename(self):
@@ -118,6 +151,8 @@ class MadcubaMap(MadcubaFits):
         if value is not None and not isinstance(value, str):
             raise TypeError("The filename must be a string.")
         self._filename = value
+        if self._hist:
+            self._update_hist(f"Updated filename path manually")
 
     @property
     def data(self):
@@ -131,6 +166,10 @@ class MadcubaMap(MadcubaFits):
         if value is not None and not isinstance(value, np.ndarray):
             raise TypeError("The data must be a numpy array.")
         self._data = value
+        if self._ccddata is not None:
+            self._ccddata.data = value.copy()
+        if self._hist:
+            self._update_hist(f"Updated data object manually")
 
     @property
     def header(self):
@@ -145,6 +184,10 @@ class MadcubaMap(MadcubaFits):
         if value is not None and not isinstance(value, astropy.io.fits.Header):
             raise TypeError("The header must be an astropy.io.fits.Header.")
         self._header = value
+        if self._ccddata is not None:
+            self._ccddata.header = value.copy()
+        if self._hist:
+            self._update_hist(f"Updated header object manually")
 
     @property
     def wcs(self):
@@ -158,6 +201,10 @@ class MadcubaMap(MadcubaFits):
         if value is not None and not isinstance(value, astropy.wcs.WCS):
             raise TypeError("The WCS must be an astropy.wcs.WCS.")
         self._wcs = value
+        if self._ccddata is not None:
+            self._ccddata.wcs = deepcopy(value)
+        if self._hist:
+            self._update_hist(f"Updated WCS object manually")
 
     @property
     def unit(self):
@@ -171,6 +218,10 @@ class MadcubaMap(MadcubaFits):
         if value is not None and not isinstance(value, astropy.units.UnitBase):
             raise TypeError("The unit must be an astropy unit.")
         self._unit = value
+        if self._ccddata is not None:
+            self._ccddata.unit = deepcopy(value)
+        if self._hist:
+            self._update_hist(f"Updated unit object manually")
 
     @property
     def sigma(self):
@@ -184,6 +235,8 @@ class MadcubaMap(MadcubaFits):
         if value is not None and not isinstance(value, astropy.units.Quantity):
             raise TypeError("Sigma must be an astropy Quantity.")
         self._sigma = value
+        if self._hist:
+            self._update_hist(f"Updated sigma attribute manually")
 
     @classmethod
     def read(cls, filepath, **kwargs):
@@ -221,7 +274,7 @@ class MadcubaMap(MadcubaFits):
             hist = Table.read(hist_filepath, format='csv')
             # Set default column types in history table to avoid errors
             hist["Macro"] = np.array(hist["Macro"], dtype='U500')
-            hist["Type"] = np.array(hist["User"], dtype='U5')
+            hist["Type"] = np.array(hist["Type"], dtype='U5')
             hist["User"] = np.array(hist["User"], dtype='U50')
             hist["Date"] = np.array(hist["Date"], dtype='U23')
         # Store the attributes
@@ -254,7 +307,7 @@ class MadcubaMap(MadcubaFits):
             ccddata=ccddata,
             filename=filename,
         )
-        if madcuba_map.hist:
+        if madcuba_map._hist:
             update_action = f"Open cube: '{str(filepath)}'"
             madcuba_map._update_hist(update_action)
         return madcuba_map
@@ -293,14 +346,14 @@ class MadcubaMap(MadcubaFits):
                 hdul[0].header['BUNIT'] = parsed_bunit
                 hdul.flush()  # Save changes
             # write hist
-            if self.hist:
+            if self._hist:
                 update_action = f"Save cube: '{str(filepath)}'"
                 self._update_hist(update_action)
                 if 'overwrite' in kwargs:
                     overwrite_csv = kwargs['overwrite']
                 else:
                     overwrite_csv = False
-                self.hist.write(
+                self._hist.write(
                     save_dir/csv_filename,
                     format='csv',
                     overwrite=overwrite_csv,
@@ -308,7 +361,7 @@ class MadcubaMap(MadcubaFits):
             else:
                 print("Empty history file has not been saved")
             # Update filename
-            self.filename = filename
+            self._filename = filename
 
     def copy(self):
         """
@@ -337,7 +390,7 @@ class MadcubaMap(MadcubaFits):
         **kwargs
             Additional parameters passed to
             :func:`~madcubapy.visualization.add_wcs_axes`.
-            
+
         """
         from madcubapy.visualization.quick_plotters import quick_show
         quick_show(self, **kwargs)
@@ -384,13 +437,39 @@ class MadcubaMap(MadcubaFits):
         # Update sigma property
         if np.isnan(sigma.value):
             raise Exception("Measure sigma function aborted.")
-        self.sigma = sigma
+        self._sigma = sigma
         # Update sigma header card
-        self.header["SIGMA"] = (sigma.value, 'madcubapy update sigma')
-        self.ccddata.header["SIGMA"] = (sigma.value, 'madcubapy update sigma')
+        self._header["SIGMA"] = (sigma.value, 'madcubapy update sigma')
+        self._ccddata.header["SIGMA"] = (sigma.value, 'madcubapy update sigma')
         # Update hist file
         if self._hist:
             self._update_hist((f"Update sigma to '{sigma.value}'."))
+
+    def update_header_keyword(self, key, value, comment=None):
+        """
+        Update a single header keyword. This method correctly adds the header key
+        to both the `~madcubapy.io.MadcubaMap` object and the ``ccddata``
+        attribute.
+        
+        Parameters
+        ----------
+        key : `str`
+            Header keyword to update.
+        value
+            Value to assign to the header keyword.
+        comment : `str`, optional
+            Comment for the header keyword. If None, keep existing comment.
+
+        """
+        if comment is None:
+            comment = self._header.comments[key] if key in self._header else ""
+        # Store new value
+        self._header[key] = (value, comment)
+        if self._ccddata is not None:
+            self._ccddata.header[key] = (value, comment)
+        # Update history
+        if self._hist:
+            self._update_hist(f"Updated header keyword '{key}' to {value}")
 
     def fix_units(self):
         """
