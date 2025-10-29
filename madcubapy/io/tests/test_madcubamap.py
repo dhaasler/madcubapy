@@ -159,7 +159,7 @@ def test_sigma_creation_at_init(example_carta_ccddata, example_madcuba_madcubama
                                             hist=histi)
     # Previously known sigma calculation
     assert (madcubamap_carta_test_hist.hist[-1]["Macro"] == 
-            "//PYTHON: Update sigma to '1.5514508485794067' on MadcubaMap init.")
+            "//PYTHON: Update sigma to '1.5514508485794067' on MadcubaMap init")
 
 def test_madcubamap_init_ccddata(example_madcuba_ccddata):
     madcubamap_from_ccddata = MadcubaMap(ccddata=example_madcuba_ccddata)

@@ -65,36 +65,31 @@ class MadcubaMap(MadcubaFits):
         # Inherit hist
         super().__init__(hist.copy() if hist is not None else None)
 
+        # Check input types
         if data is not None and not isinstance(data, np.ndarray):
             raise TypeError("The data must be a numpy array.")
         self._data = deepcopy(data)
-
         if header is not None and not isinstance(header, astropy.io.fits.Header):
             raise TypeError("The header must be an astropy.io.fits.Header.")
         self._header = deepcopy(header)
-
         if wcs is not None and not isinstance(wcs, astropy.wcs.WCS):
             raise TypeError("The WCS must be an astropy.wcs.WCS.")
         self._wcs = deepcopy(wcs)
-
         if unit is not None and not isinstance(unit, astropy.units.UnitBase):
             raise TypeError("The unit must be an astropy unit.")
         self._unit = unit
-
         if sigma is not None and not isinstance(sigma, astropy.units.Quantity):
             raise TypeError("Sigma must be an astropy Quantity.")
         self._sigma = sigma
-
         if ccddata is not None and not isinstance(ccddata, astropy.nddata.CCDData):
             raise TypeError("The ccddata must be a CCDData instance.")
         self._ccddata = deepcopy(ccddata)
-
         if filename is not None and not isinstance(filename, str):
             raise TypeError("The filename must be a string.")
         self._filename = filename
 
         # Initialize attributes from CCDData if provided
-        add_sigma_to_hist = False
+        hist_updates = []
         if ccddata is not None:
             if data is None:
                 self._data = deepcopy(ccddata.data)
@@ -117,16 +112,16 @@ class MadcubaMap(MadcubaFits):
                                        'madcubapy read FITS. 3sigma clipped')
                     self._ccddata.header["SIGMA"] = (self._sigma.value,
                                                'madcubapy read FITS. 3sigma clipped')
-                    add_sigma_to_hist = True
-            update_action = f"Create cube initializing from a CDDData."
+                    hist_updates.append(
+                        f"Update sigma to '{self._sigma.value}' on MadcubaMap init"
+                    )
+            hist_updates.insert(0, f"Create cube initializing from a CDDData")
         else:
-            update_action = f"Create cube initializing a MadcubaMap."
-                    
+            hist_updates.insert(0, f"Create cube initializing a MadcubaMap")
+
         if self._hist and _update_hist_on_init:
-            self._update_hist(update_action)
-            if add_sigma_to_hist:
-                self._update_hist(
-                    f"Update sigma to '{self._sigma.value}' on MadcubaMap init.")
+            for msg in hist_updates:
+                self._update_hist(msg)
             
 
     @property
@@ -263,6 +258,7 @@ class MadcubaMap(MadcubaFits):
             :func:`~astropy.nddata.fits_ccddata_reader` function.
 
         """
+        hist_updates = []
         fits_filepath = filepath
         filename_terms = str(filepath).split('/')
         filename = filename_terms[-1]
@@ -303,7 +299,7 @@ class MadcubaMap(MadcubaFits):
                                'madcubapy read FITS. 3sigma clipped')
             ccddata.header["SIGMA"] = (sigma.value,
                                        'madcubapy read FITS. 3sigma clipped')
-            add_sigma_to_hist = True
+            hist_updates.append(f"Update sigma to '{sigma.value}' on file read")
         # Return an instance of MadcubaFits
         madcuba_map = cls(
             data=data,
@@ -317,11 +313,10 @@ class MadcubaMap(MadcubaFits):
             _update_hist_on_init=False,
         )
         if madcuba_map._hist:
-            update_action = f"Open cube: '{str(filepath)}'"
-            madcuba_map._update_hist(update_action)
-            if add_sigma_to_hist:
-                madcuba_map._update_hist(
-                    f"Update sigma to '{sigma.value}' on file read.")
+            hist_updates.insert(0, f"Open cube: '{str(filepath)}'")
+            for msg in hist_updates:
+                madcuba_map._update_hist(msg)
+
         return madcuba_map
 
     def write(self, filepath, **kwargs):
