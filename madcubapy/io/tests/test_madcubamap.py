@@ -47,6 +47,7 @@ def test_write_madcuba_map(example_madcuba_map):
         "examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits",
         overwrite=True,
     )
+    # Assert filename
     assert example_madcuba_map.filename == "IRAS16293_SO_2-1_moment0_madcuba_write.fits"
     assert (example_madcuba_map.hist[-1]["Macro"] ==
         "//PYTHON: Save cube: 'examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
@@ -77,7 +78,7 @@ def test_write_madcuba_map(example_madcuba_map):
     )
     # Check filename and hist file
     assert example_madcuba_map_write.filename == "IRAS16293_SO_2-1_moment0_madcuba_write.fits"
-    assert (example_madcuba_map_write.hist[-2]["Macro"] ==
+    assert (example_madcuba_map_write.hist[-3]["Macro"] ==
         "//PYTHON: Save cube: 'examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
     )
     assert (example_madcuba_map_write.hist[-1]["Macro"] ==
@@ -101,7 +102,7 @@ def test_copy_madcuba(example_madcuba_map):
     )
     assert madcuba_map_copy.header == example_madcuba_map.header
     assert madcuba_map_copy.unit == example_madcuba_map.unit
-    assert report_diff_values(example_madcuba_map.hist, madcuba_map_copy.hist)
+    assert report_diff_values(example_madcuba_map.hist, madcuba_map_copy.hist[:-1])
     assert madcuba_map_copy.ccddata.meta == example_madcuba_map.ccddata.meta
 
 def test_convert_units_madcuba(example_madcuba_map):

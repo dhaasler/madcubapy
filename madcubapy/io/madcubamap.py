@@ -60,6 +60,7 @@ class MadcubaMap(MadcubaFits):
         hist=None,
         ccddata=None,
         filename=None,
+        _update_hist_on_init=True,
     ):
         # Inherit hist
         super().__init__(hist.copy() if hist is not None else None)
@@ -119,7 +120,7 @@ class MadcubaMap(MadcubaFits):
         else:
             update_action = f"Create cube initializing a MadcubaMap."
                     
-        if self._hist:
+        if self._hist and _update_hist_on_init:
             self._update_hist(update_action)
             
 
@@ -371,7 +372,7 @@ class MadcubaMap(MadcubaFits):
             new_hist = self._hist.copy()
         else:
             new_hist = None
-        return MadcubaMap(
+        new_madcubamap =  MadcubaMap(
             data=deepcopy(self._data),
             header=deepcopy(self._header),
             wcs=deepcopy(self._wcs),
@@ -379,7 +380,13 @@ class MadcubaMap(MadcubaFits):
             sigma=deepcopy(self._sigma),
             hist=new_hist,
             ccddata=deepcopy(self._ccddata),
+            _update_hist_on_init=False,
         )
+        # Add to hist
+        if new_madcubamap._hist:
+            new_madcubamap._update_hist(f"Copied from another MadcubaMap with"
+                                        + " filepath: '{self._filepath}'")
+        return new_madcubamap
 
     def show(self, **kwargs):
         """
