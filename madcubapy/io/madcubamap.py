@@ -307,6 +307,7 @@ class MadcubaMap(MadcubaFits):
             hist=hist,
             ccddata=ccddata,
             filename=filename,
+            _update_hist_on_init=False,
         )
         if madcuba_map._hist:
             update_action = f"Open cube: '{str(filepath)}'"
