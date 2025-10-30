@@ -123,7 +123,6 @@ class MadcubaMap(MadcubaFits):
             for msg in hist_updates:
                 self._update_hist(msg)
             
-
     @property
     def ccddata(self):
         """
@@ -286,7 +285,6 @@ class MadcubaMap(MadcubaFits):
         wcs = ccddata.wcs
         unit = ccddata.unit
         # Create sigma attribute
-        add_sigma_to_hist = False
         if "SIGMA" in header:
             sigma = ccddata.header["SIGMA"] * unit
         else:
