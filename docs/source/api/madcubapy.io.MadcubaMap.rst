@@ -15,6 +15,8 @@ MadcubaMap
       ~MadcubaMap.filename
       ~MadcubaMap.header
       ~MadcubaMap.hist
+      ~MadcubaMap.integrated_range
+      ~MadcubaMap.restfreq
       ~MadcubaMap.sigma
       ~MadcubaMap.unit
       ~MadcubaMap.wcs
@@ -41,6 +43,8 @@ MadcubaMap
    .. autoattribute:: filename
    .. autoattribute:: header
    .. autoattribute:: hist
+   .. autoattribute:: integrated_range
+   .. autoattribute:: restfreq
    .. autoattribute:: sigma
    .. autoattribute:: unit
    .. autoattribute:: wcs

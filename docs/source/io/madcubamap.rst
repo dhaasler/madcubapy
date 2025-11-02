@@ -34,6 +34,8 @@ several attributes, some of which are identical to those contained in a
 - ``wcs``: The World Coordinate System (WCS) information for the FITS file.
 - ``unit``: The physical unit of the data, derived from the FITS header's
   `BUNIT` keyword.
+- ``restfreq``: Rest frequency of the FITS file.
+- ``integrated_range``: Velocity or frequency range selected for integrating the map.
 - ``sigma``: The measured noise of the data.
 
 alongisde additional attributes:

@@ -8,6 +8,7 @@ from copy import deepcopy
 import numpy as np
 import os
 from pathlib import Path
+import warnings
 
 from .madcubafits import MadcubaFits
 
@@ -33,8 +34,12 @@ class MadcubaMap(MadcubaFits):
         Object with the world coordinate system for the data.
     unit : `~astropy.units.Unit`
         The unit of the data.
+    restfreq : `~astropy.units.Quantity`
+        Rest frequency of the FITS file.
     sigma : `~astropy.units.Quantity`
         The noise of the data.
+    integrated_range : `~astropy.units.Quantity`
+        The range selected for integrating the map.
     hist : `~astropy.table.Table`
         Table containing the history information of the FITS file, which is
         stored in a separate *_hist.csv* file.
@@ -56,11 +61,14 @@ class MadcubaMap(MadcubaFits):
         header=None,
         wcs=None,
         unit=None,
+        restfreq=None,
         sigma=None,
+        integrated_range=None,
         hist=None,
         ccddata=None,
         filename=None,
         _update_hist_on_init=True,
+        _bypass_ccddata_conflict_check=False,
     ):
         # Inherit hist
         super().__init__(hist.copy() if hist is not None else None)
@@ -78,9 +86,17 @@ class MadcubaMap(MadcubaFits):
         if unit is not None and not isinstance(unit, astropy.units.UnitBase):
             raise TypeError("The unit must be an astropy unit.")
         self._unit = unit
+        if restfreq is not None and not isinstance(restfreq, astropy.units.Quantity):
+            raise TypeError("Rest frequency must be an astropy Quantity.")
+        self._restfreq = restfreq
         if sigma is not None and not isinstance(sigma, astropy.units.Quantity):
             raise TypeError("Sigma must be an astropy Quantity.")
         self._sigma = sigma
+        if (integrated_range is not None
+            and not isinstance(integrated_range, astropy.units.Quantity)
+            and not isinstance(data, np.ndarray)):
+            raise TypeError("Range must be an astropy Quantity or a NumPy array.")
+        self._integrated_range = integrated_range
         if ccddata is not None and not isinstance(ccddata, astropy.nddata.CCDData):
             raise TypeError("The ccddata must be a CCDData instance.")
         self._ccddata = deepcopy(ccddata)
@@ -90,15 +106,53 @@ class MadcubaMap(MadcubaFits):
 
         # Initialize attributes from CCDData if provided
         hist_updates = []
-        if ccddata is not None:
-            if data is None:
-                self._data = deepcopy(ccddata.data)
-            if header is None:
-                self._header = deepcopy(ccddata.header)
-            if wcs is None:
-                self._wcs = deepcopy(ccddata.wcs)
-            if unit is None:
-                self._unit = ccddata.unit
+        if ccddata is not None and not _bypass_ccddata_conflict_check:
+            conflicting = [n for n, x in zip(
+                ("data", "header", "wcs", "unit", "restfreq"),
+                (data, header, wcs, unit, restfreq)) if x is not None]
+            if conflicting:
+                raise ValueError(
+                    f"If 'ccddata' is provided, the following arguments must "
+                    + f"not be set: {', '.join(conflicting)}."
+                )
+
+            self._data = deepcopy(ccddata.data)
+            self._header = deepcopy(ccddata.header)
+            self._wcs = deepcopy(ccddata.wcs)
+            self._unit = ccddata.unit
+            # Try to get rest frequency
+            if "RESTFREQ" in ccddata.header:
+                freq_value = ccddata.header["RESTFREQ"]
+            elif "CRVAL3" in ccddata.header:
+                freq_value = ccddata.header["CRVAL3"]
+            else:
+                try:
+                    if (ccddata.wcs is not None
+                        and hasattr(ccddata.wcs, "wcs")
+                        and len(ccddata.wcs.wcs.crval) >= 3):
+                        freq_value = ccddata.wcs.wcs.crval[2]
+                except Exception:
+                    freq_value = None
+
+            if freq_value is not None:
+                if "CUNIT3" in ccddata.header:
+                    freq_unit = u.Unit(ccddata.header["CUNIT3"])
+                else:
+                    try:
+                        if (ccddata.wcs is not None
+                            and hasattr(ccddata.wcs, "wcs")
+                            and len(ccddata.wcs.wcs.cunit) >= 3):
+                            freq_unit = ccddata.wcs.wcs.cunit[2]
+                    except Exception:
+                        warnings.warn(
+                            (f"CUNIT3 not found in header, "
+                            +"defaulting to Hz for rest frequency"),
+                            UserWarning,
+                        )
+                        freq_unit = u.Hz
+                self._restfreq = freq_value * freq_unit
+            else:
+                self._restfreq = None
             if sigma is None:
                 if "SIGMA" in ccddata.header:
                     self._sigma = ccddata.header["SIGMA"] * self._unit
@@ -122,7 +176,7 @@ class MadcubaMap(MadcubaFits):
         if self._hist and _update_hist_on_init:
             for msg in hist_updates:
                 self._update_hist(msg)
-            
+
     @property
     def ccddata(self):
         """
@@ -224,6 +278,21 @@ class MadcubaMap(MadcubaFits):
             self._update_hist(f"Updated unit object manually")
 
     @property
+    def restfreq(self):
+        """
+        `~astropy.units.Quantity` : The rest frequency of the FITS file.
+        """
+        return self._restfreq
+
+    @restfreq.setter
+    def restfreq(self, value):
+        if value is not None and not isinstance(value, astropy.units.Quantity):
+            raise TypeError("Rest frequency must be an astropy Quantity.")
+        self._restfreq = value
+        if self._hist:
+            self._update_hist(f"Updated restfreq attribute manually")
+
+    @property
     def sigma(self):
         """
         `~astropy.units.Quantity` : The noise of the data.
@@ -237,6 +306,24 @@ class MadcubaMap(MadcubaFits):
         self._sigma = value
         if self._hist:
             self._update_hist(f"Updated sigma attribute manually")
+
+    @property
+    def integrated_range(self):
+        """
+        `~astropy.units.Quantity` or `~numpy.ndarray` : The range selected for
+        integrating the map.
+        """
+        return self._integrated_range
+    
+    @integrated_range.setter
+    def integrated_range(self, value):
+        if (value is not None
+            and not isinstance(value, astropy.units.Quantity)
+            and not isinstance(value, np.ndarray)):
+            raise TypeError("Integrated_range must be an astropy Quantity or a NumPy array.")
+        self._integrated_range = value
+        if self._hist:
+            self._update_hist(f"Updated integrated_range attribute manually")
 
     @classmethod
     def read(cls, filepath, **kwargs):
@@ -284,6 +371,39 @@ class MadcubaMap(MadcubaFits):
         # header = fits.getheader(fits_filepath)
         wcs = ccddata.wcs
         unit = ccddata.unit
+        # Try to get rest frequency
+        if "RESTFREQ" in header:
+            freq_value = header["RESTFREQ"]
+        elif "CRVAL3" in header:
+            freq_value = header["CRVAL3"]
+        else:
+            try:
+                if (wcs is not None
+                    and hasattr(wcs, "wcs")
+                    and len(wcs.wcs.crval) >= 3):
+                    freq_value = wcs.wcs.crval[2]
+            except Exception:
+                freq_value = None
+
+        if freq_value is not None:
+            if "CUNIT3" in header:
+                freq_unit = u.Unit(header["CUNIT3"])
+            else:
+                try:
+                    if (wcs is not None
+                        and hasattr(wcs, "wcs")
+                        and len(wcs.wcs.cunit) >= 3):
+                        freq_unit = wcs.wcs.cunit[2]
+                except Exception:
+                    warnings.warn(
+                        (f"CUNIT3 not found in header, "
+                        +"defaulting to Hz for rest frequency"),
+                        UserWarning,
+                    )
+                    freq_unit = u.Hz
+            restfreq = freq_value * freq_unit
+        else:
+            restfreq = None
         # Create sigma attribute
         if "SIGMA" in header:
             sigma = ccddata.header["SIGMA"] * unit
@@ -298,17 +418,22 @@ class MadcubaMap(MadcubaFits):
             ccddata.header["SIGMA"] = (sigma.value,
                                        'madcubapy read FITS. 3sigma clipped')
             hist_updates.append(f"Update sigma to '{sigma.value}' on file read")
+        # Try to get integrated range
+        integrated_range = _get_integrated_range(hist)
         # Return an instance of MadcubaFits
         madcuba_map = cls(
             data=data,
             header=header,
             wcs=wcs,
             unit=unit,
+            restfreq=restfreq,
             sigma=sigma,
+            integrated_range=integrated_range,
             hist=hist,
             ccddata=ccddata,
             filename=filename,
             _update_hist_on_init=False,
+            _bypass_ccddata_conflict_check=True,
         )
         if madcuba_map._hist:
             hist_updates.insert(0, f"Open cube: '{str(filepath)}'")
@@ -381,10 +506,13 @@ class MadcubaMap(MadcubaFits):
             header=deepcopy(self._header),
             wcs=deepcopy(self._wcs),
             unit=deepcopy(self._unit),
+            restfreq=deepcopy(self._restfreq),
             sigma=deepcopy(self._sigma),
+            integrated_range=deepcopy(self._integrated_range),
             hist=new_hist,
             ccddata=deepcopy(self._ccddata),
             _update_hist_on_init=False,
+            _bypass_ccddata_conflict_check=True,
         )
         # Add to hist
         if new_madcubamap._hist:
@@ -594,3 +722,41 @@ def _parse_madcuba_friendly_bunit(unit):
             return 'mJy beam-1'
         else:
             return unit.to_string(fraction=False)
+
+def _get_integrated_range(hist):
+    """
+    This function searches in the history table the range selected for the
+    integration of the map.
+    """
+    if not hist:
+        return None
+    # Find rows where "Macro" contains the desired substring
+    search_str = 'run("INTEGRATED INTENSITY PLUGIN"'
+    matching_rows = [row for row in hist if search_str in row['Macro']]
+    last_match_row = matching_rows[-1] if matching_rows else None
+    # If there are more than one matching row, take the last one
+    last_match = last_match_row["Macro"]
+    # Search for integrated range values
+    range_start_index = last_match.find("ranges=") + len("ranges=")
+    range_end_index = last_match.find("# axisunit")
+    range_string = last_match[range_start_index : range_end_index].strip()
+    range_string
+    # Convert the strings into floats if the strings are not empty.
+    range_values = [float(value) for value in range_string.split('$') if value]
+    # Search for unit
+    axisunit_start_index = last_match.find("axisunit=") + len("axisunit=")
+    axisunit_end_index = last_match.find("interpolate")
+    unit_string = last_match[axisunit_start_index:axisunit_end_index].strip()
+    # Create integrated range
+    try:
+        unit = u.Unit(unit_string)
+        integrated_range = u.Quantity(range_values, unit=unit)
+    except ValueError:
+        warnings.warn(
+            f"Could not parse unit from string: {unit_string!r}. Integrated"
+            "range will be treated as a plain NumPy array without units.",
+            UserWarning,
+        )
+        integrated_range = np.array(range_values)
+
+    return integrated_range
