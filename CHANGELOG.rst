@@ -1,3 +1,19 @@
+Version 0.8.0 (2025-11-02)
+==========================
+
+- New features:
+  
+  - Add possibility to initialize a `MadcubaMap` with a previous ``CCDData``
+    object.
+  - Add ``update_header_keyword`` method to `MadcubaMap`.
+  - Add ``restfreq`` and ``integrated_range`` attributes to `MadcubaMap`.
+
+- Bugfixes:
+
+  - Fix `MadcubaMap` setters not changing the same attributes of the failsafe
+    `CCDData` object.
+  - Fix `MadcubaMap` initializing the ``hist`` attribute as a reference alias.
+
 Version 0.7.0 (2025-10-28)
 ==========================
 
