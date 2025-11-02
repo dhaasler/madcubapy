@@ -52,6 +52,11 @@ def test_read_madcuba_map(example_madcuba_madcubamap):
     assert (example_madcuba_madcubamap.hist[-1]["Macro"] ==
         "//PYTHON: Open cube: 'examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits'"
     )
+    assert (example_madcuba_madcubamap.restfreq == 
+            example_madcuba_madcubamap.header["RESTFREQ"] * example_madcuba_madcubamap.wcs.wcs.cunit[2])
+    assert np.all(example_madcuba_madcubamap.integrated_range == 
+                  np.array([500, 5500]) * u.m / u.s)
+
     assert (example_madcuba_madcubamap.sigma == 
             example_madcuba_madcubamap.header["SIGMA"] * example_madcuba_madcubamap.unit)
 
@@ -80,6 +85,16 @@ def test_invalid_file():
         # unit: must be astropy.units.Unit
         ("unit", 42),
         ("unit", np.array([1])),
+
+        # restfreq: must be astropy.units.Quantity
+        ("restfreq", 42),
+        ("restfreq", np.array([1])),
+        ("restfreq", "not quantity"),
+
+        # integrated_range: must be astropy.units.Quantity
+        ("integrated_range", 42),
+        ("integrated_range", np.array([1])),
+        ("integrated_range", "not quantity"),
 
         # sigma: must be astropy.units.Quantity
         ("sigma", 42),
