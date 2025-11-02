@@ -77,6 +77,8 @@ def stack_maps(*fitsmaps):
             hist=new_hist,
             ccddata=new_ccddata,
             filename=fitsmaps[0].filename,
+            _update_hist_on_init=False,
+            _bypass_ccddata_conflict_check=True,
         )
         # Create history action
         if all(obj.filename is not None for obj in fitsmaps):
