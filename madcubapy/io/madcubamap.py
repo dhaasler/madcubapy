@@ -517,7 +517,7 @@ class MadcubaMap(MadcubaFits):
         # Add to hist
         if new_madcubamap._hist:
             new_madcubamap._update_hist(f"Copied from another MadcubaMap with"
-                                        + f" filepath: '{self._filepath}'")
+                                        + f" filepath: '{self._filename}'")
         return new_madcubamap
 
     def show(self, **kwargs):
