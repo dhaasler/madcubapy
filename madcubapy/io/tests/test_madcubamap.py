@@ -50,15 +50,18 @@ def test_read_madcuba_map(example_madcuba_madcubamap):
         equal_nan=True,
     )
     assert (example_madcuba_madcubamap.hist[-1]["Macro"] ==
-        "//PYTHON: Open cube: 'examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits'"
+        "//PYTHON: Open cube: "
+        + "'examples/data/IRAS16293_SO_2-1_moment0_madcuba.fits'"
     )
     assert (example_madcuba_madcubamap.restfreq == 
-            example_madcuba_madcubamap.header["RESTFREQ"] * example_madcuba_madcubamap.wcs.wcs.cunit[2])
+            (example_madcuba_madcubamap.header["RESTFREQ"] *
+             example_madcuba_madcubamap.wcs.wcs.cunit[2]))
     assert np.all(example_madcuba_madcubamap.integrated_range == 
                   np.array([500, 5500]) * u.m / u.s)
 
     assert (example_madcuba_madcubamap.sigma == 
-            example_madcuba_madcubamap.header["SIGMA"] * example_madcuba_madcubamap.unit)
+            (example_madcuba_madcubamap.header["SIGMA"] *
+             example_madcuba_madcubamap.unit))
 
 def test_invalid_file():
     with pytest.raises(FileNotFoundError):
@@ -67,36 +70,29 @@ def test_invalid_file():
 @pytest.mark.parametrize(
     "parameter, value",
     [
-        # data: must be numpy array
         ("data", 3),
         ("data", 3.14),
         ("data", "not an array"),
-        ("data", CCDData(np.ones((5,5)), unit="Jy")),  # invalid even if it's CCDData
+        ("data", CCDData(np.ones((5,5)), unit="Jy")),
 
-        # header: must be astropy.io.fits.Header
         ("header", 42),
         ("header", "not a header"),
         ("header", np.array([1, 2, 3])),
 
-        # wcs: must be astropy.wcs.WCS
         ("wcs", 3),
         ("wcs", "not a wcs"),
 
-        # unit: must be astropy.units.Unit
         ("unit", 42),
         ("unit", np.array([1])),
 
-        # restfreq: must be astropy.units.Quantity
         ("restfreq", 42),
         ("restfreq", np.array([1])),
         ("restfreq", "not quantity"),
 
-        # integrated_range: must be astropy.units.Quantity
         ("integrated_range", 42),
         ("integrated_range", np.array([1])),
         ("integrated_range", "not quantity"),
 
-        # sigma: must be astropy.units.Quantity
         ("sigma", 42),
         ("sigma", "not quantity"),
     ],
@@ -123,22 +119,26 @@ def test_valid_init_types(parameter, value):
 
 def test_write_madcuba_map(example_madcuba_madcubamap):
     # Assert filename and hist change after writing
-    assert example_madcuba_madcubamap.filename == "IRAS16293_SO_2-1_moment0_madcuba.fits"
+    assert (example_madcuba_madcubamap.filename ==
+            "IRAS16293_SO_2-1_moment0_madcuba.fits")
     example_madcuba_madcubamap.write(
         "examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits",
         overwrite=True,
     )
     # Assert filename
-    assert example_madcuba_madcubamap.filename == "IRAS16293_SO_2-1_moment0_madcuba_write.fits"
+    assert (example_madcuba_madcubamap.filename ==
+            "IRAS16293_SO_2-1_moment0_madcuba_write.fits")
     assert (example_madcuba_madcubamap.hist[-1]["Macro"] ==
-        "//PYTHON: Save cube: 'examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
+        "//PYTHON: Save cube: "
+        + "'examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
     )
     # Read back the written file
     example_madcuba_madcubamap_write = MadcubaMap.read(
         "examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits"
     )
     # Assert BUNIT was written correctly
-    assert example_madcuba_madcubamap_write.header["BUNIT"] == 'Jy beam-1 m s-1'
+    assert (example_madcuba_madcubamap_write.header["BUNIT"] ==
+            'Jy beam-1 m s-1')
     # Assert written map is correctly read
     assert 0 == 0
     assert example_madcuba_madcubamap_write.ccddata is not None
@@ -154,7 +154,8 @@ def test_write_madcuba_map(example_madcuba_madcubamap):
         example_madcuba_madcubamap_write.data,
         equal_nan=True,
     )
-    assert example_madcuba_madcubamap.unit == example_madcuba_madcubamap_write.unit
+    assert (example_madcuba_madcubamap.unit ==
+            example_madcuba_madcubamap_write.unit)
     assert (example_madcuba_madcubamap.hist[0]["Macro"] ==
         example_madcuba_madcubamap_write.hist[0]["Macro"]
     )
@@ -162,13 +163,16 @@ def test_write_madcuba_map(example_madcuba_madcubamap):
     assert (example_madcuba_madcubamap_write.filename ==
             "IRAS16293_SO_2-1_moment0_madcuba_write.fits")
     assert (example_madcuba_madcubamap_write.hist[-2]["Macro"] ==
-        "//PYTHON: Save cube: 'examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
+        "//PYTHON: Save cube: "
+        + "'examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
     )
     assert (example_madcuba_madcubamap_write.hist[-1]["Macro"] ==
-        "//PYTHON: Open cube: 'examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
+        "//PYTHON: Open cube: "
+        + "'examples/data/IRAS16293_SO_2-1_moment0_madcuba_write.fits'"
     )
 
-def test_sigma_creation_at_init(example_carta_ccddata, example_madcuba_madcubamap):
+def test_sigma_creation_at_init(example_carta_ccddata,
+                                example_madcuba_madcubamap):
     histi = example_madcuba_madcubamap.hist.copy()
     madcubamap_carta_test_hist = MadcubaMap(ccddata=example_carta_ccddata,
                                             hist=histi)
@@ -206,7 +210,8 @@ def test_input_params_inmutability(example_madcuba_ccddata):
     madcubamap_from_ccddata.header = hedi
     assert example_madcuba_ccddata.header != madcubamap_from_ccddata.header
 
-def test_hist_inmutability(example_madcuba_madcubamap, example_madcuba_ccddata):
+def test_hist_inmutability(example_madcuba_madcubamap,
+                           example_madcuba_ccddata):
     histi = example_madcuba_madcubamap.hist.copy()
     madcubamap_test_hist = MadcubaMap(ccddata=example_madcuba_ccddata,
                                       hist=histi)
@@ -239,14 +244,17 @@ def test_copy_madcuba(example_madcuba_madcubamap):
     )
     assert madcuba_map_copy.header == example_madcuba_madcubamap.header
     assert madcuba_map_copy.unit == example_madcuba_madcubamap.unit
-    assert report_diff_values(example_madcuba_madcubamap.hist, madcuba_map_copy.hist[:-1])
-    assert madcuba_map_copy.ccddata.meta == example_madcuba_madcubamap.ccddata.meta
+    assert report_diff_values(example_madcuba_madcubamap.hist,
+                              madcuba_map_copy.hist[:-1])
+    assert (madcuba_map_copy.ccddata.meta ==
+            example_madcuba_madcubamap.ccddata.meta)
 
 def test_convert_units_madcuba(example_madcuba_madcubamap):
     example_madcuba_madcubamap_mJy = example_madcuba_madcubamap.copy()
     example_madcuba_madcubamap_mJy.convert_unit_to(u.mJy * u.m / u.beam / u.s)
     assert example_madcuba_madcubamap_mJy.unit == u.mJy * u.m / u.beam / u.s
-    assert example_madcuba_madcubamap_mJy.ccddata.unit == u.mJy * u.m / u.beam / u.s
+    assert (example_madcuba_madcubamap_mJy.ccddata.unit ==
+            u.mJy * u.m / u.beam / u.s)
     assert example_madcuba_madcubamap_mJy.hist[-1]["Macro"] == (
         "//PYTHON: Convert units to 'm mJy beam-1 s-1'"
     )
@@ -256,5 +264,6 @@ def test_convert_units_carta(example_carta_madcubamap):
     example_carta_madcubamap_mJy.fix_units()
     example_carta_madcubamap_mJy.convert_unit_to(u.mJy * u.m / u.beam / u.s)
     assert example_carta_madcubamap_mJy.unit == u.mJy * u.m / u.beam / u.s
-    assert example_carta_madcubamap_mJy.ccddata.unit == u.mJy * u.m / u.beam / u.s
+    assert (example_carta_madcubamap_mJy.ccddata.unit ==
+            u.mJy * u.m / u.beam / u.s)
     assert example_carta_madcubamap_mJy.hist == None
