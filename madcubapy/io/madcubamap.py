@@ -734,6 +734,8 @@ def _get_integrated_range(hist):
     search_str = 'run("INTEGRATED INTENSITY PLUGIN"'
     matching_rows = [row for row in hist if search_str in row['Macro']]
     last_match_row = matching_rows[-1] if matching_rows else None
+    if not last_match_row:
+        return None
     # If there are more than one matching row, take the last one
     last_match = last_match_row["Macro"]
     # Search for integrated range values
