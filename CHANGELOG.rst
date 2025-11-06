@@ -1,3 +1,10 @@
+Version 0.8.1 (2025-11-06)
+==========================
+
+- Bugfixes:
+
+  - Fix ``_get_integrated_range`` failing if no matching row was found.
+
 Version 0.8.0 (2025-11-02)
 ==========================
 
