@@ -644,7 +644,8 @@ class MadcubaMap(MadcubaFits):
             self.ccddata.header["BUNIT"] = (unit.to_string(format='fits'),
                                             'madcubapy convert unit')
         # Convert sigma
-        self._sigma = self._sigma.to(unit)
+        if self._sigma:
+            self._sigma = self._sigma.to(unit)
         if "SIGMA" in self.header:
             self.header["SIGMA"] = (self._sigma.value,
                                     'madcubapy convert unit')

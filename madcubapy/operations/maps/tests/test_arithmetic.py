@@ -16,3 +16,5 @@ def test_stack_maps(example_madcuba_map):
     assert (sum_map.hist[-1]["Macro"] ==
         "//PYTHON: Stack maps. Files: 'IRAS16293_SO_2-1_moment0_madcuba.fits', 'IRAS16293_SO_2-1_moment0_madcuba.fits'"
     )
+    assert sum_map.unit is not None
+    assert sum_map.unit == example_madcuba_map.unit
