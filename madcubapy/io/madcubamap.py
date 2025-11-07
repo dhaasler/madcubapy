@@ -644,16 +644,16 @@ class MadcubaMap(MadcubaFits):
             self.ccddata.header["BUNIT"] = (unit.to_string(format='fits'),
                                             'madcubapy convert unit')
         # Convert sigma
-        if self._sigma:
+        if self._sigma is not None:
             self._sigma = self._sigma.to(unit)
-        if "SIGMA" in self.header:
-            self.header["SIGMA"] = (self._sigma.value,
-                                    'madcubapy convert unit')
-            self.ccddata.header["SIGMA"] = (self._sigma.value,
-                                            'madcubapy convert unit')
-        if self._hist:
-            self._update_hist((f"Convert units to "
-                             + f"'{unit.to_string(format='fits')}'"))
+            if "SIGMA" in self.header:
+                self.header["SIGMA"] = (self._sigma.value,
+                                        'madcubapy convert unit')
+                self.ccddata.header["SIGMA"] = (self._sigma.value,
+                                                'madcubapy convert unit')
+            if self._hist:
+                self._update_hist((f"Convert units to "
+                                + f"'{unit.to_string(format='fits')}'"))
 
     def __repr__(self):
         # If hist is None, display that it's missing
