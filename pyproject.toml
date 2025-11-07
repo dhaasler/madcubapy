@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "madcubapy"
-version = "0.8.1"
+version = "0.8.2"
 description = "The MADCUBA python package."
 readme = "PYPIREADME.rst"
 license = {file = "LICENSE"}

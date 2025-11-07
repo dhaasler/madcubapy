@@ -1,3 +1,10 @@
+Version 0.8.2 (2025-11-07)
+==========================
+
+- Bugfixes:
+
+  - Fix sigma not being checked if present in convert_unit_to in `MadcubaMap`.
+
 Version 0.8.1 (2025-11-06)
 ==========================
 
