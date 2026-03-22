@@ -6,6 +6,7 @@ import matplotlib as mpl
 from matplotlib.axes import Axes
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
+import warnings
 
 __all__ = [
     'add_wcs_axes',
@@ -88,10 +89,13 @@ def add_wcs_axes(
     global last_bunit
     last_bunit = parse_clabel(fitsmap)
 
+    # Check NAXIS veracity
+    if len(data.shape) != int(fitsmap.header['NAXIS']):
+        warnings.warn(f"data shape not corresponding with NAXIS", UserWarning)
     # Slice extra dimensions from data
-    if fitsmap.header['NAXIS'] == 3:
+    if len(data.shape) == 3:
         data = data[0, :, :]
-    elif fitsmap.header['NAXIS'] == 4:
+    elif len(data.shape) == 4:
         data = data[0, 0, :, :]
     # Dimensions are: stokes, freq, Y, X for ALMA datacubes
 
@@ -189,10 +193,14 @@ def add_manual_wcs_axes(
     global last_bunit
     last_bunit = parse_clabel(fitsmap)
 
+    # Check NAXIS veracity
+    if len(data.shape) != int(fitsmap.header['NAXIS']):
+        warnings.warn(f"data shape not corresponding with NAXIS", UserWarning)
+
     # Slice extra dimensions from data
-    if fitsmap.header['NAXIS'] == 3:
+    if len(data.shape) == 3:
         data = data[0, :, :]
-    elif fitsmap.header['NAXIS'] == 4:
+    elif len(data.shape) == 4:
         data = data[0, 0, :, :]
     # Dimensions are: stokes, freq, Y, X for ALMA datacubes
 
