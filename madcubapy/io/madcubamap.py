@@ -394,6 +394,13 @@ class MadcubaMap(MadcubaFits):
                         and hasattr(wcs, "wcs")
                         and len(wcs.wcs.cunit) >= 3):
                         freq_unit = wcs.wcs.cunit[2]
+                    else:
+                        warnings.warn(
+                            (f"CUNIT3 not found in header, "
+                            +"defaulting to Hz for rest frequency"),
+                            UserWarning,
+                        )
+                        freq_unit = u.Hz
                 except Exception:
                     warnings.warn(
                         (f"CUNIT3 not found in header, "
