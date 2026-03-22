@@ -749,12 +749,12 @@ def _check_sigma_contours(
     sigma_contour = None
     
     # Create Matplotlib figures
-    sigma_fig = mpl.figure.Figure(figsize=(7,6))
+    sigma_fig = Figure(figsize=(7,6))
     sigma_ax, sigma_img = add_wcs_axes(sigma_fig, 1, 1, 1,
                                        fitsmap=fitsmap,
                                        vmin=0, vmax=300)
     sigma_cbar = add_colorbar(sigma_ax)
-    check_fig = mpl.figure.Figure(figsize=(7,6))
+    check_fig = Figure(figsize=(7,6))
     check_ax, check_img = add_wcs_axes(check_fig, 1, 1, 1,
                                        fitsmap=fitsmap,
                                        vmin=0, vmax=300)
