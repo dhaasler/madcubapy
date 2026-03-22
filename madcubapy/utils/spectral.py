@@ -49,7 +49,7 @@ def create_spectral_array(nchan, cdelt, crpix, crval):
     return spectral_array
 
 
-def obs_to_rest(obs_freq, radial_velocity, doppler_convention):
+def obs_to_rest(obs_freq, radial_velocity, doppler_convention="radio"):
     """
     Convert observed frequency to rest frequency.
 
@@ -59,7 +59,7 @@ def obs_to_rest(obs_freq, radial_velocity, doppler_convention):
         Observed frequency.
     radial_velocity : `~astropy.units.Quantity`
         Radial velocity of the source relative to the observer.
-    doppler_convention : {"radio", "relativistic"}, optional
+    doppler_convention : {"radio" (default), "relativistic"}
         The Doppler convention to use.
 
     Returns
@@ -85,7 +85,7 @@ def obs_to_rest(obs_freq, radial_velocity, doppler_convention):
     return rest_freq
 
 
-def rest_to_obs(rest_freq, radial_velocity, doppler_convention):
+def rest_to_obs(rest_freq, radial_velocity, doppler_convention="radio"):
     """
     Convert rest frequency to observed frequency.
 
@@ -95,7 +95,7 @@ def rest_to_obs(rest_freq, radial_velocity, doppler_convention):
         Rest frequency.
     radial_velocity : `~astropy.units.Quantity`
         Radial velocity of the source relative to the observer.
-    doppler_convention : {"radio", "relativistic"}, optional
+    doppler_convention : {"radio" (default), "relativistic"}
         The Doppler convention to use.
 
     Returns
@@ -121,7 +121,7 @@ def rest_to_obs(rest_freq, radial_velocity, doppler_convention):
     return obs_freq
 
 
-def obs_to_vel(obs_freq, doppler_rest, doppler_convention):
+def obs_to_vel(obs_freq, doppler_rest, doppler_convention="radio"):
     """
     Convert observed frequency to velocity.
 
@@ -131,7 +131,7 @@ def obs_to_vel(obs_freq, doppler_rest, doppler_convention):
         Observed frequency.
     doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : {"radio", "relativistic"}, optional
+    doppler_convention : {"radio" (default), "relativistic"}
         The Doppler convention to use.
 
     Returns
@@ -157,7 +157,7 @@ def obs_to_vel(obs_freq, doppler_rest, doppler_convention):
     return vel
 
 
-def vel_to_obs(vel, doppler_rest, doppler_convention):
+def vel_to_obs(vel, doppler_rest, doppler_convention="radio"):
     """
     Convert velocity to observed frequency.
 
@@ -167,7 +167,7 @@ def vel_to_obs(vel, doppler_rest, doppler_convention):
         Velocity.
     doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : {"radio", "relativistic"}, optional
+    doppler_convention : {"radio" (default), "relativistic"}
         The Doppler convention to use.
 
     Returns
@@ -193,7 +193,7 @@ def vel_to_obs(vel, doppler_rest, doppler_convention):
     return obs_freq
 
 
-def rest_to_vel(rest_freq, radial_velocity, doppler_rest, doppler_convention):
+def rest_to_vel(rest_freq, radial_velocity, doppler_rest, doppler_convention="radio"):
     """
     Convert rest frequency to velocity.
 
@@ -205,7 +205,7 @@ def rest_to_vel(rest_freq, radial_velocity, doppler_rest, doppler_convention):
         Radial velocity of the source relative to the observer.
     doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : {"radio", "relativistic"}, optional
+    doppler_convention : {"radio" (default), "relativistic"}
         The Doppler convention to use.
 
     Returns
@@ -232,7 +232,7 @@ def rest_to_vel(rest_freq, radial_velocity, doppler_rest, doppler_convention):
     return vel
 
 
-def vel_to_rest(vel, radial_velocity, doppler_rest, doppler_convention):
+def vel_to_rest(vel, radial_velocity, doppler_rest, doppler_convention="radio"):
     """
     Convert velocty to rest frequency.
 
@@ -244,7 +244,7 @@ def vel_to_rest(vel, radial_velocity, doppler_rest, doppler_convention):
         Radial velocity of the source relative to the observer.
     doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : {"radio", "relativistic"}, optional
+    doppler_convention : {"radio" (default), "relativistic"}
         The Doppler convention to use.
 
     Returns
