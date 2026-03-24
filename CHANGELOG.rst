@@ -1,3 +1,20 @@
+Version 0.8.4 (2026-03-22)
+==========================
+
+- Changes:
+
+  - Add "radio" as default convention for spectral conversion utils.
+
+- Bugfixes:
+
+  - `add_wcs_axes` and `add_manual_wcs_axes`: data slicing now uses data array
+    shape instead of NAXIS keyword.
+  - `add_wcs_axes` and `add_manual_wcs_axes`: add warning for user if NAXIS
+    does not correspond to data array shape.
+  - Fix freq_unit not accesible when reading a fits object if CUNIT3 is not
+    present in header.  
+  - Fix _check_sigma_contours incorrectly stating a `matplotlib` Figure.
+
 Version 0.8.3 (2025-11-07)
 ==========================
 
