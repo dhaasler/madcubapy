@@ -59,3 +59,10 @@ To avoid the use of several functions, `madcubapy` also offers the
 units and automatically perform conversions between frequencies, wavelengths,
 photon energies, and Doppler velocities. Check
 :ref:`The SpectralData page<use_spectral_data>` to know more.
+
+Spectral resolution units
+=========================
+
+The user can convert between the spectral resolution between Frequency and 
+velocity units using the :func:`~madcubapy.utils.convert_spectral_resolution`
+function.

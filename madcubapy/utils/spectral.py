@@ -5,6 +5,7 @@ import numpy as np
 
 __all__ = [
     'create_spectral_array',
+    'convert_spectral_resolution',
     'obs_to_rest',
     'rest_to_obs',
     'obs_to_vel',
@@ -47,6 +48,41 @@ def create_spectral_array(nchan, cdelt, crpix, crval):
         spectral_array = np.linspace(first_chan, last_chan, nchan)
 
     return spectral_array
+
+
+def convert_spectral_resolution(spectral_res, rest_freq):
+    """
+    Convert a channel width between velocity and frequency.
+
+    Parameters
+    ----------
+    spectral_res : `~astropy.units.Quantity`
+        Width of channel in velocity or frequency units.
+    rest_freq : `~astropy.units.Quantity`
+        Rest frequency of the spectrum.
+
+    Returns
+    -------
+    `~astropy.units.Quantity`
+        Spectral rest converted to the other units.
+
+    """
+
+    if not isinstance(spectral_res, u.Quantity):
+        raise TypeError("spectral_res must be an astropy Quantity,"
+                        + f"not {type(spectral_res)}")
+    if spectral_res.unit.is_equivalent(u.Hz):
+        spectral_res_vel = const.c * (spectral_res / rest_freq.to(spectral_res.unit))
+        return spectral_res_vel.to(u.km / u.s)
+    elif spectral_res.unit.is_equivalent(u.m / u.s):
+        spectral_res_freq = rest_freq * (spectral_res / const.c)
+        return spectral_res_freq.to(u.Hz)
+    else:
+        raise u.UnitConversionError(
+            f"Unit '{spectral_res.unit}' is not a valid spectral resolution unit. "
+            "Must be equivalent to Hz or km/s."
+        )
+
 
 
 def obs_to_rest(obs_freq, radial_velocity, doppler_convention="radio"):

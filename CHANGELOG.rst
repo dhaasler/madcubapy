@@ -1,3 +1,10 @@
+Version 0.8.5 (2026-03-24)
+==========================
+
+- New features:
+  
+  - Add ``convert_spectral_resolution`` method to `units.spectral` module.
+
 Version 0.8.4 (2026-03-22)
 ==========================
 
