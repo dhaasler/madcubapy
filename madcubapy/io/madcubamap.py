@@ -378,11 +378,8 @@ class MadcubaMap(MadcubaFits):
             freq_value = header["CRVAL3"]
         else:
             try:
-                if (wcs is not None
-                    and hasattr(wcs, "wcs")
-                    and len(wcs.wcs.crval) >= 3):
-                    freq_value = wcs.wcs.crval[2]
-            except Exception:
+                freq_value = wcs.wcs.crval[2]
+            except (AttributeError, IndexError, TypeError):
                 freq_value = None
 
         if freq_value is not None:
@@ -390,18 +387,8 @@ class MadcubaMap(MadcubaFits):
                 freq_unit = u.Unit(header["CUNIT3"])
             else:
                 try:
-                    if (wcs is not None
-                        and hasattr(wcs, "wcs")
-                        and len(wcs.wcs.cunit) >= 3):
-                        freq_unit = wcs.wcs.cunit[2]
-                    else:
-                        warnings.warn(
-                            (f"CUNIT3 not found in header, "
-                            +"defaulting to Hz for rest frequency"),
-                            UserWarning,
-                        )
-                        freq_unit = u.Hz
-                except Exception:
+                    freq_unit = wcs.wcs.cunit[2]
+                except (AttributeError, IndexError, TypeError):
                     warnings.warn(
                         (f"CUNIT3 not found in header, "
                         +"defaulting to Hz for rest frequency"),
