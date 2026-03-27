@@ -12,6 +12,11 @@ __all__ = [
     'vel_to_obs',
     'rest_to_vel',
     'vel_to_rest',
+    'measure_snr_peak',
+    'measure_snr_profile_fit',
+    'measure_snr_profile_observed',
+    'estimate_rms_profile_fit',
+    'estimate_rms_peak',
 ]
 
 def create_spectral_array(nchan, cdelt, crpix, crval):
@@ -95,7 +100,7 @@ def obs_to_rest(obs_freq, radial_velocity, doppler_convention="radio"):
         Observed frequency.
     radial_velocity : `~astropy.units.Quantity`
         Radial velocity of the source relative to the observer.
-    doppler_convention : {"radio" (default), "relativistic"}
+    doppler_convention : {"radio", "relativistic"}, default: "radio"
         The Doppler convention to use.
 
     Returns
@@ -131,7 +136,7 @@ def rest_to_obs(rest_freq, radial_velocity, doppler_convention="radio"):
         Rest frequency.
     radial_velocity : `~astropy.units.Quantity`
         Radial velocity of the source relative to the observer.
-    doppler_convention : {"radio" (default), "relativistic"}
+    doppler_convention : {"radio", "relativistic"}, default: "radio"
         The Doppler convention to use.
 
     Returns
@@ -167,7 +172,7 @@ def obs_to_vel(obs_freq, doppler_rest, doppler_convention="radio"):
         Observed frequency.
     doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : {"radio" (default), "relativistic"}
+    doppler_convention : {"radio", "relativistic"}, default: "radio"
         The Doppler convention to use.
 
     Returns
@@ -203,7 +208,7 @@ def vel_to_obs(vel, doppler_rest, doppler_convention="radio"):
         Velocity.
     doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : {"radio" (default), "relativistic"}
+    doppler_convention : {"radio", "relativistic"}, default: "radio"
         The Doppler convention to use.
 
     Returns
@@ -241,7 +246,7 @@ def rest_to_vel(rest_freq, radial_velocity, doppler_rest, doppler_convention="ra
         Radial velocity of the source relative to the observer.
     doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : {"radio" (default), "relativistic"}
+    doppler_convention : {"radio", "relativistic"}, default: "radio"
         The Doppler convention to use.
 
     Returns
@@ -280,7 +285,7 @@ def vel_to_rest(vel, radial_velocity, doppler_rest, doppler_convention="radio"):
         Radial velocity of the source relative to the observer.
     doppler_rest : `~astropy.units.Quantity`
         Rest frequency of the line.
-    doppler_convention : {"radio" (default), "relativistic"}
+    doppler_convention : {"radio", "relativistic"}, default: "radio"
         The Doppler convention to use.
 
     Returns
@@ -335,3 +340,185 @@ def _vel_to_obs_radio(vel, rest_freq):
 def _vel_to_obs_rel(vel, rest_freq):
     beta = (vel / const.c)
     return rest_freq * ((1 - beta) / (1 + beta))**0.5
+
+def measure_snr_peak(peak_int, rms):
+    """Measure the peak SNR of a line by providing peak intensity and rms"""
+    if (not isinstance(peak_int, u.Quantity)
+        and not isinstance (peak_int, int)
+        and not isinstance (peak_int, float)):
+        raise TypeError("'peak_int' must be a float or astropy Quantity.")
+    if (not isinstance(rms, u.Quantity)
+        and not isinstance (rms, int)
+        and not isinstance (rms, float)):
+        raise TypeError("'rms' must be a float or astropy Quantity.")
+    return peak_int / rms
+
+def measure_snr_profile_fit(area, fwhm, dv, rms):
+    """
+    Measure the SNR of a line by integrating the emission on the fitted
+    gaussian profile
+
+    Parameters
+    ----------
+    area : `float` or `~astropy.units.Quantity`
+        Area of the fitted gaussian line.
+    fwhm : `float` or `~astropy.units.Quantity`
+        FWHM of the fitted gaussian line.
+    dv : `float` or `~astropy.units.Quantity`
+        Channel width.
+    rms : `float` or `~astropy.units.Quantity`
+        Measured rms on the spectral data.
+
+    Returns
+    -------
+    snr : `float`
+        Measured integrated SNR.
+
+    """
+    if (not isinstance(area, u.Quantity)
+        and not isinstance (area, int)
+        and not isinstance (area, float)):
+        raise TypeError("'area' must be a float or astropy Quantity.")
+    if (not isinstance(dv, u.Quantity)
+        and not isinstance (dv, int)
+        and not isinstance (dv, float)):
+        raise TypeError("'dv' must be a float or astropy Quantity.")
+    if (not isinstance(fwhm, u.Quantity)
+        and not isinstance (fwhm, int)
+        and not isinstance (fwhm, float)):
+        raise TypeError("'fwhm' must be a float or astropy Quantity.")
+    if (not isinstance(rms, u.Quantity)
+        and not isinstance (rms, int)
+        and not isinstance (rms, float)):
+        raise TypeError("'rms' must be a float or astropy Quantity.")
+    
+    sigma_area = rms * dv * np.sqrt(fwhm/dv)
+    snr = area / sigma_area
+
+    return snr
+
+def measure_snr_profile_observed(x_array, y_array, v0, fwhm, dv, rms,
+                                 window_sigma_factor=3,
+                                 window_selection_method="fractional"):
+    """
+    Measure the SNR of a line by integrating the emission on the observed
+    channels.
+    
+    Note: Needs the velocity and width of a fitted gaussian line on the
+    observed line profile to select the channels.
+
+    Parameters
+    ----------
+    x_array : `~np.array` or `~astropy.units.Quantity`
+        X axis array of the observed spectrum in velocity units.
+    y_array : `~np.array` or `~astropy.units.Quantity`
+        Y axis array of the observed spectrum.
+    v0 : `float` or `~astropy.units.Quantity`
+        Central velocity of the fitted gaussian line.
+    fwhm : `float` or `~astropy.units.Quantity`
+        FWHM of the fitted gaussian line.
+    dv : `float` or `~astropy.units.Quantity`
+        Channel width.
+    rms : `float` or `~astropy.units.Quantity`
+        Measured rms on the spectral data.
+    window_sigma_factor : `float`, default: 3
+        Number of sigma deviation to be used for each side of the gaussian
+        center as the selected window.
+    window_selection_method : {"fractional", "binary"}, default: "fractional"
+        Method for handling channels at the edge of the integration window:
+
+        - 'fractional' (Recommended): Weights boundary channels by the fraction
+          of their width that falls inside the selected window.
+        - 'binary': Boolean masking; includes the full flux of any channel 
+          whose center is within the window boundaries.
+
+    Returns
+    -------
+    snr : `float`
+        Measured integrated SNR.
+
+    """
+
+    if (not isinstance(x_array, u.Quantity)
+        and not isinstance (x_array, np.ndarray)):
+        raise TypeError("'x_array' must be a numpy array or astropy Quantity.")
+    if (not isinstance(y_array, u.Quantity)
+        and not isinstance (y_array, np.ndarray)):
+        raise TypeError("'y_array' must be a numpy array or astropy Quantity.")
+    if (not isinstance(v0, u.Quantity)
+        and not isinstance (v0, int)
+        and not isinstance (v0, float)):
+        raise TypeError("'area' must be a float or astropy Quantity.")
+    if (not isinstance(fwhm, u.Quantity)
+        and not isinstance (fwhm, int)
+        and not isinstance (fwhm, float)):
+        raise TypeError("'fwhm' must be a float or astropy Quantity.")
+    if (not isinstance(dv, u.Quantity)
+        and not isinstance (dv, int)
+        and not isinstance (dv, float)):
+        raise TypeError("'dv' must be a float or astropy Quantity.")
+    if (not isinstance(rms, u.Quantity)
+        and not isinstance (rms, int)
+        and not isinstance (rms, float)):
+        raise TypeError("'rms' must be a float or astropy Quantity.")
+
+    sigma_v = fwhm / (2 * np.sqrt(2 * np.log(2)))
+
+    if window_selection_method == "binary":
+        mask_hard = ((x_array >= v0 - window_sigma_factor*sigma_v) &
+                     (x_array <= v0 + window_sigma_factor*sigma_v))
+        # sum of the flux in each channel multiplied by the channel width 
+        area_obs_hard = np.sum(y_array[mask_hard]) * dv
+        N_eff_hard = mask_hard.sum()
+        sigma_area_hard = rms * dv * np.sqrt(N_eff_hard)
+        snr = area_obs_hard / sigma_area_hard
+        return snr
+    elif window_selection_method == "fractional":
+        vmin = v0 - window_sigma_factor*sigma_v
+        vmax = v0 + window_sigma_factor*sigma_v
+        v_left = x_array - dv/2
+        v_right = x_array + dv/2
+        # Create a mask with overlapping channels with contributions on each
+        # channel. 0 to 1. Channels that are only partially on the window have
+        # a number between 0 and 1. The ones entirely in the window are 1, the
+        # ones outside are 0.
+        f_overlap = np.clip((np.minimum(v_right, vmax)
+                             - np.maximum(v_left, vmin))/dv, 0, 1)
+        area_obs_frac = np.sum(y_array * f_overlap * dv)
+        N_eff_frac = np.sum(f_overlap)
+        sigma_area_frac = rms * dv * np.sqrt(N_eff_frac)
+        snr = area_obs_frac / sigma_area_frac
+        return snr
+    else:
+        raise TypeError("'window_selection_method' must be 'fractional' or 'binary'.")
+
+def estimate_rms_profile_fit(area, fwhm, dv, snr):
+    """
+    Measure the SNR of a line by integrating the emission on the fitted
+    gaussian profile
+
+    Parameters
+    ----------
+    area : `float` or `~astropy.units.Quantity`
+        Area of the fitted gaussian line.
+    fwhm : `float` or `~astropy.units.Quantity`
+        FWHM of the fitted gaussian line.
+    dv : `float` or `~astropy.units.Quantity`
+        Channel width.
+    snr : `float` or `~astropy.units.Quantity`
+        Target SNR.
+
+    Returns
+    -------
+    rms : `float` or `~astropy.units.Quantity`
+        Estimated rms for the target SNR.
+
+    """
+    sigma_area = area / snr
+    rms = sigma_area / (dv * np.sqrt(fwhm/dv))
+    return rms
+
+def estimate_rms_peak(peak_int, snr):
+    """Estimate the rms for a given peak intensity and desired SNR of a line"""
+    rms = peak_int / snr
+    return rms
