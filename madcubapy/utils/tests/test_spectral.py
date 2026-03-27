@@ -4,14 +4,22 @@ from astropy.constants import c
 from astropy.units import Quantity
 import numpy as np
 import pytest
-from madcubapy.utils.spectral import create_spectral_array
-from madcubapy.utils.spectral import convert_spectral_resolution
-from madcubapy.utils.spectral import obs_to_rest
-from madcubapy.utils.spectral import rest_to_obs
-from madcubapy.utils.spectral import obs_to_vel
-from madcubapy.utils.spectral import vel_to_obs
-from madcubapy.utils.spectral import rest_to_vel
-from madcubapy.utils.spectral import vel_to_rest
+from madcubapy.utils.spectral import (
+    create_spectral_array,
+    convert_spectral_resolution,
+    obs_to_rest,
+    rest_to_obs,
+    obs_to_vel,
+    vel_to_obs,
+    rest_to_vel,
+    vel_to_rest,
+    measure_snr_peak,
+    measure_snr_profile_fit,
+    measure_snr_profile_observed,
+    estimate_rms_profile_fit,
+    estimate_rms_peak
+)
+
 
 def test_create_spectral_array_without_units():
     """Test a specific array without units"""
@@ -216,3 +224,113 @@ def test_vel_to_rest_result():
         rest_array.to(u.GHz).value,
         atol=1e-5, rtol=0
     )
+
+def test_measure_snr_peak_basic():
+    # Simple float test
+    assert measure_snr_peak(10.0, 2.0) == 5.0
+    # Quantity test
+    peak = 10.0 * u.Jy
+    rms = 2.0 * u.Jy
+    assert measure_snr_peak(peak, rms).value == 5.0
+    assert measure_snr_peak(peak, rms).unit.is_unity()
+
+def test_measure_snr_peak_type_error():
+    with pytest.raises(TypeError, match="must be a float or astropy Quantity"):
+        measure_snr_peak("10", 2.0)
+
+def test_measure_snr_profile_fit_consistency_float():
+    area = 10.0
+    fwhm = 2.0
+    dv = 0.5
+    rms = 0.1
+    snr = measure_snr_profile_fit(area, fwhm, dv, rms)
+    assert np.isclose(snr, 100.0)
+
+def test_measure_snr_profile_fit_consistency_quantity():
+    area = 10.0 * u.K * u.km / u.s
+    fwhm = 2.0 * u.km / u.s
+    dv = 0.5 * u.km / u.s
+    rms = 0.1 * u.K
+    snr = measure_snr_profile_fit(area, fwhm, dv, rms)
+    assert np.isclose(snr, 100.0)
+
+@pytest.mark.parametrize(
+    "parameter, value",
+    [
+        ("area", "3"),
+        ("area", u.km),
+
+        ("fwhm", "3"),
+        ("fwhm", u.km),
+
+        ("dv", "3"),
+        ("dv", u.km),
+
+        ("rms", "3"),
+        ("rms", u.km),        
+    ],
+)
+def test_invalid_init_types(parameter, value):
+    with pytest.raises(TypeError):
+        measure_snr_profile_fit(**{parameter: value})
+
+@pytest.fixture
+def sample_spectrum():
+    """Creates a simple box 'line' for testing integration."""
+    dv = 1.0
+    x = np.arange(-10, 11, dv) * u.km/u.s
+    y = np.zeros_like(x.value) * u.K
+    # Put a flat signal of 1.0 Jy from -2 to 2
+    y[(x.value >= -2) & (x.value <= 2)] = 1.0 * u.K
+    return x, y, dv * u.km/u.s
+
+def test_measure_snr_observed_binary(sample_spectrum):
+    """Test simple known snr value in binary mask."""
+    x, y, dv = sample_spectrum
+    v0 = 0.0 * u.km / u.s
+    fwhm = 2.355 * u.km / u.s  # sigma = 1
+    rms = 0.1 * u.K
+    # sigma window = 3 accounts for 7 channels: (-3, -2, -1, 0, 1, 2, 3)
+    nchan = 7
+    snr = measure_snr_profile_observed(x, y, v0, fwhm, dv, rms, 
+                                       window_sigma_factor=3, 
+                                       window_selection_method="binary")
+    expected_area = 5.0  # (y=1 for -2, -1, 0, 1, 2) * dv=1
+    expected_sigma_area = 0.1 * 1.0 * np.sqrt(nchan)
+    assert np.isclose(snr.value, expected_area / expected_sigma_area)
+
+def test_measure_snr_observed_fractional_edges():
+    """Test simple known snr value in fractional mask."""
+    # Test that fractional logic handles sub-channel windows
+    x = np.array([0.0]) * u.km/u.s
+    y = np.array([1.0]) * u.Jy
+    dv = 1.0 * u.km/u.s
+    v0 = 0.0 * u.km/u.s
+    fwhm = 2.355 * u.km/u.s # sigma = 1
+    rms = 0.1 * u.Jy
+    # Force a window that only covers half the center channel
+    # (factor=0.5, so window is +/- 0.5)
+    # The channel spans -0.5 to 0.5. Window is -0.5 to 0.5. Overlap should be 1.0.
+    snr = measure_snr_profile_observed(x, y, v0, fwhm, dv, rms, 
+                                       window_sigma_factor=0.5, 
+                                       window_selection_method="fractional")
+    assert snr > 0
+
+def test_measure_snr_observed_invalid_method(sample_spectrum):
+    x, y, dv = sample_spectrum
+    with pytest.raises(TypeError, match="must be 'fractional' or 'binary'"):
+        measure_snr_profile_observed(x, y, 0, 1, dv, 0.1,
+                                     window_selection_method="invalid")
+
+def test_rms_estimation_roundtrip():
+    """Verify that estimating RMS and then measuring SNR returns the original SNR."""
+    area = 50.0 * (u.Jy * u.km/u.s)
+    fwhm = 10.0 * u.km/u.s
+    dv = 1.0 * u.km/u.s
+    target_snr = 25.0
+    estimated_rms = estimate_rms_profile_fit(area, fwhm, dv, target_snr)
+    calculated_snr = measure_snr_profile_fit(area, fwhm, dv, estimated_rms)
+    assert np.isclose(calculated_snr, target_snr)
+
+def test_estimate_rms_peak():
+    assert estimate_rms_peak(10.0, 5.0) == 2.0
