@@ -54,7 +54,7 @@ convert observed frequency to velocity using
     >>> velocity_array
     [3000, 1875.1495799 ] km / s
 
-To avoid the use of several functions, `madcubapy` also offers the
+To avoid the use of several functions, `madcubapy.utils` also offers the
 `~madcubapy.coordinates.SpectralData` class to work with spectral data with
 units and automatically perform conversions between frequencies, wavelengths,
 photon energies, and Doppler velocities. Check
@@ -83,6 +83,6 @@ lines in various ways:
   window width. The function allows selecting a binary or fractional mask to
   handle the side channels. 
 
-Similarly, `madcubapy` also offers helpers to estimate the rms for a desired
-SNR with the functions :func:`~madcubapy.utils.estimate_rms_peak` and 
+Similarly, `madcubapy.utils` also offers helpers to estimate the rms for a
+desired SNR with the functions :func:`~madcubapy.utils.estimate_rms_peak` and 
 :func:`~madcubapy.utils.estimate_rms_profile_fit`.
