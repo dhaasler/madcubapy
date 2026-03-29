@@ -3,7 +3,10 @@ Version 0.8.5 (2026-03-24)
 
 - New features:
   
-  - Add ``convert_spectral_resolution`` method to `units.spectral` module.
+  - Add ``convert_spectral_resolution``, ``measure_snr_peak``,
+    ``measure_snr_profile_fit``, ``measure_snr_profile_observed``,
+    ``estimate_rms_profile_fit``, and ``estimate_rms_peak`` methods to
+    `units.spectral` module.
 
 Version 0.8.4 (2026-03-22)
 ==========================
