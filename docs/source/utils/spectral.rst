@@ -66,3 +66,23 @@ Spectral resolution units
 The user can convert between the spectral resolution between Frequency and 
 velocity units using the :func:`~madcubapy.utils.convert_spectral_resolution`
 function.
+
+SNR functions
+=============
+
+`madcubapy` offers functions to measure the signal-to-noise ratio of spectral
+lines in various ways:
+
+* :func:`~madcubapy.utils.measure_snr_peak` for a peak SNR measurement (peak
+  intensity / rms).
+* :func:`~madcubapy.utils.measure_snr_profile_fit` for a SNR integrating the
+  emission of the line profile assuming a gaussian fit using the equation:
+  (eq.1) 
+* :func:`~madcubapy.utils.measure_snr_profile_observed` for a SNR integrating the
+  emission along the line profile on the observed channels inside a selected
+  window width. The function allows selecting a binary or fractional mask to
+  handle the side channels. 
+
+Similarly, `madcubapy` also offers helpers to estimate the rms for a desired
+SNR with the functions :func:`~madcubapy.utils.estimate_rms_peak` and 
+:func:`~madcubapy.utils.estimate_rms_profile_fit`.
