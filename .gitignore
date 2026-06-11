@@ -27,6 +27,10 @@ docs/source/sg_execution_times.rst
 
 # Tests notebook to quickly check new code
 tests.ipynb
+test-jupyter.ipynb
+test-script.py
+test-marimo.py
+__marimo__/
 
 # mac stuff
 .DS_Store
